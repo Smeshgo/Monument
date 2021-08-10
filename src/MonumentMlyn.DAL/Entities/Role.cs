@@ -10,7 +10,7 @@ namespace MonumentMlyn.DAL.Entities
     {
         public Role()
         {
-            UserRoles = new HashSet<UserRole>();
+            
         }
         [Key]
         public Guid IdRole { get; set; }
@@ -19,6 +19,6 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? CreateRole { get; set; }
         public DateTime? UpdateRole { get; set; }
 
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public List<User> Users { get; set; } = new List<User>();
     }
 }

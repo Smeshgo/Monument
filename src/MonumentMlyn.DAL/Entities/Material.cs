@@ -10,7 +10,6 @@ namespace MonumentMlyn.DAL.Entities
     {
         public Material()
         {
-            MaterialMonuments = new HashSet<MaterialMonument>();
         }
         [Key]
         public Guid IdMaterial { get; set; }
@@ -27,8 +26,10 @@ namespace MonumentMlyn.DAL.Entities
         public Guid IdAppointment { get; set; }
         public Guid IdCategoryMaterial { get; set; }
 
-        public virtual Appointment IdAppointmentNavigation { get; set; }
-        public virtual CategoryMaterial IdCategoryMaterialNavigation { get; set; }
-        public virtual ICollection<MaterialMonument> MaterialMonuments { get; set; }
+      //  public List<Appointment> Appointments { get; set; } = new List<Appointment>();
+        public Appointment Appointment { get; set; }
+        public CategoryMaterial CategoryMaterial { get; set; }
+        
+        public List<Monument> Monuments { get; set; } = new List<Monument>();
     }
 }

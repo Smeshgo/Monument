@@ -10,13 +10,12 @@ namespace MonumentMlyn.DAL.Entities
     {
         public CategoryMaterial()
         {
-            Materials = new HashSet<Material>();
         }
         [Key]
         public Guid IdCategoryMaterial { get; set; }
         public string Name { get; set; }
         public DateTime? CreateCategoryMaterial { get; set; }
 
-        public virtual ICollection<Material> Materials { get; set; }
+        public List<Material> Materials { get; set; } = new List<Material>();
     }
 }
