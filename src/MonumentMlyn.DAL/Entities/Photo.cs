@@ -10,8 +10,6 @@ namespace MonumentMlyn.DAL.Entities
     {
         public Photo()
         {
-            Monuments = new HashSet<Monument>();
-            PhotoArticles = new HashSet<PhotoArticle>();
         }
         [Key]
         public Guid IdPhoto { get; set; }
@@ -23,8 +21,8 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? UpdatePhoto { get; set; }
         public Guid IdCategoryPhoto { get; set; }
 
-        public virtual CategoryPhoto IdCategoryPhotoNavigation { get; set; }
-        public virtual ICollection<Monument> Monuments { get; set; }
-        public virtual ICollection<PhotoArticle> PhotoArticles { get; set; }
+        public CategoryPhoto CategoryPhoto { get; set; }
+        public List<Monument> Monuments { get; set; } = new List<Monument>();
+        public List<Article> Articles { get; set; } = new List<Article>();
     }
 }

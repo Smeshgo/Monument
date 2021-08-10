@@ -10,8 +10,6 @@ namespace MonumentMlyn.DAL.Entities
     {
         public User()
         {
-            ArticleUsers = new HashSet<ArticleUser>();
-            UserRoles = new HashSet<UserRole>();
         }
         [Key]
         public Guid IdUser { get; set; }
@@ -26,7 +24,7 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? CreateUser { get; set; }
         public DateTime? UpdateUser { get; set; }
 
-        public virtual ICollection<ArticleUser> ArticleUsers { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public List<Article> Articles { get; set; } = new List<Article>();
+        public List<Role> Roles { get; set; } = new List<Role>();
     }
 }

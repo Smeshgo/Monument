@@ -10,7 +10,6 @@ namespace MonumentMlyn.DAL.Entities
     {
         public Appointment()
         {
-            Materials = new HashSet<Material>();
         }
         [Key]
         public Guid IdAppointment { get; set; }
@@ -18,6 +17,7 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? CreateAppointment { get; set; }
         public DateTime? Update { get; set; }
 
-        public virtual ICollection<Material> Materials { get; set; }
+        public List<Material> Materials { get; set; } = new List<Material>();
+        
     }
 }

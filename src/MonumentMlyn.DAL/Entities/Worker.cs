@@ -10,7 +10,7 @@ namespace MonumentMlyn.DAL.Entities
     {
         public Worker()
         {
-            MonumentWorkers = new HashSet<MonumentWorker>();
+            
         }
         [Key]
         public Guid IdWorker { get; set; }
@@ -27,6 +27,6 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? CreateWorcer { get; set; }
         public DateTime? UpdateWorker { get; set; }
 
-        public virtual ICollection<MonumentWorker> MonumentWorkers { get; set; }
+        public List<Monument> Monuments { get; set; } = new List<Monument>();
     }
 }
