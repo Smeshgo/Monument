@@ -20,6 +20,5 @@ namespace MonumentMlyn.DAL.Entities
 
         public List<Photo> Photos { get; set; } = new List<Photo>();
 
-        //public virtual ICollection<Photo> Photos { get; set; }
     }
 }

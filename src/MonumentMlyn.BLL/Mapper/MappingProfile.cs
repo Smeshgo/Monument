@@ -41,8 +41,8 @@ namespace MonumentMlyn.BLL.Mapper
             CreateMap<Worker, WorkerDto>();
             CreateMap<WorkerDto, Worker>();
 
-            CreateMap<Сustomer, СustomerDto>();
-            CreateMap<Сustomer, СustomerDto>();
+            CreateMap<Customer, СustomerDto>();
+            CreateMap<Customer, СustomerDto>();
 
         }
 
