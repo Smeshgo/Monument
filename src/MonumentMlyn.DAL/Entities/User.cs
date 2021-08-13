@@ -11,12 +11,23 @@ namespace MonumentMlyn.DAL.Entities
         public User()
         {
         }
+
+        public User(Guid idUser, string userNama, string password, string firstName, string lastName, string email, string status, DateTime? createUser, DateTime? updateUser)
+        {
+            IdUser = idUser;
+            UserNama = userNama;
+            Password = password;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Status = status;
+            CreateUser = createUser;
+            UpdateUser = updateUser;    
+        }
         [Key]
         public Guid IdUser { get; set; }
-        public string Usernama { get; set; }
+        public string UserNama { get; set; }
         public string Password { get; set; }
-        public DateTime Update { get; set; }
-        public DateTime Create { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

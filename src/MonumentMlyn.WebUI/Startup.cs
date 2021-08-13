@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using MonumentMlyn.BLL.Mapper;
 using NLog;
 
 
@@ -31,6 +32,11 @@ namespace MonumentMlyn.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
