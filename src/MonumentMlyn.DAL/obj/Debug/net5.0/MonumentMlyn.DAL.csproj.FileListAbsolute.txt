@@ -1,0 +1,44 @@
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.deps.json
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\bin\Debug\net5.0\ref\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.pdb
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.AssemblyInfoInputs.cache
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.AssemblyInfo.cs
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\obj\Debug\net5.0\ref\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.pdb
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.runtimeconfig.json
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.runtimeconfig.dev.json
+C:\Users\Oleg\OneDrive\Desktop\test p\MonumentMlyn\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.genruntimeconfig.cache
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.deps.json
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.runtimeconfig.json
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.runtimeconfig.dev.json
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\ref\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.pdb
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.AssemblyInfoInputs.cache
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.AssemblyInfo.cs
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\ref\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.pdb
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.genruntimeconfig.cache
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.1\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.csproj.AssemblyReference.cache
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.deps.json
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.runtimeconfig.json
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.runtimeconfig.dev.json
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\ref\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\bin\Debug\net5.0\MonumentMlyn.DAL.pdb
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.csproj.AssemblyReference.cache
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.AssemblyInfoInputs.cache
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.AssemblyInfo.cs
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\ref\MonumentMlyn.DAL.dll
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.pdb
+C:\Users\Oleg\OneDrive\Desktop\ProjectMonumentsMlynyska\V1.2\MonumentsMlynyska\src\MonumentMlyn.DAL\obj\Debug\net5.0\MonumentMlyn.DAL.genruntimeconfig.cache
