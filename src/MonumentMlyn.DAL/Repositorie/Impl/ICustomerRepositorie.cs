@@ -5,7 +5,7 @@ using MonumentMlyn.DAL.Entities;
 
 namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    public interface IСustomerRepositorie :  IRepositoryBase<Customer>
+    public interface ICustomerRepositorie :  IRepositoryBase<Customer>
     {
         Task<IEnumerable<Customer>> GetAllСustomers(bool trackChanges);
         Task<Customer> GetСustomerById(int idСustomer);

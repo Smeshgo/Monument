@@ -10,9 +10,9 @@ using MonumentMlyn.DAL.Repositorie.Impl;
 
 namespace MonumentMlyn.DAL.Repositorie
 {
-    class СustomerRepositorie: RepositoryBase<Customer>, IСustomerRepositorie
+    class CustomerRepositorie: RepositoryBase<Customer>, ICustomerRepositorie
     {
-        public СustomerRepositorie(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public CustomerRepositorie(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
 
