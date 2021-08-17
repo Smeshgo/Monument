@@ -4,13 +4,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
-using MonumentMlyn.DAL.Repositorie.Impl;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    public class PhotoRepositorie : RepositoryBase<Photo>,IPhotoRepositorie
+    public class PhotoRepositorieImpl : RepositoryBaseImpl<Photo>,IPhotoRepositorie
     {
-        public PhotoRepositorie(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public PhotoRepositorieImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
 

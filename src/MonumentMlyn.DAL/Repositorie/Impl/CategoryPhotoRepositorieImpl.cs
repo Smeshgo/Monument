@@ -1,17 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MonumentMlyn.DAL.EF;
-using MonumentMlyn.DAL.Entities;
-using MonumentMlyn.DAL.Repositorie.Impl;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using MonumentMlyn.DAL.EF;
+using MonumentMlyn.DAL.Entities;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    class CategoryPhotoRepositorie : RepositoryBase<CategoryPhoto>, ICategoryPhotoRepositorie
+    class CategoryPhotoRepositorieImpl : RepositoryBaseImpl<CategoryPhoto>, ICategoryPhotoRepositorie
     {
-        public CategoryPhotoRepositorie(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public CategoryPhotoRepositorieImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
 

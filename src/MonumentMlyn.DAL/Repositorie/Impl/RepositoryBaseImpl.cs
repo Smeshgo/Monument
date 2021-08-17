@@ -1,20 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MonumentMlyn.DAL.EF;
-using MonumentMlyn.DAL.Repositorie.Impl;
-using System;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using MonumentMlyn.DAL.EF;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
     /// <summary>
     /// Base repository that have methods for all repositories.
     /// </summary>
     /// <typeparam name="T">parameter of model name.</typeparam>
-    public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public class RepositoryBaseImpl<T> : IRepositoryBase<T> where T : class
     {
         protected ApplicationDbContext RepositoryContext;
-        public RepositoryBase(ApplicationDbContext repositoryContext)
+        public RepositoryBaseImpl(ApplicationDbContext repositoryContext)
         {
             RepositoryContext = repositoryContext;
         }

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
-using MonumentMlyn.DAL.Repositorie.Impl;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    class CustomerRepositorie: RepositoryBase<Customer>, ICustomerRepositorie
+    class CustomerRepositorieImpl: RepositoryBaseImpl<Customer>, ICustomerRepositorie
     {
-        public CustomerRepositorie(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public CustomerRepositorieImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
 

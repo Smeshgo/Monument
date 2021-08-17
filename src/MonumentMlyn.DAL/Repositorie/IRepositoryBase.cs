@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace MonumentMlyn.DAL.Repositorie.Impl
+namespace MonumentMlyn.DAL.Repositorie
 {
     /// <summary>
     /// IRepositoryBase pattern for encapsulating the logic of working with data sources.

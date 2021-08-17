@@ -1,16 +1,15 @@
-﻿using MonumentMlyn.DAL.EF;
-using MonumentMlyn.DAL.Entities;
-using MonumentMlyn.DAL.Repositorie.Impl;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using MonumentMlyn.DAL.EF;
+using MonumentMlyn.DAL.Entities;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    public class ArticleRepository : RepositoryBase<Article>, IArticleRepository
+    public class ArticleRepositoryImpl : RepositoryBaseImpl<Article>, IArticleRepository
     {
-        public ArticleRepository(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public ArticleRepositoryImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
         /// <summary>

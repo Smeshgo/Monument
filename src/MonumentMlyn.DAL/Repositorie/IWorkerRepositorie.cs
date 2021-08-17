@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Net.Mail;
 using System.Threading.Tasks;
 using MonumentMlyn.DAL.Entities;
 
-namespace MonumentMlyn.DAL.Repositorie.Impl
+namespace MonumentMlyn.DAL.Repositorie
 {
     public interface IWorkerRepositorie : IRepositoryBase<Worker>
     {

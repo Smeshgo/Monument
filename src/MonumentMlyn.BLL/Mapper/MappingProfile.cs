@@ -45,7 +45,5 @@ namespace MonumentMlyn.BLL.Mapper
             CreateMap<Customer, СustomerDto>();
 
         }
-
-
     }
 }

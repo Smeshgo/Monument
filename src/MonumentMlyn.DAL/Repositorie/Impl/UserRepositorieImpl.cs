@@ -4,13 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
-using MonumentMlyn.DAL.Repositorie.Impl;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    public class UserRepositorie: RepositoryBase<User>, IUserRepositorie
+    public class UserRepositorieImpl: RepositoryBaseImpl<User>, IUserRepositorie
     {
-        public UserRepositorie(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public UserRepositorieImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
 

@@ -1,18 +1,15 @@
-﻿using MonumentMlyn.DAL.EF;
-using MonumentMlyn.DAL.Entities;
-using MonumentMlyn.DAL.Repositorie.Impl;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MonumentMlyn.DAL.EF;
+using MonumentMlyn.DAL.Entities;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    public class AppointmentRepository : RepositoryBase<Appointment>, IAppointmentRepository
+    public class AppointmentRepositoryImpl : RepositoryBaseImpl<Appointment>, IAppointmentRepository
     {
-        public AppointmentRepository(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public AppointmentRepositoryImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
         /// <summary>

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
-using MonumentMlyn.DAL.Repositorie.Impl;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    class MonumentRepositorie : RepositoryBase<Monument>, IMonumentRepositorie
+    class MonumentRepositorieImpl : RepositoryBaseImpl<Monument>, IMonumentRepositorie
     {
-        public MonumentRepositorie(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public MonumentRepositorieImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
         public async Task<IEnumerable<Monument>> GetAllMonuments(bool trackChanges) =>

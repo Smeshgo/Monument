@@ -7,9 +7,9 @@ using MonumentMlyn.DAL.Entities;
 
 namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    public class RoleRepositorie : RepositoryBase<Role>,IRoleRepositorie
+    public class RoleRepositorieImpl : RepositoryBaseImpl<Role>,IRoleRepositorie
     {
-        public RoleRepositorie(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public RoleRepositorieImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
 

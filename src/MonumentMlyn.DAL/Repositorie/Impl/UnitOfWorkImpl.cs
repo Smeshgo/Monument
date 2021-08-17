@@ -1,19 +1,15 @@
-﻿using MonumentMlyn.DAL.EF;
-using MonumentMlyn.DAL.Repositorie.Impl;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MonumentMlyn.DAL.EF;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
     /// <summary>
     /// Unit of Work pattern simplifies working with different repositories for getting data from repository.
     /// It Helps work with data context.
     /// </summary>
-    class UnitOfWork : IUnitOfWork
+    class UnitOfWorkImpl : IUnitOfWork
     {
+        
         private readonly ApplicationDbContext _repositoryContext;
         private IAppointmentRepository _appointmentRepository;
         private IArticleRepository _articleRepository;
@@ -27,7 +23,7 @@ namespace MonumentMlyn.DAL.Repositorie
         private IUserRepositorie _userRepositorie;
         private IWorkerRepositorie _workerRepositorie;
 
-        public UnitOfWork(ApplicationDbContext repositoryContext)
+        public UnitOfWorkImpl(ApplicationDbContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
         }
@@ -37,7 +33,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_appointmentRepository == null)
-                    _appointmentRepository = new AppointmentRepository(_repositoryContext);
+                    _appointmentRepository = new AppointmentRepositoryImpl(_repositoryContext);
                 return _appointmentRepository;
             }
         }
@@ -47,7 +43,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_articleRepository == null)
-                    _articleRepository = new ArticleRepository(_repositoryContext);
+                    _articleRepository = new ArticleRepositoryImpl(_repositoryContext);
                 return _articleRepository;
             }
         }
@@ -56,7 +52,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_categoryMaterialRepositorie == null)
-                    _categoryMaterialRepositorie = new CategoryMaterialRepositorie(_repositoryContext);
+                    _categoryMaterialRepositorie = new CategoryMaterialRepositorieImpl(_repositoryContext);
                 return _categoryMaterialRepositorie;
             }
         }
@@ -65,7 +61,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_categoryPhotoRepositorie == null)
-                    _categoryPhotoRepositorie = new CategoryPhotoRepositorie(_repositoryContext);
+                    _categoryPhotoRepositorie = new CategoryPhotoRepositorieImpl(_repositoryContext);
                 return _categoryPhotoRepositorie;
             }
         }
@@ -74,7 +70,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_customerRepositorie == null)
-                    _customerRepositorie = new CustomerRepositorie(_repositoryContext);
+                    _customerRepositorie = new CustomerRepositorieImpl(_repositoryContext);
                 return _customerRepositorie;
             }
         }
@@ -83,7 +79,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_materialRepositorie == null)
-                    _materialRepositorie = new MaterialRepositorie(_repositoryContext);
+                    _materialRepositorie = new MaterialRepositorieImpl(_repositoryContext);
                 return _materialRepositorie;
             }
         }
@@ -92,7 +88,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_monumentRepositorie == null)
-                    _monumentRepositorie = new MonumentRepositorie(_repositoryContext);
+                    _monumentRepositorie = new MonumentRepositorieImpl(_repositoryContext);
                 return _monumentRepositorie;
             }
         }
@@ -101,7 +97,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_photoRepositorie == null)
-                    _photoRepositorie = new PhotoRepositorie(_repositoryContext);
+                    _photoRepositorie = new PhotoRepositorieImpl(_repositoryContext);
                 return _photoRepositorie;
             }
         }
@@ -110,7 +106,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_roleRepositorie == null)
-                    _roleRepositorie = new RoleRepositorie(_repositoryContext);
+                    _roleRepositorie = new RoleRepositorieImpl(_repositoryContext);
                 return _roleRepositorie;
             }
         }
@@ -119,7 +115,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_userRepositorie == null)
-                    _userRepositorie = new UserRepositorie(_repositoryContext);
+                    _userRepositorie = new UserRepositorieImpl(_repositoryContext);
                 return _userRepositorie;
             }
         }
@@ -129,7 +125,7 @@ namespace MonumentMlyn.DAL.Repositorie
             get
             {
                 if (_workerRepositorie == null)
-                    _workerRepositorie = new WorkerRepositorie(_repositoryContext);
+                    _workerRepositorie = new WorkerRepositorieImpl(_repositoryContext);
                 return _workerRepositorie;
             }
         }

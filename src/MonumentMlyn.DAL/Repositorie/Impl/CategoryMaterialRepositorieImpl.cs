@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
-using MonumentMlyn.DAL.Repositorie.Impl;
 
-namespace MonumentMlyn.DAL.Repositorie
+namespace MonumentMlyn.DAL.Repositorie.Impl
 {
-    public class CategoryMaterialRepositorie : RepositoryBase<CategoryMaterial>, ICategoryMaterialRepositorie
+    public class CategoryMaterialRepositorieImpl : RepositoryBaseImpl<CategoryMaterial>, ICategoryMaterialRepositorie
     {
-        public CategoryMaterialRepositorie(ApplicationDbContext repositoryContext) : base(repositoryContext)
+        public CategoryMaterialRepositorieImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
         /// <summary>
