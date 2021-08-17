@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MonumentMlyn.DAL.Entities
 {
-    public class Сustomer
+    public class Customer
     {
-        public Сustomer()
+        public Customer()
         {
             Monuments = new HashSet<Monument>();
         }
