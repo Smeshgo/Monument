@@ -1,15 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using MonumentMlyn.DAL.Entities;
 
 namespace MonumentMlyn.BLL.DTO
 {
-    public class СustomerDto
+    public class CustomerDto
     {
-        public СustomerDto()
+        public CustomerDto()
         {
+            
         }
-        public СustomerDto(Guid idCustomer, string lastName, string surname,
-            DateTime createUser, DateTime updateUser, string phone, string email)
+
+        public CustomerDto(Guid idCustomer, string lastName, string surname, DateTime createUser, DateTime updateUser, string phone, string email, ICollection<Monument> monuments)
         {
             IdCustomer = idCustomer;
             LastName = lastName;
@@ -18,7 +21,9 @@ namespace MonumentMlyn.BLL.DTO
             UpdateUser = updateUser;
             Phone = phone;
             Email = email;
+            Monuments = monuments;
         }
+        [Key]
         public Guid IdCustomer { get; set; }
 
         [StringLength(150, MinimumLength = 3)]
@@ -39,5 +44,6 @@ namespace MonumentMlyn.BLL.DTO
 
         [Required] public string Email { get; set; }
 
+        public virtual ICollection<Monument> Monuments { get; set; }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
+using MonumentMlyn.DAL.Repositorie.Impl;
 
 namespace MonumentMlyn.DAL.Repositorie
 {
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
         IAppointmentRepository Appointment { get; }
         IArticleRepository Article { get; }

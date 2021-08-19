@@ -28,7 +28,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             return FindByCondition(owner => owner.id_customer.Equals(idСustomer)).FirstOrDefault();
         }
 
-        public void CreateAttachment(Customer customer)
+        public void CreateСustomer(Customer customer)
         {
             Create(customer);
         }

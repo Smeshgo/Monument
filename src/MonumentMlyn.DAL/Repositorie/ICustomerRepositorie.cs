@@ -9,7 +9,7 @@ namespace MonumentMlyn.DAL.Repositorie
         Task<IEnumerable<Customer>> GetAllСustomers(bool trackChanges);
         Task<Customer> GetСustomerById(int idСustomer);
         Customer GetСustomerWithDetails(int idСustomer);
-        void CreateAttachment(Customer customer);
+        void CreateСustomer(Customer customer);
         void UpdateСustomer(Customer customer);
         void DeleteСustomer(Customer customer);
     }

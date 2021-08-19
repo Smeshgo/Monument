@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g8dm0Asza9JjJFiqh61L7tA7Scq4+x0EaQU1wNGuGggFNpmWwvB7rFfrvLfr42z7zDYdOVuojZecOtu0IV/8bw==",
+  "dgSpecHash": "0aU8x6zH+7wyhS25sp+HtSP59UlCE4TLoRrfV3ENNVsrKI82jNybWMCmhKQWQeZPpccUwgwpmFFMesjE2f3KuQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Oleg\\OneDrive\\Desktop\\ProjectMonumentsMlynyska\\V1.2\\MonumentsMlynyska\\src\\MonumentMlyn.DAL\\MonumentMlyn.DAL.csproj",
+  "projectFilePath": "C:\\Users\\Oleg\\OneDrive\\Desktop\\ProjectMonumentsMlynyska\\V1.3\\MonumentsMlynyska\\src\\MonumentMlyn.DAL\\MonumentMlyn.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Oleg\\.nuget\\packages\\advancedstringbuilder\\0.1.0\\advancedstringbuilder.0.1.0.nupkg.sha512",
     "C:\\Users\\Oleg\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
