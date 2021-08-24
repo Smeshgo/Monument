@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +28,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// </summary>
         /// <param name="CategoryPhoto">id of CategoryPhoto.</param>
         /// <returns>get CategoryPhoto.</returns>
-        public async Task<CategoryPhoto> GetCategoryPhotoById(int IdCategoryPhoto)
+        public async Task<CategoryPhoto> GetCategoryPhotoById(Guid IdCategoryPhoto)
         {
             return await FindByCondition(x => x.IdCategoryPhoto.Equals(IdCategoryPhoto))
                 .FirstOrDefaultAsync();
@@ -37,7 +38,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// </summary>
         /// <param name="IdCategoryPhoto">id of CategoryPhoto.</param>
         /// <returns>get CategoryPhoto with details.</returns>
-        public CategoryPhoto GetCategoryPhotoWithDetails(int idCategoryPhoto)
+        public CategoryPhoto GetCategoryPhotoWithDetails(Guid idCategoryPhoto)
         {
             return FindByCondition(owner => owner.IdCategoryPhoto.Equals(idCategoryPhoto)).FirstOrDefault();
         }

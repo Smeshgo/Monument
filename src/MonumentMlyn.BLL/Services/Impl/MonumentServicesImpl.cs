@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MonumentMlyn.BLL.DTO;
@@ -27,7 +28,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<MonumentDto>>(monuments);
         }
 
-        public async Task<MonumentDto> GetMonumentById(int idMonument)
+        public async Task<MonumentDto> GetMonumentById(Guid idMonument)
         {
             var monument = await _repository.Monument.GetMonumentById(idMonument);
 
@@ -42,7 +43,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateMonument(int idMonument, MonumentDto monument)
+        public async Task UpdateMonument(Guid idMonument, MonumentDto monument)
         {
             var monumentEntity = await _repository.Monument.GetMonumentById(idMonument);
 
@@ -51,7 +52,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteMonument(int idMonument)
+        public async Task DeleteMonument(Guid idMonument)
         {
             var monumentEntity = await _repository.Monument.GetMonumentById(idMonument);
 

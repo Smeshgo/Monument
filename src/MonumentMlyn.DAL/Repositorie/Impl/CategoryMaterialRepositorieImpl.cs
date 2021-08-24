@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// </summary>
         /// <param name="idCategoryMaterial">id of CategoryMaterial.</param>
         /// <returns>get idCategoryMaterial.</returns>
-        public async Task<CategoryMaterial> GetCategoryMaterialById(int IdCategoryMaterial)
+        public async Task<CategoryMaterial> GetCategoryMaterialById(Guid IdCategoryMaterial)
         {
             return await FindByCondition(x => x.IdCategoryMaterial.Equals(IdCategoryMaterial))
                 .FirstOrDefaultAsync();
@@ -37,7 +38,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// </summary>
         /// <param name="IdCategoryMaterial">id of CategoryMaterial.</param>
         /// <returns>get CategoryMaterial with details.</returns>
-        public CategoryMaterial GetCategoryMaterialWithDetails(int idCategoryMaterial)
+        public CategoryMaterial GetCategoryMaterialWithDetails(Guid idCategoryMaterial)
         {
             return FindByCondition(owner => owner.IdCategoryMaterial.Equals(idCategoryMaterial)).FirstOrDefault();
         }

@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+
     "C:\\Users\\Oleg\\OneDrive\\Desktop\\ProjectMonumentsMlynyska\\v1.5\\MonumentsMlynyska\\src\\MonumentMlyn.BLL\\MonumentMlyn.BLL.csproj": {}
   },
   "projects": {
@@ -34,6 +35,7 @@
             "projectReferences": {
               "C:\\Users\\Oleg\\OneDrive\\Desktop\\ProjectMonumentsMlynyska\\v1.5\\MonumentsMlynyska\\src\\MonumentMlyn.DAL\\MonumentMlyn.DAL.csproj": {
                 "projectPath": "C:\\Users\\Oleg\\OneDrive\\Desktop\\ProjectMonumentsMlynyska\\v1.5\\MonumentsMlynyska\\src\\MonumentMlyn.DAL\\MonumentMlyn.DAL.csproj"
+
               }
             }
           }
@@ -76,6 +78,7 @@
         }
       }
     },
+
     "C:\\Users\\Oleg\\OneDrive\\Desktop\\ProjectMonumentsMlynyska\\v1.5\\MonumentsMlynyska\\src\\MonumentMlyn.DAL\\MonumentMlyn.DAL.csproj": {
       "version": "1.0.0",
       "restore": {

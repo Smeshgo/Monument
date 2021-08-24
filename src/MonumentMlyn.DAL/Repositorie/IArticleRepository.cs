@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MonumentMlyn.DAL.Entities;
 
@@ -8,8 +9,8 @@ namespace MonumentMlyn.DAL.Repositorie
     {
         
         Task<IEnumerable<Article>> GetAllArticles(bool trackChanges);
-        Task<Article> GetArticleById(int idarticle);
-        Article GetArticleWithDetails(int idarticle);
+        Task<Article> GetArticleById(Guid idarticle);
+        Article GetArticleWithDetails(Guid idarticle);
         void CreateArticle(Article article);
         void UpdateArticle(Article article);
         void DeleteArticle(Article article);

@@ -9,10 +9,10 @@ namespace MonumentMlyn.BLL.Services
 {
     interface ICustomerServices
     {
-        Task<IEnumerable<CustomerDto>> GetAllCustomers(bool trackChanges);
-        Task<CustomerDto> GetCustomerById(int idСustomer);
+        Task<IEnumerable<CustomerDto>> GetAllCustomers();
+        Task<CustomerDto> GetCustomerById(Guid idСustomer);
         Task CreateCustomer(CustomerDto customer);
-        Task UpdateCustomer(int idCustomer, CustomerDto customer);
-        Task DeleteCustomer(int idCustomer);
+        Task UpdateCustomer(Guid idCustomer, CustomerDto customer);
+        Task DeleteCustomer(Guid idCustomer);
     }
 }

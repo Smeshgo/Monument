@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,13 +20,13 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 .ToListAsync();
 
 
-        public async Task<Role> GetRoleById(int idRole)
+        public async Task<Role> GetRoleById(Guid idRole)
         {
             return await FindByCondition(x => x.IdRole.Equals(idRole))
                 .FirstOrDefaultAsync();
         }
 
-        public Role GetRoleWithDetails(int idRole)
+        public Role GetRoleWithDetails(Guid idRole)
         {
             return FindByCondition(owner => owner.IdRole.Equals(idRole)).FirstOrDefault();
         }

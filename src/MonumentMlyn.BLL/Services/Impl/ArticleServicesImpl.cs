@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MonumentMlyn.BLL.DTO;
@@ -18,7 +19,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ArticleDto>> GetAllArticles(bool trackChanges)
+        public async Task<IEnumerable<ArticleDto>> GetAllArticles()
         {
             var article =
                 _mapper.Map<IEnumerable<Article>, IEnumerable<ArticleDto>>(
@@ -27,7 +28,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<ArticleDto>>(article);
         }
 
-        public async Task<ArticleDto> GetArticleById(int idArticle)
+        public async Task<ArticleDto> GetArticleById(Guid idArticle)
         {
             var article = await _repository.Article.GetArticleById(idArticle);
 
@@ -41,7 +42,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateArticle(int idArticle, ArticleDto article)
+        public async Task UpdateArticle(Guid idArticle, ArticleDto article)
         {
             var articlEntity = await _repository.Article.GetArticleById(idArticle);
 
@@ -50,7 +51,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteArticle(int idArticle)
+        public async Task DeleteArticle(Guid idArticle)
         {
             var articlEntity = await _repository.Article.GetArticleById(idArticle);
             _repository.Article.DeleteArticle(articlEntity);
