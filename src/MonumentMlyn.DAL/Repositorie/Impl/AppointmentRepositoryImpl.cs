@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +28,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// </summary>
         /// <param name="idAppointment">id of attachment.</param>
         /// <returns>get Appointment.</returns>
-        public async Task<Appointment> GetAppointmentById(int idAppointment)
+        public async Task<Appointment> GetAppointmentById(Guid idAppointment)
         {
             return await FindByCondition(x => x.IdAppointment.Equals(idAppointment))
                 .FirstOrDefaultAsync();
@@ -37,7 +38,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// </summary>
         /// <param name="idAppointment">id of attachment.</param>
         /// <returns>get Appointment with details.</returns>
-        public Appointment GetAppointmentWithDetails(int idAppointment)
+        public Appointment GetAppointmentWithDetails(Guid idAppointment)
         {
             return FindByCondition(owner => owner.IdAppointment.Equals(idAppointment)).FirstOrDefault();
         }

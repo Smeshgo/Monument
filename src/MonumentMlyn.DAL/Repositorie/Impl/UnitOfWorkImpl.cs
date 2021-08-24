@@ -7,7 +7,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
     /// Unit of Work pattern simplifies working with different repositories for getting data from repository.
     /// It Helps work with data context.
     /// </summary>
-    class UnitOfWorkImpl : IUnitOfWork
+    public class UnitOfWorkImpl : IUnitOfWork
     {
         
         private readonly ApplicationDbContext _repositoryContext;
