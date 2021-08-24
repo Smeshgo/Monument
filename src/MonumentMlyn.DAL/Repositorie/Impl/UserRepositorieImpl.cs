@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,13 +19,13 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 .OrderBy(c => c.LastName)
                 .ToListAsync();
 
-        public async Task<User> GetUserById(int idUser)
+        public async Task<User> GetUserById(Guid idUser)
         {
             return await FindByCondition(x => x.IdUser.Equals(idUser))
                 .FirstOrDefaultAsync();
         }
 
-        public User GetUserWithDetails(int idUser)
+        public User GetUserWithDetails(Guid idUser)
         {
             return FindByCondition(owner => owner.IdUser.Equals(idUser)).FirstOrDefault();
         }

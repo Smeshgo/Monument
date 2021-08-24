@@ -20,7 +20,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             _repository = repository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<AppointmentDto>> GetAllAppointments(bool trackChanges)
+        public async Task<IEnumerable<AppointmentDto>> GetAllAppointments()
         {
             var companies =
                 _mapper.Map<IEnumerable<Appointment>, IEnumerable<AppointmentDto>>(
@@ -29,7 +29,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<AppointmentDto>>(companies);
         }
 
-        public async Task<AppointmentDto> GetAppointmentById(int idAppointment)
+        public async Task<AppointmentDto> GetAppointmentById(Guid idAppointment)
         {
             var appointment = await _repository.Appointment.GetAppointmentById(idAppointment);
 
@@ -43,7 +43,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateAppointment(int idAppointment, AppointmentDto appointment)
+        public async Task UpdateAppointment(Guid idAppointment, AppointmentDto appointment)
         {
             var appointmentEntity = await _repository.Appointment.GetAppointmentById(idAppointment);
 
@@ -53,7 +53,7 @@ namespace MonumentMlyn.BLL.Services.Impl
 
         }
 
-        public async Task DeleteAppointment(int idAppointment)
+        public async Task DeleteAppointment(Guid idAppointment)
         {
             var appointmentEntity = await _repository.Appointment.GetAppointmentById(idAppointment);
             _repository.Appointment.DeleteAppointment(appointmentEntity);

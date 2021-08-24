@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,13 +18,13 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         await FindAll(trackChanges)
             .OrderBy(c => c.Last_name)
             .ToListAsync();
-        public async Task<Customer> GetСustomerById(int idСustomer)
+        public async Task<Customer> GetСustomerById(Guid idСustomer)
         {
             return await FindByCondition(x => x.id_customer.Equals(idСustomer))
                 .FirstOrDefaultAsync();
         }
 
-        public Customer GetСustomerWithDetails(int idСustomer)
+        public Customer GetСustomerWithDetails(Guid idСustomer)
         {
             return FindByCondition(owner => owner.id_customer.Equals(idСustomer)).FirstOrDefault();
         }

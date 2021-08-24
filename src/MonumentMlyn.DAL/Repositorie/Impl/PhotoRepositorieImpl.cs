@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -17,13 +18,13 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             await FindAll(trackChanges)
                 .OrderBy(c => c.Name)
                 .ToListAsync();
-        public async Task<Photo> GetPhotoById(int idPhoto)
+        public async Task<Photo> GetPhotoById(Guid idPhoto)
         {
             return await FindByCondition(x => x.IdPhoto.Equals(idPhoto))
                 .FirstOrDefaultAsync();
         }
 
-        public Photo GetPhotoWithDetails(int idPhoto)
+        public Photo GetPhotoWithDetails(Guid idPhoto)
         {
             return FindByCondition(owner => owner.IdPhoto.Equals(idPhoto)).FirstOrDefault();
         }

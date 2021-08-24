@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MonumentMlyn.BLL.DTO;
@@ -17,7 +18,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             _repository = repository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<CustomerDto>> GetAllCustomers(bool trackChanges)
+        public async Task<IEnumerable<CustomerDto>> GetAllCustomers()
         {
             var customers = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDto>>(
                 await _repository.Customer.GetAllСustomers(trackChanges: false));
@@ -25,7 +26,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<CustomerDto>>(customers);
         }
 
-        public async Task<CustomerDto> GetCustomerById(int idСustomer)
+        public async Task<CustomerDto> GetCustomerById(Guid idСustomer)
         {
             var customer = await _repository.Customer.GetСustomerById(idСustomer);
 
@@ -40,7 +41,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateCustomer(int idCustomer, CustomerDto customer)
+        public async Task UpdateCustomer(Guid idCustomer, CustomerDto customer)
         {
             var customerEntity = await _repository.Customer.GetСustomerById(idCustomer);
 
@@ -49,7 +50,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteCustomer(int idCustomer)
+        public async Task DeleteCustomer(Guid idCustomer)
         {
             var customerEntity = await _repository.Customer.GetСustomerById(idCustomer);
 

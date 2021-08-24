@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rOZ/+gSrJVv7uhJNG1Mz1ExlFwLLQ35Y6ovBLl4ozIxuMdM0CRz0UiLNUCflNOEwmwb1b6n6dc3hGOYW6DbJFA==",
+  "dgSpecHash": "x5tUuNxY1r828t3CQrnG6MDk9pgUOdG+Ms8JFHAcV5Tx0Ueh8j+pY6KqiEKV94b8rdIKohLXZ1KzH7fbPwEZOA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Oleg\\OneDrive\\Desktop\\ProjectMonumentsMlynyska\\V1.3\\MonumentsMlynyska\\src\\MonumentMlyn.BLL\\MonumentMlyn.BLL.csproj",
+  "projectFilePath": "C:\\Users\\Oleg\\OneDrive\\Desktop\\ProjectMonumentsMlynyska\\v1.5.1\\MonumentsMlynyska\\src\\MonumentMlyn.BLL\\MonumentMlyn.BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Oleg\\.nuget\\packages\\advancedstringbuilder\\0.1.0\\advancedstringbuilder.0.1.0.nupkg.sha512",
     "C:\\Users\\Oleg\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",

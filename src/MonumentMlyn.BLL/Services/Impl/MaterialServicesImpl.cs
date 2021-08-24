@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MonumentMlyn.BLL.DTO;
@@ -26,7 +27,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<MaterialDto>>(materials);
         }
 
-        public async Task<MaterialDto> GetMaterialById(int idMaterial)
+        public async Task<MaterialDto> GetMaterialById(Guid idMaterial)
         {
             var material = await _repository.Material.GetMaterialtById(idMaterial);
 
@@ -41,7 +42,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateMaterial(int idMaterial, MaterialDto material)
+        public async Task UpdateMaterial(Guid idMaterial, MaterialDto material)
         {
             var materialEntity = await _repository.Material.GetMaterialtById(idMaterial);
 
@@ -50,7 +51,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteMaterial(int idMaterial)
+        public async Task DeleteMaterial(Guid idMaterial)
         {
             var materialEntity = await _repository.Material.GetMaterialtById(idMaterial);
 

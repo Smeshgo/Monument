@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// </summary>
         /// <param name="idarticle">id of Article.</param>
         /// <returns>get Article.</returns>
-        public async Task<Article> GetArticleById(int idArticle)
+        public async Task<Article> GetArticleById(Guid idArticle)
         {
             return await FindByCondition(x => x.IdArticle.Equals(idArticle))
                 .FirstOrDefaultAsync();
@@ -37,7 +38,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// </summary>
         /// <param name="idarticle">id of article.</param>
         /// <returns>get article with details.</returns>
-        public Article GetArticleWithDetails(int idArticle)
+        public Article GetArticleWithDetails(Guid idArticle)
         {
             return FindByCondition(owner => owner.IdArticle.Equals(idArticle)).FirstOrDefault();
         }

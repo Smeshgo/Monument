@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
@@ -27,7 +28,7 @@ namespace MonumentMlyn.BLL.Services.Impl
 
         }
 
-        public async Task<CategoryMaterialDto> GetCategoryMaterialById(int idcategoryMaterial)
+        public async Task<CategoryMaterialDto> GetCategoryMaterialById(Guid idcategoryMaterial)
         { 
             var categoryMateria = await _repository.CategoryMaterial.GetCategoryMaterialById(idcategoryMaterial);
             return _mapper.Map<CategoryMaterialDto>(categoryMateria);
@@ -41,7 +42,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateCategoryMaterial(int idcategoryMaterial, CategoryMaterialDto categoryMaterial)
+        public async Task UpdateCategoryMaterial(Guid idcategoryMaterial, CategoryMaterialDto categoryMaterial)
         {
             var categoryMateriaEntity = await _repository.CategoryMaterial.GetCategoryMaterialById(idcategoryMaterial);
 
@@ -50,7 +51,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteCategoryMaterial(int idcategoryMaterial)
+        public async Task DeleteCategoryMaterial(Guid idcategoryMaterial)
         {
             var categoryMateriaEntity = await _repository.CategoryMaterial.GetCategoryMaterialById(idcategoryMaterial);
 
