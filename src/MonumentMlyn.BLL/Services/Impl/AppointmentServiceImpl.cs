@@ -10,7 +10,7 @@ using MonumentMlyn.DAL.Repositorie;
 
 namespace MonumentMlyn.BLL.Services.Impl
 {
-    class AppointmentServiceImpl : IAppointmentServices
+    public class AppointmentServiceImpl : IAppointmentServices
     {
         private readonly IUnitOfWork _repository;
         private readonly IMapper _mapper;

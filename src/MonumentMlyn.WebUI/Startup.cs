@@ -14,7 +14,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using MonumentMlyn.BLL.Mapper;
+using MonumentMlyn.WebUI.Extensions;
 using NLog;
+
 
 
 namespace MonumentMlyn.WebUI
@@ -31,13 +33,11 @@ namespace MonumentMlyn.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            var mapperConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MappingProfile());
-            });
-            IMapper mapper = mapperConfig.CreateMapper();
+            services.ConfigureCors();
+            services.ConfigureRepositoryManager();
             services.AddControllersWithViews();
+            services.ConfigureAppointmentService();
+            services.AddAutoMapper(typeof(Startup));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -46,7 +46,14 @@ namespace MonumentMlyn.WebUI
             });
 
 
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddControllers();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
