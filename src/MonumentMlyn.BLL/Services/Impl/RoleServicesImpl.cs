@@ -28,7 +28,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<RoleDto>>(roles);
         }
 
-        public async Task<RoleDto> GetERoleById(Guid idRole)
+        public async Task<RoleDto> GetRoleById(Guid idRole)
         {
             var role = await _repository.Role.GetRoleById(idRole);
 

@@ -8,7 +8,7 @@ using MonumentMlyn.BLL.DTO;
 
 namespace MonumentMlyn.BLL.Services
 {
-    interface ICategoryMaterialServices
+    public interface ICategoryMaterialServices
     {
         Task<IEnumerable<CategoryMaterialDto>> GetAllCategoryMaterial();
         Task<CategoryMaterialDto> GetCategoryMaterialById(Guid idcategoryMaterial);

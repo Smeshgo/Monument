@@ -7,7 +7,7 @@ using MonumentMlyn.BLL.DTO;
 
 namespace MonumentMlyn.BLL.Services
 {
-    interface ICustomerServices
+    public interface ICustomerServices
     {
         Task<IEnumerable<CustomerDto>> GetAllCustomers();
         Task<CustomerDto> GetCustomerById(Guid idСustomer);

@@ -30,7 +30,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<WorkerDto>>(workers);
         }
 
-        public async Task<WorkerDto> GetEmployeeById(Guid idWorker)
+        public async Task<WorkerDto> GetWorkerById(Guid idWorker)
         {
             var worker = await _repository.Worker.GetWorkerById(idWorker);
 
