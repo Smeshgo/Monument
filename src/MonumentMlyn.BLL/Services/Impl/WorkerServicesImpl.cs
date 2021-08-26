@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -29,7 +30,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<WorkerDto>>(workers);
         }
 
-        public async Task<WorkerDto> GetEmployeeById(int idWorker)
+        public async Task<WorkerDto> GetWorkerById(Guid idWorker)
         {
             var worker = await _repository.Worker.GetWorkerById(idWorker);
 
@@ -44,7 +45,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateWorker(int idWorker, WorkerDto worker)
+        public async Task UpdateWorker(Guid idWorker, WorkerDto worker)
         {
             var workerEntity = await _repository.Worker.GetWorkerById(idWorker);
 
@@ -53,7 +54,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteWorker(int idWorker)
+        public async Task DeleteWorker(Guid idWorker)
         {
             var workerEntity =  await _repository.Worker.GetWorkerById(idWorker);
 

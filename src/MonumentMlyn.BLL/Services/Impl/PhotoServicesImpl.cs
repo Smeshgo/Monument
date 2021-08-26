@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MonumentMlyn.BLL.DTO;
@@ -26,7 +27,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<PhotoDto>>(photos);
         }
 
-        public async Task<PhotoDto> GetPhotoById(int idPhoto)
+        public async Task<PhotoDto> GetPhotoById(Guid idPhoto)
         {
             var photo = await _repository.Photo.GetPhotoById(idPhoto);
 
@@ -40,7 +41,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdatePhoto(int idPhoto, PhotoDto photo)
+        public async Task UpdatePhoto(Guid idPhoto, PhotoDto photo)
         {
             var photoEntity = await _repository.Photo.GetPhotoById(idPhoto);
 
@@ -49,7 +50,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeletePhoto(int idPhoto)
+        public async Task DeletePhoto(Guid idPhoto)
         {
             var photoEntity = await _repository.Photo.GetPhotoById(idPhoto);
 

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
@@ -27,7 +28,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<CategoryPhotoDto>>(categoryPhotos);
         }
 
-        public async Task<CategoryPhotoDto> GetCategoryPhotoById(int idCategoryPhoto)
+        public async Task<CategoryPhotoDto> GetCategoryPhotoById(Guid idCategoryPhoto)
         {
             var categoryPhoto = await _repository.CategoryPhoto.GetCategoryPhotoById(idCategoryPhoto);
 
@@ -42,7 +43,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateCategoryPhoto(int idCategoryPhoto, CategoryPhotoDto categoryPhoto)
+        public async Task UpdateCategoryPhoto(Guid idCategoryPhoto, CategoryPhotoDto categoryPhoto)
         {
             var categoryPhotoEntity = await _repository.CategoryPhoto.GetCategoryPhotoById(idCategoryPhoto);
 
@@ -51,7 +52,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteCategoryPhoto(int idCategoryPhoto)
+        public async Task DeleteCategoryPhoto(Guid idCategoryPhoto)
         {
             var categoryPhotoEntity = await _repository.CategoryPhoto.GetCategoryPhotoById(idCategoryPhoto);
 

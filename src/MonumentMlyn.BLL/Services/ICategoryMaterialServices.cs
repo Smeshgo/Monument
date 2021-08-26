@@ -8,12 +8,12 @@ using MonumentMlyn.BLL.DTO;
 
 namespace MonumentMlyn.BLL.Services
 {
-    interface ICategoryMaterialServices
+    public interface ICategoryMaterialServices
     {
         Task<IEnumerable<CategoryMaterialDto>> GetAllCategoryMaterial();
-        Task<CategoryMaterialDto> GetCategoryMaterialById(int idcategoryMaterial);
+        Task<CategoryMaterialDto> GetCategoryMaterialById(Guid idcategoryMaterial);
         Task CreateCategoryMaterial(CategoryMaterialDto categoryMaterial);
-        Task UpdateCategoryMaterial(int idcategoryMaterial, CategoryMaterialDto categoryMaterial);
-        Task DeleteCategoryMaterial(int idcategoryMaterial);
+        Task UpdateCategoryMaterial(Guid idcategoryMaterial, CategoryMaterialDto categoryMaterial);
+        Task DeleteCategoryMaterial(Guid idcategoryMaterial);
     }
 }

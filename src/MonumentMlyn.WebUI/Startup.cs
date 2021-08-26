@@ -1,20 +1,15 @@
-using MonumentMlyn.DAL.EF;
-using System.IO;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using MonumentMlyn.BLL.Mapper;
-using NLog;
+using MonumentMlyn.DAL.EF;
+using MonumentMlyn.WebUI.Extensions;
+
 
 
 namespace MonumentMlyn.WebUI
@@ -31,13 +26,21 @@ namespace MonumentMlyn.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            var mapperConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MappingProfile());
-            });
-            IMapper mapper = mapperConfig.CreateMapper();
+            services.ConfigureCors();
+            services.ConfigureRepositoryManager();
             services.AddControllersWithViews();
+            services.ConfigureAppointmentService();
+            services.ConfigureArticleService();
+            services.ConfigureCategoryMaterialService();
+            services.ConfigureCategoryPhotoService();
+            services.ConfigureCustomerService();
+            services.ConfigureMaterialService();
+            services.ConfigureMonumentService();
+            services.ConfigurePhotoService();
+            services.ConfigureRoleService();
+            services.ConfigureUserService();
+            services.ConfigureWorkerService();
+            services.AddAutoMapper(typeof(Startup));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -46,7 +49,14 @@ namespace MonumentMlyn.WebUI
             });
 
 
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddControllers();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

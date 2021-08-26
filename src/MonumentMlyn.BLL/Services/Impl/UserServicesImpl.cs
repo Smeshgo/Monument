@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MonumentMlyn.BLL.DTO;
@@ -26,7 +27,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<UserDto>>(users);
         }
 
-        public async Task<UserDto> GetUserById(int idUser)
+        public async Task<UserDto> GetUserById(Guid idUser)
         {
             var user = await _repository.User.GetUserById(idUser);
 
@@ -41,7 +42,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateUser(int idUser, UserDto user)
+        public async Task UpdateUser(Guid idUser, UserDto user)
         {
             var userEntity = await _repository.User.GetUserById(idUser);
 
@@ -50,7 +51,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteUser(int idUser)
+        public async Task DeleteUser(Guid idUser)
         {
             var userEntity = await _repository.User.GetUserById(idUser);
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MonumentMlyn.BLL.DTO;
@@ -27,7 +28,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<RoleDto>>(roles);
         }
 
-        public async Task<RoleDto> GetERoleById(int idRole)
+        public async Task<RoleDto> GetRoleById(Guid idRole)
         {
             var role = await _repository.Role.GetRoleById(idRole);
 
@@ -42,7 +43,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateRole(int idRole, RoleDto role)
+        public async Task UpdateRole(Guid idRole, RoleDto role)
         {
             var roleEntity = await _repository.Role.GetRoleById(idRole);
 
@@ -51,7 +52,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteRole(int idRole)
+        public async Task DeleteRole(Guid idRole)
         {
             var roleEntity = await _repository.Role.GetRoleById(idRole);
 

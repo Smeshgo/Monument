@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MonumentMlyn.BLL.DTO;
 
@@ -7,9 +8,9 @@ namespace MonumentMlyn.BLL.Services
     public interface IWorkerServices
     {
         Task<IEnumerable<WorkerDto>> GetAllWorkers();
-        Task<WorkerDto> GetEmployeeById(int idWorker);
+        Task<WorkerDto> GetWorkerById(Guid idWorker);
         Task CreateWorker(WorkerDto worker);
-        Task UpdateWorker(int idWorker, WorkerDto worker);
-        Task DeleteWorker(int idWorker);
+        Task UpdateWorker(Guid idWorker, WorkerDto worker);
+        Task DeleteWorker(Guid idWorker);
     }
 }
