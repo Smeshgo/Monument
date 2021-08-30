@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -15,7 +16,7 @@ namespace MonumentMlyn.DAL.Entities
         public User(Guid idUser, string userNama, string password, string firstName, string lastName, string email, string status, DateTime? createUser, DateTime? updateUser)
         {
             IdUser = idUser;
-            UserNama = userNama;
+            UserName = userNama;
             Password = password;
             FirstName = firstName;
             LastName = lastName;
@@ -25,8 +26,9 @@ namespace MonumentMlyn.DAL.Entities
             UpdateUser = updateUser;    
         }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IdUser { get; set; }
-        public string UserNama { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

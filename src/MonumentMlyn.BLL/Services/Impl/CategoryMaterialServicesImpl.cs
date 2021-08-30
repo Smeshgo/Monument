@@ -5,6 +5,7 @@ using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MonumentMlyn.BLL.DTO.CategoryMaterial;
 
 namespace MonumentMlyn.BLL.Services.Impl
 {
@@ -28,32 +29,40 @@ namespace MonumentMlyn.BLL.Services.Impl
 
         }
 
-        public async Task<CategoryMaterialDto> GetCategoryMaterialById(Guid idcategoryMaterial)
-        { 
-            var categoryMateria = await _repository.CategoryMaterial.GetCategoryMaterialById(idcategoryMaterial);
+        public async Task<CategoryMaterialDto> GetCategoryMaterialById(Guid id)
+        {
+            var categoryMateria = await _repository.CategoryMaterial.GetCategoryMaterialById(id);
             return _mapper.Map<CategoryMaterialDto>(categoryMateria);
         }
 
-        public async Task CreateCategoryMaterial(CategoryMaterialDto categoryMaterial)
+        public async Task CreateCategoryMaterial(CategoryMaterialRequest categoryMaterial)
         {
-            var categoryMateriaEntity = _mapper.Map<CategoryMaterial>(categoryMaterial);
+            var categoryMateriaEntity = new CategoryMaterial()
+            {
+                IdCategoryMaterial = Guid.NewGuid(),
+                Name = categoryMaterial.Name,
+                CreateCategoryMaterial = DateTime.Now,
+                UpdateCategoryMaterial = DateTime.Now
+            };
 
             _repository.CategoryMaterial.CreateCategoryMaterial(categoryMateriaEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateCategoryMaterial(Guid idcategoryMaterial, CategoryMaterialDto categoryMaterial)
+        public async Task UpdateCategoryMaterial(Guid id, CategoryMaterialRequest categoryMaterial)
         {
-            var categoryMateriaEntity = await _repository.CategoryMaterial.GetCategoryMaterialById(idcategoryMaterial);
+            var categoryMateriaEntity = await _repository.CategoryMaterial.GetCategoryMaterialById(id);
 
-            _mapper.Map(categoryMaterial, categoryMateriaEntity);
+            categoryMateriaEntity.Name = categoryMaterial.Name;
+            categoryMateriaEntity.UpdateCategoryMaterial = DateTime.Now;
+
             _repository.CategoryMaterial.UpdateCategoryMaterial(categoryMateriaEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteCategoryMaterial(Guid idcategoryMaterial)
+        public async Task DeleteCategoryMaterial(Guid id)
         {
-            var categoryMateriaEntity = await _repository.CategoryMaterial.GetCategoryMaterialById(idcategoryMaterial);
+            var categoryMateriaEntity = await _repository.CategoryMaterial.GetCategoryMaterialById(id);
 
             _repository.CategoryMaterial.DeleteCategoryMaterial(categoryMateriaEntity);
             await _repository.SaveAsync();

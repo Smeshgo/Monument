@@ -22,7 +22,7 @@ namespace MonumentMlyn.DAL.EF
         }
 
         #region model
-        public DbSet<Customer> Сustomers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<CategoryMaterial> CategoryMaterials { get; set; }

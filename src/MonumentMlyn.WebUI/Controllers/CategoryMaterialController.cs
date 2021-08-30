@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MonumentMlyn.BLL.DTO;
+using MonumentMlyn.BLL.DTO.CategoryMaterial;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
-    [Route("api/CategoryPhoto")]
+    [Route("api/CategoryMaterial")]
     [ApiController]
     public class CategoryMaterialController : Controller
     {
@@ -47,7 +47,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategoryMaterial([FromBody] CategoryMaterialDto categoryMaterial)
+        public async Task<IActionResult> CreateCategoryMaterial([FromBody] CategoryMaterialRequest categoryMaterial)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCategoryMaterial(Guid id, [FromBody] CategoryMaterialDto categoryMaterial)
+        public async Task<IActionResult> UpdateCategoryMaterial(Guid id, [FromBody] CategoryMaterialRequest categoryMaterial)
         {
             try
             {

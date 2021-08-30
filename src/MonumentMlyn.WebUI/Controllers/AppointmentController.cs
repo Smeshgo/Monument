@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MonumentMlyn.BLL.DTO;
+using MonumentMlyn.BLL.DTO.Appointment;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
@@ -19,7 +19,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
         // GET: /Appointment
         [HttpGet]
-        public async Task<IActionResult> GetAppointment()
+        public async Task<IActionResult> GetALLAppointment()
         {
             try
             {
@@ -49,7 +49,7 @@ namespace MonumentMlyn.WebUI.Controllers
 
         // POST: /Appointment/create
         [HttpPost]
-        public async Task<IActionResult> CreateAppointment([FromBody] AppointmentDto appointment)
+        public async Task<IActionResult> CreateAppointment([FromBody] AppointmentRequest appointment)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace MonumentMlyn.WebUI.Controllers
 
         // PUT: /Appointment/id
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAppointment(Guid id, [FromBody] AppointmentDto appointment)
+        public async Task<IActionResult> UpdateAppointment(Guid id, [FromBody] AppointmentRequest appointment)
         {
             try
             {
@@ -87,14 +87,13 @@ namespace MonumentMlyn.WebUI.Controllers
                 {
                     return BadRequest("Invalid model object");
                 }
-
-                var appoinmentEntity = await _appointment.GetAppointmentById(id);
-                if (appoinmentEntity == null)
+                var appointmentEntity = await _appointment.GetAppointmentById(id);
+                if (appointmentEntity == null)
                 {
                     return NotFound();
                 }
 
-                await _appointment.UpdateAppointment(id, appoinmentEntity);
+                await _appointment.UpdateAppointment(id, appointment);
                 return NoContent();
             }
             catch (Exception e)
@@ -109,7 +108,7 @@ namespace MonumentMlyn.WebUI.Controllers
         {
             try
             {
-                var appoinmentEntity = _appointment.GetAppointmentById(id);
+                var appoinmentEntity = await _appointment.GetAppointmentById(id);
                 if (appoinmentEntity == null)
                 {
 

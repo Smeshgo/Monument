@@ -10,8 +10,8 @@ using MonumentMlyn.DAL.EF;
 namespace MonumentMlyn.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210810133402_V1")]
-    partial class V1
+    [Migration("20210830121018_a1")]
+    partial class a1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -121,6 +121,9 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("UpdateCategoryMaterial")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("IdCategoryMaterial");
 
                     b.ToTable("CategoryMaterials");
@@ -144,6 +147,40 @@ namespace MonumentMlyn.DAL.Migrations
                     b.HasKey("IdCategoryPhoto");
 
                     b.ToTable("CategoryPhotos");
+                });
+
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Customer", b =>
+                {
+                    b.Property<Guid>("id_customer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Last_name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime>("create_user")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("update_user")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id_customer");
+
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Material", b =>
@@ -209,6 +246,9 @@ namespace MonumentMlyn.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("Customerid_customer")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("IdPhoto")
                         .HasColumnType("uniqueidentifier");
 
@@ -218,17 +258,14 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<Guid?>("PhotoIdPhoto")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Prise")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid?>("Сustomerid_customer")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdMonument");
 
-                    b.HasIndex("PhotoIdPhoto");
+                    b.HasIndex("Customerid_customer");
 
-                    b.HasIndex("Сustomerid_customer");
+                    b.HasIndex("PhotoIdPhoto");
 
                     b.ToTable("Monuments");
                 });
@@ -299,9 +336,6 @@ namespace MonumentMlyn.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Create")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime?>("CreateUser")
                         .HasColumnType("datetime2");
 
@@ -320,13 +354,10 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Update")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime?>("UpdateUser")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Usernama")
+                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdUser");
@@ -368,41 +399,6 @@ namespace MonumentMlyn.DAL.Migrations
                     b.HasKey("IdWorker");
 
                     b.ToTable("Workers");
-                });
-
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Сustomer", b =>
-                {
-                    b.Property<Guid>("id_customer")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Last_name")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<DateTime>("create_user")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("update_user")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("id_customer");
-
-                    b.ToTable("Сustomers");
                 });
 
             modelBuilder.Entity("MonumentWorker", b =>
@@ -497,13 +493,13 @@ namespace MonumentMlyn.DAL.Migrations
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Monument", b =>
                 {
+                    b.HasOne("MonumentMlyn.DAL.Entities.Customer", null)
+                        .WithMany("Monuments")
+                        .HasForeignKey("Customerid_customer");
+
                     b.HasOne("MonumentMlyn.DAL.Entities.Photo", "Photo")
                         .WithMany("Monuments")
                         .HasForeignKey("PhotoIdPhoto");
-
-                    b.HasOne("MonumentMlyn.DAL.Entities.Сustomer", null)
-                        .WithMany("Monuments")
-                        .HasForeignKey("Сustomerid_customer");
 
                     b.Navigation("Photo");
                 });
@@ -562,12 +558,12 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Navigation("Photos");
                 });
 
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Photo", b =>
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Customer", b =>
                 {
                     b.Navigation("Monuments");
                 });
 
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Сustomer", b =>
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Photo", b =>
                 {
                     b.Navigation("Monuments");
                 });

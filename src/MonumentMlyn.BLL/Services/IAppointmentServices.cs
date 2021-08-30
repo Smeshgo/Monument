@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MonumentMlyn.BLL.DTO;
+using MonumentMlyn.BLL.DTO.Appointment;
 
 namespace MonumentMlyn.BLL.Services
 {
@@ -9,8 +10,8 @@ namespace MonumentMlyn.BLL.Services
     {
         Task<IEnumerable<AppointmentDto>> GetAllAppointments();
         Task<AppointmentDto> GetAppointmentById(Guid idAppointment);
-        Task CreateAppointment(AppointmentDto appointment);
-        Task UpdateAppointment(Guid idAppointment, AppointmentDto appointment);
+        Task CreateAppointment(AppointmentRequest appointment);
+        Task UpdateAppointment(Guid idAppointment, AppointmentRequest appointment);
         Task DeleteAppointment(Guid idAppointment);
     }
 }
