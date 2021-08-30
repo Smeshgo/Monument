@@ -8,12 +8,12 @@ using MonumentMlyn.DAL.Repositorie;
 
 namespace MonumentMlyn.BLL.Services.Impl
 {
-    public class RoleServices : IRoleServices
+    public class RoleServicesImpl : IRoleServices
     {
         private readonly IUnitOfWork _repository;
         private readonly IMapper _mapper;
 
-        public RoleServices(IUnitOfWork repository, IMapper mapper)
+        public RoleServicesImpl(IUnitOfWork repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

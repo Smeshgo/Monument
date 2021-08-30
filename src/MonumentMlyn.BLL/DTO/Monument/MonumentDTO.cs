@@ -10,12 +10,13 @@ namespace MonumentMlyn.BLL.DTO
         {
 
         }
-        public MonumentDto(Guid idMonument, decimal prise, Guid idPhoto, Guid idCustomer, PhotoDto photo)
+
+        public MonumentDto(Guid idMonument, decimal prise, Guid idPhoto, Guid idCustomer)
         {
-            this.IdMonument = idMonument;
-            this.Prise = prise;
-            this.IdPhoto = idPhoto;
-            this.Photo = photo;
+            IdMonument = idMonument;
+            Prise = prise;
+            IdPhoto = idPhoto;
+            IdCustomer = idCustomer;
         }
 
         public Guid IdMonument { get; set; }
@@ -23,7 +24,7 @@ namespace MonumentMlyn.BLL.DTO
         public Guid IdPhoto { get; set; }
         public Guid IdCustomer { get; set; }
 
-        public PhotoDto Photo { get; set; }
+        
 
     }
 }
