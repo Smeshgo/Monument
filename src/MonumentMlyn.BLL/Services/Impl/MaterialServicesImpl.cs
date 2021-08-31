@@ -47,6 +47,8 @@ namespace MonumentMlyn.BLL.Services.Impl
                 Price = material.Price,
                 Number = material.Number,
                 Status = material.Status,
+                Appointment = material.Appointment,
+                Category = material.Category,
                 CreateMaterial = DateTime.Now,
                 UpdateUser = DateTime.Now
             };
@@ -67,6 +69,8 @@ namespace MonumentMlyn.BLL.Services.Impl
             materialEntity.Price = material.Price;
             materialEntity.Number = material.Number;
             materialEntity.Status = material.Status;
+            materialEntity.Appointment = material.Appointment;
+            materialEntity.Category = material.Category;
             materialEntity.UpdateUser = DateTime.Now;
 
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using MonumentMlyn.DAL.Enum;
 
 namespace MonumentMlyn.BLL.DTO
 {
@@ -9,7 +10,7 @@ namespace MonumentMlyn.BLL.DTO
             
         }
 
-        public MaterialRequest(string name, decimal height, decimal length, string color, decimal width, decimal price, decimal number, string status, DateTime? createMaterial, DateTime? updateMaterial, Guid idAppointment, Guid idCategoryMaterial)
+        public MaterialRequest(string name, decimal height, decimal length, string color, decimal width, decimal price, decimal number, string status, Appointment appointment, CategoryMaterial category)
         {
             Name = name;
             Height = height;
@@ -19,6 +20,8 @@ namespace MonumentMlyn.BLL.DTO
             Price = price;
             Number = number;
             Status = status;
+            Appointment = appointment;
+            Category = category;
         }
         public string Name { get; set; }
         public decimal Height { get; set; }
@@ -28,6 +31,8 @@ namespace MonumentMlyn.BLL.DTO
         public decimal Price { get; set; }
         public decimal Number { get; set; }
         public string Status { get; set; }
+        public Appointment Appointment { get; set; }
+        public CategoryMaterial Category { get; set; }
 
     }
 }

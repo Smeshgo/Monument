@@ -11,10 +11,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
     {
         
         private readonly ApplicationDbContext _repositoryContext;
-        private IAppointmentRepository _appointmentRepository;
         private IArticleRepository _articleRepository;
-        private ICategoryMaterialRepositorie _categoryMaterialRepositorie;
-        private ICategoryPhotoRepositorie _categoryPhotoRepositorie;
         private ICustomerRepositorie _customerRepositorie;
         private IMaterialRepositorie _materialRepositorie;
         private IMonumentRepositorie _monumentRepositorie;
@@ -28,15 +25,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             _repositoryContext = repositoryContext;
         }
 
-        public IAppointmentRepository Appointment
-        {
-            get
-            {
-                if (_appointmentRepository == null)
-                    _appointmentRepository = new AppointmentRepositoryImpl(_repositoryContext);
-                return _appointmentRepository;
-            }
-        }
+        
 
         public IArticleRepository Article
         {
@@ -47,24 +36,8 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 return _articleRepository;
             }
         }
-        public ICategoryMaterialRepositorie CategoryMaterial
-        {
-            get
-            {
-                if (_categoryMaterialRepositorie == null)
-                    _categoryMaterialRepositorie = new CategoryMaterialRepositorieImpl(_repositoryContext);
-                return _categoryMaterialRepositorie;
-            }
-        }
-        public ICategoryPhotoRepositorie CategoryPhoto
-        {
-            get
-            {
-                if (_categoryPhotoRepositorie == null)
-                    _categoryPhotoRepositorie = new CategoryPhotoRepositorieImpl(_repositoryContext);
-                return _categoryPhotoRepositorie;
-            }
-        }
+      
+        
         public ICustomerRepositorie Customer
         {
             get

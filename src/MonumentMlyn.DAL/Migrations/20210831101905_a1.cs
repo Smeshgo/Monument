@@ -8,20 +8,6 @@ namespace MonumentMlyn.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Appointments",
-                columns: table => new
-                {
-                    IdAppointment = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreateAppointment = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Update = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Appointments", x => x.IdAppointment);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Articles",
                 columns: table => new
                 {
@@ -37,40 +23,12 @@ namespace MonumentMlyn.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryMaterials",
-                columns: table => new
-                {
-                    IdCategoryMaterial = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreateCategoryMaterial = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateCategoryMaterial = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CategoryMaterials", x => x.IdCategoryMaterial);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CategoryPhotos",
-                columns: table => new
-                {
-                    IdCategoryPhoto = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatePhotoPhoto = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateCategoryPhoto = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CategoryPhotos", x => x.IdCategoryPhoto);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
                     id_customer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Last_name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Last_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     create_user = table.Column<DateTime>(type: "datetime2", nullable: false),
                     update_user = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -79,6 +37,47 @@ namespace MonumentMlyn.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.id_customer);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Materials",
+                columns: table => new
+                {
+                    IdMaterial = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Height = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Length = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Width = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Number = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Appointment = table.Column<int>(type: "int", nullable: false),
+                    Category = table.Column<int>(type: "int", nullable: false),
+                    CreateMaterial = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdateUser = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Materials", x => x.IdMaterial);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Photos",
+                columns: table => new
+                {
+                    IdPhoto = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PathFull = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PathMini = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Uuid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatePhoto = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatePhoto = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CategoryPhoto = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Photos", x => x.IdPhoto);
                 });
 
             migrationBuilder.CreateTable(
@@ -135,116 +134,6 @@ namespace MonumentMlyn.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Materials",
-                columns: table => new
-                {
-                    IdMaterial = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Height = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Length = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Width = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Number = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreateMaterial = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateUser = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IdAppointment = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdCategoryMaterial = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AppointmentIdAppointment = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CategoryMaterialIdCategoryMaterial = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Materials", x => x.IdMaterial);
-                    table.ForeignKey(
-                        name: "FK_Materials_Appointments_AppointmentIdAppointment",
-                        column: x => x.AppointmentIdAppointment,
-                        principalTable: "Appointments",
-                        principalColumn: "IdAppointment",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Materials_CategoryMaterials_CategoryMaterialIdCategoryMaterial",
-                        column: x => x.CategoryMaterialIdCategoryMaterial,
-                        principalTable: "CategoryMaterials",
-                        principalColumn: "IdCategoryMaterial",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Photos",
-                columns: table => new
-                {
-                    IdPhoto = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PathFull = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PathMini = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Uuid = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatePhoto = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatePhoto = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IdCategoryPhoto = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CategoryPhotoIdCategoryPhoto = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Photos", x => x.IdPhoto);
-                    table.ForeignKey(
-                        name: "FK_Photos_CategoryPhotos_CategoryPhotoIdCategoryPhoto",
-                        column: x => x.CategoryPhotoIdCategoryPhoto,
-                        principalTable: "CategoryPhotos",
-                        principalColumn: "IdCategoryPhoto",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ArticleUser",
-                columns: table => new
-                {
-                    ArticlesIdArticle = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserIdUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArticleUser", x => new { x.ArticlesIdArticle, x.UserIdUser });
-                    table.ForeignKey(
-                        name: "FK_ArticleUser_Articles_ArticlesIdArticle",
-                        column: x => x.ArticlesIdArticle,
-                        principalTable: "Articles",
-                        principalColumn: "IdArticle",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ArticleUser_Users_UserIdUser",
-                        column: x => x.UserIdUser,
-                        principalTable: "Users",
-                        principalColumn: "IdUser",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RoleUser",
-                columns: table => new
-                {
-                    RolesIdRole = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UsersIdUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RoleUser", x => new { x.RolesIdRole, x.UsersIdUser });
-                    table.ForeignKey(
-                        name: "FK_RoleUser_Roles_RolesIdRole",
-                        column: x => x.RolesIdRole,
-                        principalTable: "Roles",
-                        principalColumn: "IdRole",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RoleUser_Users_UsersIdUser",
-                        column: x => x.UsersIdUser,
-                        principalTable: "Users",
-                        principalColumn: "IdUser",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ArticlePhoto",
                 columns: table => new
                 {
@@ -294,6 +183,54 @@ namespace MonumentMlyn.DAL.Migrations
                         principalTable: "Photos",
                         principalColumn: "IdPhoto",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ArticleUser",
+                columns: table => new
+                {
+                    ArticlesIdArticle = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserIdUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ArticleUser", x => new { x.ArticlesIdArticle, x.UserIdUser });
+                    table.ForeignKey(
+                        name: "FK_ArticleUser_Articles_ArticlesIdArticle",
+                        column: x => x.ArticlesIdArticle,
+                        principalTable: "Articles",
+                        principalColumn: "IdArticle",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ArticleUser_Users_UserIdUser",
+                        column: x => x.UserIdUser,
+                        principalTable: "Users",
+                        principalColumn: "IdUser",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RoleUser",
+                columns: table => new
+                {
+                    RolesIdRole = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsersIdUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleUser", x => new { x.RolesIdRole, x.UsersIdUser });
+                    table.ForeignKey(
+                        name: "FK_RoleUser_Roles_RolesIdRole",
+                        column: x => x.RolesIdRole,
+                        principalTable: "Roles",
+                        principalColumn: "IdRole",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoleUser_Users_UsersIdUser",
+                        column: x => x.UsersIdUser,
+                        principalTable: "Users",
+                        principalColumn: "IdUser",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -360,16 +297,6 @@ namespace MonumentMlyn.DAL.Migrations
                 column: "MonumentsIdMonument");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Materials_AppointmentIdAppointment",
-                table: "Materials",
-                column: "AppointmentIdAppointment");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Materials_CategoryMaterialIdCategoryMaterial",
-                table: "Materials",
-                column: "CategoryMaterialIdCategoryMaterial");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Monuments_Customerid_customer",
                 table: "Monuments",
                 column: "Customerid_customer");
@@ -383,11 +310,6 @@ namespace MonumentMlyn.DAL.Migrations
                 name: "IX_MonumentWorker_WorkersIdWorker",
                 table: "MonumentWorker",
                 column: "WorkersIdWorker");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Photos_CategoryPhotoIdCategoryPhoto",
-                table: "Photos",
-                column: "CategoryPhotoIdCategoryPhoto");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleUser_UsersIdUser",
@@ -431,19 +353,10 @@ namespace MonumentMlyn.DAL.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Appointments");
-
-            migrationBuilder.DropTable(
-                name: "CategoryMaterials");
-
-            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "Photos");
-
-            migrationBuilder.DropTable(
-                name: "CategoryPhotos");
         }
     }
 }

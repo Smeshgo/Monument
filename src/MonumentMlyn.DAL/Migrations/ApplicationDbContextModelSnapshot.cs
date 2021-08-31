@@ -123,6 +123,12 @@ namespace MonumentMlyn.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Appointment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
@@ -194,11 +200,11 @@ namespace MonumentMlyn.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("CategoryPhoto")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatePhoto")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("IdCategoryPhoto")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

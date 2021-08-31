@@ -10,8 +10,8 @@ using MonumentMlyn.DAL.EF;
 namespace MonumentMlyn.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210830163256_a3")]
-    partial class a3
+    [Migration("20210831105531_a2")]
+    partial class a2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,6 +125,12 @@ namespace MonumentMlyn.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Appointment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
@@ -196,11 +202,11 @@ namespace MonumentMlyn.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("CategoryPhoto")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatePhoto")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("IdCategoryPhoto")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

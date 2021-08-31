@@ -16,18 +16,11 @@ namespace MonumentMlyn.WebUI.Extensions
                         .AllowAnyMethod()
                         .AllowAnyHeader());
             });
-
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
             services.AddScoped<IUnitOfWork, UnitOfWorkImpl>();
 
-        public static void ConfigureAppointmentService(this IServiceCollection service) =>
-            service.AddScoped<IAppointmentServices, AppointmentServiceImpl>();
         public static void ConfigureArticleService(this IServiceCollection service) =>
             service.AddScoped<IArticleServices, ArticleServicesImpl>();
-        public static void ConfigureCategoryMaterialService(this IServiceCollection service) =>
-            service.AddScoped<ICategoryMaterialServices, CategoryMaterialServicesImpl>();
-        public static void ConfigureCategoryPhotoService(this IServiceCollection service) =>
-            service.AddScoped<ICategoryPhotoServices, CategoryPhotoServicesImpl>();
         public static void ConfigureCustomerService(this IServiceCollection service) =>
             service.AddScoped<ICustomerServices, CustomerServicesImpl>();
         public static void ConfigureMaterialService(this IServiceCollection service) =>

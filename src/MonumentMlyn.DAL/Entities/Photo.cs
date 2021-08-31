@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MonumentMlyn.DAL.Enum;
 
 #nullable disable
 
@@ -13,7 +14,7 @@ namespace MonumentMlyn.DAL.Entities
         {
         }
 
-        public Photo(Guid idPhoto, string name, string pathFull, string pathMini, string uuid, DateTime? createPhoto, DateTime? updatePhoto, Guid idCategoryPhoto)
+        public Photo(Guid idPhoto, string name, string pathFull, string pathMini, string uuid, DateTime? createPhoto, DateTime? updatePhoto, CategoryPhoto categoryPhoto)
         {
             IdPhoto = idPhoto;
             Name = name;
@@ -22,7 +23,7 @@ namespace MonumentMlyn.DAL.Entities
             Uuid = uuid;
             CreatePhoto = createPhoto;
             UpdatePhoto = updatePhoto;
-            IdCategoryPhoto = idCategoryPhoto;
+            CategoryPhoto = categoryPhoto;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -33,9 +34,8 @@ namespace MonumentMlyn.DAL.Entities
         public string Uuid { get; set; }
         public DateTime? CreatePhoto { get; set; }
         public DateTime? UpdatePhoto { get; set; }
-        public Guid IdCategoryPhoto { get; set; }
+        public CategoryPhoto CategoryPhoto { get; set; }
 
-       
         public List<Monument> Monuments { get; set; } = new List<Monument>();
         public List<Article> Articles { get; set; } = new List<Article>();
     }

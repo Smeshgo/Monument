@@ -10,8 +10,8 @@ using MonumentMlyn.DAL.EF;
 namespace MonumentMlyn.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210830163218_a2")]
-    partial class a2
+    [Migration("20210831111743_a3")]
+    partial class a3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,26 +66,6 @@ namespace MonumentMlyn.DAL.Migrations
                     b.ToTable("MaterialMonument");
                 });
 
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Appointment", b =>
-                {
-                    b.Property<Guid>("IdAppointment")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreateAppointment")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Update")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("IdAppointment");
-
-                    b.ToTable("Appointments");
-                });
-
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Article", b =>
                 {
                     b.Property<Guid>("IdArticle")
@@ -107,46 +87,6 @@ namespace MonumentMlyn.DAL.Migrations
                     b.HasKey("IdArticle");
 
                     b.ToTable("Articles");
-                });
-
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.CategoryMaterial", b =>
-                {
-                    b.Property<Guid>("IdCategoryMaterial")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreateCategoryMaterial")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdateCategoryMaterial")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("IdCategoryMaterial");
-
-                    b.ToTable("CategoryMaterials");
-                });
-
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.CategoryPhoto", b =>
-                {
-                    b.Property<Guid>("IdCategoryPhoto")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreatePhotoPhoto")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdateCategoryPhoto")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("IdCategoryPhoto");
-
-                    b.ToTable("CategoryPhotos");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Customer", b =>
@@ -184,6 +124,12 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<Guid>("IdMaterial")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Appointment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
 
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
@@ -256,11 +202,11 @@ namespace MonumentMlyn.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("CategoryPhoto")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatePhoto")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("IdCategoryPhoto")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

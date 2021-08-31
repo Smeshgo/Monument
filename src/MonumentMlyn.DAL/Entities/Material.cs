@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MonumentMlyn.DAL.Enum;
 
 #nullable disable
 
@@ -13,7 +14,7 @@ namespace MonumentMlyn.DAL.Entities
         {
         }
 
-        public Material(Guid idMaterial, string name, decimal height, decimal length, string color, decimal width, decimal price, decimal number, string status, DateTime? createMaterial, DateTime? updateUser)
+        public Material(Guid idMaterial, string name, decimal height, decimal length, string color, decimal width, decimal price, decimal number, string status, Appointment appointment, CategoryMaterial category, DateTime? createMaterial, DateTime? updateUser)
         {
             IdMaterial = idMaterial;
             Name = name;
@@ -24,6 +25,8 @@ namespace MonumentMlyn.DAL.Entities
             Price = price;
             Number = number;
             Status = status;
+            Appointment = appointment;
+            Category = category;
             CreateMaterial = createMaterial;
             UpdateUser = updateUser;
         }
@@ -38,6 +41,8 @@ namespace MonumentMlyn.DAL.Entities
         public decimal Price { get; set; }
         public decimal Number { get; set; }
         public string Status { get; set; }
+        public Appointment Appointment { get; set; }
+        public CategoryMaterial Category { get; set; }
         public DateTime? CreateMaterial { get; set; }
         public DateTime? UpdateUser { get; set; }
 
