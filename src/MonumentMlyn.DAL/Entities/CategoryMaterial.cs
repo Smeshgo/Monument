@@ -28,6 +28,6 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? UpdateCategoryMaterial { get; set; }
 
 
-        public List<Material> Materials { get; set; } = new List<Material>();
+        
     }
 }

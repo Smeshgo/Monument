@@ -48,7 +48,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRole([FromBody] RoleDto role)
+        public async Task<IActionResult> CreateRole([FromBody] RoleRequest role)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateRole(Guid id, [FromBody] RoleDto role)
+        public async Task<IActionResult> UpdateRole(Guid id, [FromBody] RoleRequest role)
         {
             try
             {

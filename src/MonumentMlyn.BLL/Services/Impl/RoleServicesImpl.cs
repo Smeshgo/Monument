@@ -35,19 +35,30 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<RoleDto>(role);
         }
 
-        public async Task CreateRole(RoleDto role)
+        public async Task CreateRole(RoleRequest role)
         {
-            var roleEntity = _mapper.Map<Role>(role);
+            var roleEntity = new Role()
+            {
+                IdRole = Guid.NewGuid(),
+                Name = role.Name,
+                Status = role.Status,
+                CreateRole = DateTime.Now,
+                UpdateRole = DateTime.Now
+            };
 
             _repository.Role.CreateRole(roleEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateRole(Guid idRole, RoleDto role)
+        public async Task UpdateRole(Guid idRole, RoleRequest role)
         {
             var roleEntity = await _repository.Role.GetRoleById(idRole);
 
-            _mapper.Map(role, roleEntity);
+            roleEntity.Name = role.Name;
+            roleEntity.Status = role.Status;
+            roleEntity.UpdateRole = DateTime.Now;
+
+
             _repository.Role.UpdateRole(roleEntity);
             await _repository.SaveAsync();
         }

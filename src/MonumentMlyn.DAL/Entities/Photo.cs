@@ -13,7 +13,7 @@ namespace MonumentMlyn.DAL.Entities
         {
         }
 
-        public Photo(Guid idPhoto, string name, string pathFull, string pathMini, string uuid, DateTime? createPhoto, DateTime? updatePhoto, Guid idCategoryPhoto, CategoryPhoto categoryPhoto)
+        public Photo(Guid idPhoto, string name, string pathFull, string pathMini, string uuid, DateTime? createPhoto, DateTime? updatePhoto, Guid idCategoryPhoto)
         {
             IdPhoto = idPhoto;
             Name = name;
@@ -23,7 +23,6 @@ namespace MonumentMlyn.DAL.Entities
             CreatePhoto = createPhoto;
             UpdatePhoto = updatePhoto;
             IdCategoryPhoto = idCategoryPhoto;
-            CategoryPhoto = categoryPhoto;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -36,7 +35,7 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? UpdatePhoto { get; set; }
         public Guid IdCategoryPhoto { get; set; }
 
-        public CategoryPhoto CategoryPhoto { get; set; }
+       
         public List<Monument> Monuments { get; set; } = new List<Monument>();
         public List<Article> Articles { get; set; } = new List<Article>();
     }

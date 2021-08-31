@@ -28,7 +28,5 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? CreatePhotoPhoto { get; set; }
         public DateTime? UpdateCategoryPhoto { get; set; }
 
-        public List<Photo> Photos { get; set; } = new List<Photo>();
-
     }
 }

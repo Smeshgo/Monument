@@ -27,7 +27,7 @@ namespace MonumentMlyn.DAL.Entities
         public string Name { get; set; }
         public DateTime? CreateAppointment { get; set; }
         public DateTime? Update { get; set; }
-        public List<Material> Materials { get; set; } = new List<Material>();
+       
         
     }
 }

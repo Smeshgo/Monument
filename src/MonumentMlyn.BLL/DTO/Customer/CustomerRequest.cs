@@ -12,17 +12,17 @@ namespace MonumentMlyn.BLL.DTO
 
         public CustomerRequest(string lastName, string surname, string phone, string email)
         {
-            LastName = lastName;
+            Last_name = lastName;
             Surname = surname;
             Phone = phone;
             Email = email;
         }
 
-        [StringLength(150, MinimumLength = 3)]
+        [StringLength(100, MinimumLength = 3)]
         [Required(ErrorMessage = "Некоректно введені данні")]
-        public string LastName { get; set; }
+        public string Last_name { get; set; }
 
-        [StringLength(150, MinimumLength = 3)]
+        [StringLength(100, MinimumLength = 2)]
         [Required(ErrorMessage = "Некоректно введені данні")]
         public string Surname { get; set; }
 
@@ -31,6 +31,6 @@ namespace MonumentMlyn.BLL.DTO
             ErrorMessage = "Not a valid phone number")]
         [Required] public string Phone { get; set; }
 
-        [Required] public string Email { get; set; }
+        public string Email { get; set; }
     }
 }

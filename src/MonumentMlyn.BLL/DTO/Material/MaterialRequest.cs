@@ -19,10 +19,6 @@ namespace MonumentMlyn.BLL.DTO
             Price = price;
             Number = number;
             Status = status;
-            CreateMaterial = createMaterial;
-            UpdateMaterial = updateMaterial;
-            IdAppointment = idAppointment;
-            IdCategoryMaterial = idCategoryMaterial;
         }
         public string Name { get; set; }
         public decimal Height { get; set; }
@@ -32,9 +28,6 @@ namespace MonumentMlyn.BLL.DTO
         public decimal Price { get; set; }
         public decimal Number { get; set; }
         public string Status { get; set; }
-        public DateTime? CreateMaterial { get; set; }
-        public DateTime? UpdateMaterial { get; set; }
-        public Guid IdAppointment { get; set; }
-        public Guid IdCategoryMaterial { get; set; }
+
     }
 }

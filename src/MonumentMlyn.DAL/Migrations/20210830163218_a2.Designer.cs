@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MonumentMlyn.DAL.EF;
 
 namespace MonumentMlyn.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210830163218_a2")]
+    partial class a2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,6 +66,26 @@ namespace MonumentMlyn.DAL.Migrations
                     b.ToTable("MaterialMonument");
                 });
 
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Appointment", b =>
+                {
+                    b.Property<Guid>("IdAppointment")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreateAppointment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Update")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IdAppointment");
+
+                    b.ToTable("Appointments");
+                });
+
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Article", b =>
                 {
                     b.Property<Guid>("IdArticle")
@@ -85,6 +107,46 @@ namespace MonumentMlyn.DAL.Migrations
                     b.HasKey("IdArticle");
 
                     b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.CategoryMaterial", b =>
+                {
+                    b.Property<Guid>("IdCategoryMaterial")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreateCategoryMaterial")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateCategoryMaterial")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IdCategoryMaterial");
+
+                    b.ToTable("CategoryMaterials");
+                });
+
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.CategoryPhoto", b =>
+                {
+                    b.Property<Guid>("IdCategoryPhoto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatePhotoPhoto")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateCategoryPhoto")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IdCategoryPhoto");
+
+                    b.ToTable("CategoryPhotos");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Customer", b =>

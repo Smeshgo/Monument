@@ -9,8 +9,8 @@ namespace MonumentMlyn.BLL.Services
     {
         Task<IEnumerable<MaterialDto>> GetAllMaterials();
         Task<MaterialDto> GetMaterialById(Guid idMaterial);
-        Task CreateMaterial(MaterialDto material);
-        Task UpdateMaterial(Guid idMaterial, MaterialDto material);
+        Task CreateMaterial(MaterialRequest material);
+        Task UpdateMaterial(Guid idMaterial, MaterialRequest material);
         Task DeleteMaterial(Guid idMaterial);
     }
 }
