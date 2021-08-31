@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using MonumentMlyn.DAL.EF;
@@ -15,7 +15,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         }
         public async Task<IEnumerable<Monument>> GetAllMonuments(bool trackChanges) =>
             await FindAll(trackChanges)
-                .OrderBy(c => c.Prise)
+                .OrderBy(c => c.Price)
                 .ToListAsync();
 
         public async Task<Monument> GetMonumentById(Guid idMonument)

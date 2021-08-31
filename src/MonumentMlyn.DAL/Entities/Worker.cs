@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -12,7 +13,21 @@ namespace MonumentMlyn.DAL.Entities
         {
             
         }
+
+        public Worker(Guid idWorker, string firstName, decimal numberOfHours, decimal rete, string phone, decimal salary, string lastName, DateTime? createWorcer, DateTime? updateWorker)
+        {
+            IdWorker = idWorker;
+            FirstName = firstName;
+            NumberOfHours = numberOfHours;
+            Rete = rete;
+            Phone = phone;
+            Salary = salary;
+            LastName = lastName;
+            CreateWorcer = createWorcer;
+            UpdateWorker = updateWorker;
+        }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IdWorker { get; set; }
         public string FirstName { get; set; }
         public decimal NumberOfHours { get; set; }

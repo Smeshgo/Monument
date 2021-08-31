@@ -48,7 +48,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMaterial([FromBody] MaterialDto material)
+        public async Task<IActionResult> CreateMaterial([FromBody] MaterialRequest material)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateMaterial(Guid id, [FromBody] MaterialDto material)
+        public async Task<IActionResult> UpdateMaterial(Guid id, [FromBody] MaterialRequest material)
         {
             try
             {

@@ -9,8 +9,8 @@ namespace MonumentMlyn.BLL.Services
     {
         Task<IEnumerable<UserDto>> GetAllUsers();
         Task<UserDto> GetUserById(Guid idUser);
-        Task CreateUser(UserDto user);
-        Task UpdateUser(Guid idUser, UserDto user);
+        Task CreateUser(UserRequest user);
+        Task UpdateUser(Guid idUser, UserRequest user);
         Task DeleteUser(Guid idUser);
     }
 }

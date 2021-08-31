@@ -11,17 +11,8 @@ namespace MonumentMlyn.BLL.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Appointment, AppointmentDto>();
-            CreateMap<AppointmentDto, Appointment>();
-
             CreateMap<Article, ArticleDto>();
             CreateMap<ArticleDto, Article>();
-
-            CreateMap<CategoryMaterial, CategoryMaterialDto>();
-            CreateMap<CategoryMaterialDto, CategoryMaterial>();
-
-            CreateMap<CategoryPhoto, CategoryPhotoDto>();
-            CreateMap<CategoryPhotoDto, CategoryPhoto>();
 
             CreateMap<Material, MaterialDto>();
             CreateMap<MaterialDto, Material>();

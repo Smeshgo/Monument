@@ -33,19 +33,34 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<CustomerDto>(customer);
         }
 
-        public async Task CreateCustomer(CustomerDto customer)
+        public async Task CreateCustomer(CustomerRequest customer)
         {
-            var customerEntity = _mapper.Map<Customer>(customer);
+
+            var customerEntity = new Customer()
+            {
+                id_customer = Guid.NewGuid(),
+                Last_name = customer.Last_name,
+                Surname = customer.Surname,
+                create_user = DateTime.Now,
+                update_user = DateTime.Now,
+                Phone = customer.Phone,
+                Email = customer.Email
+            };
 
             _repository.Customer.CreateСustomer(customerEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateCustomer(Guid idCustomer, CustomerDto customer)
+        public async Task UpdateCustomer(Guid idCustomer, CustomerRequest customer)
         {
             var customerEntity = await _repository.Customer.GetСustomerById(idCustomer);
 
-            _mapper.Map(customer, customerEntity);
+            customerEntity.Last_name = customer.Last_name;
+            customerEntity.Surname = customer.Surname;
+            customerEntity.update_user = DateTime.Now;
+            customerEntity.Phone = customer.Phone;
+            customerEntity.Email = customer.Email;
+
             _repository.Customer.UpdateСustomer(customerEntity);
             await _repository.SaveAsync();
         }

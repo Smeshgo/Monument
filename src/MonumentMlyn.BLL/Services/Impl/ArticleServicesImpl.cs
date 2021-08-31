@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MonumentMlyn.BLL.DTO;
+using MonumentMlyn.BLL.DTO.Article;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
 
@@ -35,19 +36,30 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<ArticleDto>(article);
         }
 
-        public async Task CreateArticle(ArticleDto article)
+        public async Task CreateArticle(ArticleRequest article)
         {
-            var articleEntity = _mapper.Map<Article>(article);
+            var articleEntity = new Article()
+            {
+                IdArticle = Guid.NewGuid(),
+                Title = article.Title,
+                Contents = article.Contents,
+                CreateArticle = DateTime.Now,
+                UpdateArticle = DateTime.Now
+            };
+
             _repository.Article.CreateArticle(articleEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateArticle(Guid idArticle, ArticleDto article)
+        public async Task UpdateArticle(Guid idArticle, ArticleRequest article)
         {
-            var articlEntity = await _repository.Article.GetArticleById(idArticle);
+            var articleEntity = await _repository.Article.GetArticleById(idArticle);
 
-            _mapper.Map(article, articlEntity);
-            _repository.Article.UpdateArticle(articlEntity);
+            articleEntity.Title = article.Title;
+            articleEntity.Contents = article.Contents;
+            articleEntity.UpdateArticle = DateTime.Now;
+
+            _repository.Article.UpdateArticle(articleEntity);
             await _repository.SaveAsync();
         }
 

@@ -48,7 +48,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] UserDto user)
+        public async Task<IActionResult> CreateUser([FromBody] UserRequest user)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserDto user)
+        public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserRequest user)
         {
             try
             {

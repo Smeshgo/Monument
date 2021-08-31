@@ -9,8 +9,8 @@ namespace MonumentMlyn.BLL.Services
     {
         Task<IEnumerable<WorkerDto>> GetAllWorkers();
         Task<WorkerDto> GetWorkerById(Guid idWorker);
-        Task CreateWorker(WorkerDto worker);
-        Task UpdateWorker(Guid idWorker, WorkerDto worker);
+        Task CreateWorker(WorkerRequest worker);
+        Task UpdateWorker(Guid idWorker, WorkerRequest worker);
         Task DeleteWorker(Guid idWorker);
     }
 }

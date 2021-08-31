@@ -37,26 +37,45 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<WorkerDto>(worker);
         }
 
-        public async Task CreateWorker(WorkerDto worker)
+        public async Task CreateWorker(WorkerRequest worker)
         {
-            var workerEntity = _mapper.Map<Worker>(worker);
+            var workerEntity = new Worker()
+            {
+                IdWorker = Guid.NewGuid(),
+                FirstName = worker.FirstName,
+                NumberOfHours = worker.NumberOfHours,
+                Rete = worker.Rete,
+                Phone = worker.Phone,
+                Salary = worker.Salary,
+                LastName = worker.LastName,
+                CreateWorcer = DateTime.Now,
+                UpdateWorker = DateTime.Now
+            };
 
             _repository.Worker.CreateWorker(workerEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateWorker(Guid idWorker, WorkerDto worker)
+        public async Task UpdateWorker(Guid idWorker, WorkerRequest worker)
         {
             var workerEntity = await _repository.Worker.GetWorkerById(idWorker);
 
-            _mapper.Map(worker, workerEntity);
+
+            workerEntity.FirstName = worker.FirstName;
+            workerEntity.NumberOfHours = worker.NumberOfHours;
+            workerEntity.Rete = worker.Rete;
+            workerEntity.Phone = worker.Phone;
+            workerEntity.Salary = worker.Salary;
+            workerEntity.LastName = worker.LastName;
+            workerEntity.UpdateWorker = DateTime.Now;
+
             _repository.Worker.UpdateWorker(workerEntity);
             await _repository.SaveAsync();
         }
 
         public async Task DeleteWorker(Guid idWorker)
         {
-            var workerEntity =  await _repository.Worker.GetWorkerById(idWorker);
+            var workerEntity = await _repository.Worker.GetWorkerById(idWorker);
 
             _repository.Worker.DeleteWorker(workerEntity);
             await _repository.SaveAsync();

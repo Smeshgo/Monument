@@ -34,19 +34,37 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<UserDto>(user);
         }
 
-        public async Task CreateUser(UserDto user)
+        public async Task CreateUser(UserRequest user)
         {
-            var userEntity = _mapper.Map<User>(user);
+            var userEntity = new User()
+            {
+                IdUser = Guid.NewGuid(),
+                UserName = user.UserName,
+                Password = user.Password,
+                FirstName = user.Password,
+                LastName = user.LastName,
+                Email = user.Email,
+                Status = user.Status,
+                CreateUser = DateTime.Now,
+                UpdateUser = DateTime.Now
+            };
 
             _repository.User.CreateUser(userEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateUser(Guid idUser, UserDto user)
+        public async Task UpdateUser(Guid idUser, UserRequest user)
         {
             var userEntity = await _repository.User.GetUserById(idUser);
 
-            _mapper.Map(user, userEntity);
+            userEntity.UserName = user.UserName;
+            userEntity.Password = user.Password;
+            userEntity.FirstName = user.Password;
+            userEntity.LastName = user.LastName;
+            userEntity.Email = user.Email;
+            userEntity.Status = user.Status;
+            userEntity.UpdateUser = DateTime.Now;
+
             _repository.User.UpdateUser(userEntity);
             await _repository.SaveAsync();
         }

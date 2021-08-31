@@ -11,8 +11,8 @@ namespace MonumentMlyn.BLL.Services
     {
         Task<IEnumerable<CustomerDto>> GetAllCustomers();
         Task<CustomerDto> GetCustomerById(Guid idСustomer);
-        Task CreateCustomer(CustomerDto customer);
-        Task UpdateCustomer(Guid idCustomer, CustomerDto customer);
+        Task CreateCustomer(CustomerRequest customer);
+        Task UpdateCustomer(Guid idCustomer, CustomerRequest customer);
         Task DeleteCustomer(Guid idCustomer);
     }
 }

@@ -5,10 +5,7 @@ namespace MonumentMlyn.DAL.Repositorie
 {
     public interface IUnitOfWork
     {
-        IAppointmentRepository Appointment { get; }
         IArticleRepository Article { get; }
-        ICategoryMaterialRepositorie CategoryMaterial { get; }
-        ICategoryPhotoRepositorie CategoryPhoto { get; }
         IMaterialRepositorie Material { get; }
         IMonumentRepositorie Monument { get; }
         IPhotoRepositorie Photo { get; }

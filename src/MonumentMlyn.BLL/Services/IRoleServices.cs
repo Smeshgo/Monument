@@ -9,8 +9,8 @@ namespace MonumentMlyn.BLL.Services
     {
         Task<IEnumerable<RoleDto>> GetAllRoles();
         Task<RoleDto> GetRoleById(Guid idRole);
-        Task CreateRole(RoleDto role);
-        Task UpdateRole(Guid idRole, RoleDto role);
+        Task CreateRole(RoleRequest role);
+        Task UpdateRole(Guid idRole, RoleRequest role);
         Task DeleteRole(Guid idRole);
     }
 }

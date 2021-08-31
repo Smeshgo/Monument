@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using MonumentMlyn.BLL.DTO;
+using MonumentMlyn.BLL.DTO.Monument;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
 
@@ -35,19 +36,29 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<MonumentDto>(monument);
         }
 
-        public async Task CreateMonument(MonumentDto monument)
+        public async Task CreateMonument(MonumentRequest monument)
         {
-            var monumentEntity = _mapper.Map<Monument>(monument);
+            var monumentEntity = new Monument()
+            {
+                IdMonument = Guid.NewGuid(),
+                Price = monument.Prise,
+                IdPhoto = monument.IdPhoto,
+                Id_customer = monument.IdCustomer
+            };
 
             _repository.Monument.CreateMonument(monumentEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateMonument(Guid idMonument, MonumentDto monument)
+        public async Task UpdateMonument(Guid idMonument, MonumentRequest monument)
         {
             var monumentEntity = await _repository.Monument.GetMonumentById(idMonument);
 
-            _mapper.Map(monument, monumentEntity);
+            monumentEntity.Price = monument.Prise;
+            monumentEntity.IdPhoto = monument.IdPhoto;
+            monumentEntity.Id_customer = monument.IdCustomer;
+
+
             _repository.Monument.UpdateMonument(monumentEntity);
             await _repository.SaveAsync();
         }

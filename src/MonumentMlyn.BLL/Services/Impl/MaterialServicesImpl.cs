@@ -34,19 +34,46 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<MaterialDto>(material);
         }
 
-        public async Task CreateMaterial(MaterialDto material)
+        public async Task CreateMaterial(MaterialRequest material)
         {
-            var materialEntity = _mapper.Map<Material>(material);
+            var materialEntity = new Material()
+            {
+                IdMaterial = new Guid(),
+                Name = material.Name,
+                Height = material.Height,
+                Length = material.Length,
+                Color = material.Color,
+                Width = material.Width,
+                Price = material.Price,
+                Number = material.Number,
+                Status = material.Status,
+                Appointment = material.Appointment,
+                Category = material.Category,
+                CreateMaterial = DateTime.Now,
+                UpdateUser = DateTime.Now
+            };
 
             _repository.Material.CreateMaterial(materialEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateMaterial(Guid idMaterial, MaterialDto material)
+        public async Task UpdateMaterial(Guid idMaterial, MaterialRequest material)
         {
             var materialEntity = await _repository.Material.GetMaterialtById(idMaterial);
 
-            _mapper.Map(material, materialEntity);
+            materialEntity.Name = material.Name;
+            materialEntity.Height = material.Height;
+            materialEntity.Length = material.Length;
+            materialEntity.Color = material.Color;
+            materialEntity.Width = material.Width;
+            materialEntity.Price = material.Price;
+            materialEntity.Number = material.Number;
+            materialEntity.Status = material.Status;
+            materialEntity.Appointment = material.Appointment;
+            materialEntity.Category = material.Category;
+            materialEntity.UpdateUser = DateTime.Now;
+
+
             _repository.Material.UpdateMaterial(materialEntity);
             await _repository.SaveAsync();
         }

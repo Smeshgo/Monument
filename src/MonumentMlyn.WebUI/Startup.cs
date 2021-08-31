@@ -26,13 +26,11 @@ namespace MonumentMlyn.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.ConfigureCors();
             services.ConfigureRepositoryManager();
             services.AddControllersWithViews();
-            services.ConfigureAppointmentService();
             services.ConfigureArticleService();
-            services.ConfigureCategoryMaterialService();
-            services.ConfigureCategoryPhotoService();
             services.ConfigureCustomerService();
             services.ConfigureMaterialService();
             services.ConfigureMonumentService();

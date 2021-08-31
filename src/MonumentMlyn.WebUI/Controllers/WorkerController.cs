@@ -48,7 +48,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateWorker([FromBody] WorkerDto worker)
+        public async Task<IActionResult> CreateWorker([FromBody] WorkerRequest worker)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateWorker(Guid id, [FromBody] WorkerDto worker)
+        public async Task<IActionResult> UpdateWorker(Guid id, [FromBody] WorkerRequest worker)
         {
             try
             {

@@ -3,6 +3,7 @@ using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
+using MonumentMlyn.BLL.DTO.Article;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -47,7 +48,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateArticle([FromBody] ArticleDto article)
+        public async Task<IActionResult> CreateArticle([FromBody] ArticleRequest article)
         {
             try
             {
@@ -71,7 +72,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateArticle(Guid id, [FromBody] ArticleDto article)
+        public async Task<IActionResult> UpdateArticle(Guid id, [FromBody] ArticleRequest article)
         {
             try
             {
