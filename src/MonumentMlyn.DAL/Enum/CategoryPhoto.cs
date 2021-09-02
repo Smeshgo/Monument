@@ -6,9 +6,9 @@ namespace MonumentMlyn.DAL.Enum
     [JsonConverter(typeof(StringEnumConverter))]
     public enum CategoryPhoto
     {
-        Стаття = 1,
-        Одинарні,
+        Одинарні = 1,
         Подвійні,
-        Елітні
+        Елітні,
+        Стаття
     }
 }

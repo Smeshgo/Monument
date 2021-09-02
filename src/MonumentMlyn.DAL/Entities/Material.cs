@@ -28,7 +28,7 @@ namespace MonumentMlyn.DAL.Entities
             Appointment = appointment;
             Category = category;
             CreateMaterial = createMaterial;
-            UpdateUser = updateUser;
+            UpdateMaterial = updateUser;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -44,7 +44,7 @@ namespace MonumentMlyn.DAL.Entities
         public Appointment Appointment { get; set; }
         public CategoryMaterial Category { get; set; }
         public DateTime? CreateMaterial { get; set; }
-        public DateTime? UpdateUser { get; set; }
+        public DateTime? UpdateMaterial { get; set; }
 
         public List<Monument> Monuments { get; set; } = new List<Monument>();
     }

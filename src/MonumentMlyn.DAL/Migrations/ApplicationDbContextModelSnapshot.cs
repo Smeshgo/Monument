@@ -153,7 +153,7 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdateUser")
+                    b.Property<DateTime?>("UpdateMaterial")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Width")
@@ -206,20 +206,17 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<DateTime?>("CreatePhoto")
                         .HasColumnType("datetime2");
 
+                    b.Property<byte[]>("FullPhoto")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("MinyPhoto")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PathFull")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PathMini")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatePhoto")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Uuid")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdPhoto");
 
