@@ -18,7 +18,10 @@ namespace MonumentMlyn.WebUI.Extensions
             });
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
             services.AddScoped<IUnitOfWork, UnitOfWorkImpl>();
-
+        public static void ConfigureLoggerService(this IServiceCollection services)
+        {
+            services.AddSingleton<ILoggerManager, LoggerManagerImpl>();
+        }
         public static void ConfigureArticleService(this IServiceCollection service) =>
             service.AddScoped<IArticleServices, ArticleServicesImpl>();
         public static void ConfigureCustomerService(this IServiceCollection service) =>

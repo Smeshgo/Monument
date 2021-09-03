@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 using MonumentMlyn.BLL.Mapper;
 using MonumentMlyn.DAL.EF;
 using MonumentMlyn.WebUI.Extensions;
-
+using NLog;
 
 
 namespace MonumentMlyn.WebUI
@@ -18,6 +20,7 @@ namespace MonumentMlyn.WebUI
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -26,7 +29,7 @@ namespace MonumentMlyn.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.ConfigureLoggerService();
             services.ConfigureCors();
             services.ConfigureRepositoryManager();
             services.AddControllersWithViews();

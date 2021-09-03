@@ -11,16 +11,21 @@ namespace MonumentMlyn.WebUI.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerServices _customerServices;
-
-        public CustomerController(ICustomerServices customerServices)
+        private readonly ILoggerManager _logger;
+        public CustomerController(ICustomerServices customerServices, ILoggerManager logger)
         {
             _customerServices = customerServices;
+            _logger = logger;
         }
 
         // GET /Customer
         [HttpGet]
         public async Task<IActionResult> GetAllCustomer()
         {
+            _logger.LogInfo("Here is info message from the controller.");
+            _logger.LogDebug("Here is debug message from the controller.");
+            _logger.LogWarn("Here is warn message from the controller.");
+            _logger.LogError("Here is error message from the controller.");
             try
             {
                 var customerDto = await _customerServices.GetAllCustomers();
