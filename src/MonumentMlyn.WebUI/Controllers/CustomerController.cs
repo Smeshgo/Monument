@@ -22,10 +22,6 @@ namespace MonumentMlyn.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCustomer()
         {
-            _logger.LogInfo("Here is info message from the controller.");
-            _logger.LogDebug("Here is debug message from the controller.");
-            _logger.LogWarn("Here is warn message from the controller.");
-            _logger.LogError("Here is error message from the controller.");
             try
             {
                 var customerDto = await _customerServices.GetAllCustomers();
