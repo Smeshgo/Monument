@@ -49,17 +49,6 @@ namespace MonumentMlyn.BLL.Services.Impl
         }
         public async Task CreatePhoto(PhotoRequest photo)
         {
-            byte[] imageBytes;
-            using (System.Drawing.Image image = System.Drawing.Image.FromFile(photo.path))
-            {
-                using (MemoryStream m = new MemoryStream())
-                {
-                    image.Save(m, image.RawFormat);
-                    imageBytes = m.ToArray();
-                    var base64String = Convert.ToBase64String(imageBytes);
-                }
-            }
-
             var photoEntity = new Photo()
             {
                 IdPhoto = Guid.NewGuid(),
@@ -67,14 +56,10 @@ namespace MonumentMlyn.BLL.Services.Impl
                 CreatePhoto = DateTime.Now,
                 UpdatePhoto = DateTime.Now,
                 CategoryPhoto = photo.CategoryPhoto,
-                FullPhoto = imageBytes,
-                MinyPhoto = imageBytes
+                FullPhoto = ImageToBase64(photo.PathFull).Result,
+                MinyPhoto = ImageToBase64(photo.PathMini).Result
 
             };
-
-
-
-
 
             _repository.Photo.CreatePhoto(photoEntity);
             await _repository.SaveAsync();
@@ -82,9 +67,16 @@ namespace MonumentMlyn.BLL.Services.Impl
 
         public async Task UpdatePhoto(Guid idPhoto, PhotoRequest photo)
         {
-            var photoEntity = await _repository.Photo.GetPhotoById(idPhoto);
+            var photoEntity = new Photo()
+            {
+                Name = photo.Name,
+                UpdatePhoto = DateTime.Now,
+                CategoryPhoto = photo.CategoryPhoto,
+                FullPhoto = ImageToBase64(photo.PathFull).Result,
+                MinyPhoto = ImageToBase64(photo.PathMini).Result
+            };
 
-            _mapper.Map(photo, photoEntity);
+            
             _repository.Photo.UpdatePhoto(photoEntity);
             await _repository.SaveAsync();
         }
