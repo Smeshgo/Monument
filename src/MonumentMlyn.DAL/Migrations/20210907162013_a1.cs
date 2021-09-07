@@ -120,10 +120,7 @@ namespace MonumentMlyn.DAL.Migrations
                 {
                     IdWorker = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NumberOfHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Rete = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateWorcer = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateWorker = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -234,6 +231,29 @@ namespace MonumentMlyn.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Calculations",
+                columns: table => new
+                {
+                    IdWorker = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Advance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    NumberOfHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Rete = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    WorkerIdWorker = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calculations", x => x.IdWorker);
+                    table.ForeignKey(
+                        name: "FK_Calculations_Workers_WorkerIdWorker",
+                        column: x => x.WorkerIdWorker,
+                        principalTable: "Workers",
+                        principalColumn: "IdWorker",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MaterialMonument",
                 columns: table => new
                 {
@@ -292,6 +312,11 @@ namespace MonumentMlyn.DAL.Migrations
                 column: "UserIdUser");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Calculations_WorkerIdWorker",
+                table: "Calculations",
+                column: "WorkerIdWorker");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MaterialMonument_MonumentsIdMonument",
                 table: "MaterialMonument",
                 column: "MonumentsIdMonument");
@@ -324,6 +349,9 @@ namespace MonumentMlyn.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "ArticleUser");
+
+            migrationBuilder.DropTable(
+                name: "Calculations");
 
             migrationBuilder.DropTable(
                 name: "MaterialMonument");

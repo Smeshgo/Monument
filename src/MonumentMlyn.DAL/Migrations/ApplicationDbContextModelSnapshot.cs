@@ -87,6 +87,36 @@ namespace MonumentMlyn.DAL.Migrations
                     b.ToTable("Articles");
                 });
 
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Calculations", b =>
+                {
+                    b.Property<Guid>("IdWorker")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Advance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("NumberOfHours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Rete")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("WorkerIdWorker")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdWorker", "Date");
+
+                    b.HasIndex("WorkerIdWorker");
+
+                    b.ToTable("Calculations");
+                });
+
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Customer", b =>
                 {
                     b.Property<Guid>("id_customer")
@@ -299,18 +329,9 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("NumberOfHours")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Rete")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Salary")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("UpdateWorker")
                         .HasColumnType("datetime2");
@@ -395,6 +416,15 @@ namespace MonumentMlyn.DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Calculations", b =>
+                {
+                    b.HasOne("MonumentMlyn.DAL.Entities.Worker", "Worker")
+                        .WithMany("Calculations")
+                        .HasForeignKey("WorkerIdWorker");
+
+                    b.Navigation("Worker");
+                });
+
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Monument", b =>
                 {
                     b.HasOne("MonumentMlyn.DAL.Entities.Customer", null)
@@ -446,6 +476,11 @@ namespace MonumentMlyn.DAL.Migrations
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Photo", b =>
                 {
                     b.Navigation("Monuments");
+                });
+
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Worker", b =>
+                {
+                    b.Navigation("Calculations");
                 });
 #pragma warning restore 612, 618
         }
