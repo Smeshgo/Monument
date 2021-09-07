@@ -10,8 +10,8 @@ using MonumentMlyn.DAL.EF;
 namespace MonumentMlyn.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210831142313_a4")]
-    partial class a4
+    [Migration("20210903081450_a3")]
+    partial class a3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,8 +131,8 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("CreateMaterial")
                         .HasColumnType("datetime2");
@@ -152,10 +152,10 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdateUser")
+                    b.Property<DateTime?>("UpdateMaterial")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Width")
@@ -208,20 +208,17 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<DateTime?>("CreatePhoto")
                         .HasColumnType("datetime2");
 
+                    b.Property<byte[]>("FullPhoto")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("MinyPhoto")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PathFull")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PathMini")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatePhoto")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Uuid")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdPhoto");
 

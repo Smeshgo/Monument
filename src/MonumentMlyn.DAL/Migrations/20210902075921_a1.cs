@@ -55,7 +55,7 @@ namespace MonumentMlyn.DAL.Migrations
                     Appointment = table.Column<int>(type: "int", nullable: false),
                     Category = table.Column<int>(type: "int", nullable: false),
                     CreateMaterial = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateUser = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    UpdateMaterial = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,9 +68,8 @@ namespace MonumentMlyn.DAL.Migrations
                 {
                     IdPhoto = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PathFull = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PathMini = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Uuid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullPhoto = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    MinyPhoto = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     CreatePhoto = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatePhoto = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CategoryPhoto = table.Column<int>(type: "int", nullable: false)

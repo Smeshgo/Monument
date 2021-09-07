@@ -10,7 +10,7 @@ namespace MonumentMlyn.BLL.DTO
             
         }
 
-        public MaterialRequest(string name, decimal height, decimal length, string color, decimal width, decimal price, decimal number, string status, Appointment appointment, CategoryMaterial category)
+        public MaterialRequest(string name, decimal height, decimal length, Color color, decimal width, decimal price, decimal number, StatusMaterial status, Appointment appointment, CategoryMaterial category)
         {
             Name = name;
             Height = height;
@@ -26,11 +26,11 @@ namespace MonumentMlyn.BLL.DTO
         public string Name { get; set; }
         public decimal Height { get; set; }
         public decimal Length { get; set; }
-        public string Color { get; set; }
+        public Color Color { get; set; }
         public decimal Width { get; set; }
         public decimal Price { get; set; }
         public decimal Number { get; set; }
-        public string Status { get; set; }
+        public StatusMaterial Status { get; set; }
         public Appointment Appointment { get; set; }
         public CategoryMaterial Category { get; set; }
 

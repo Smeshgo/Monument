@@ -50,7 +50,7 @@ namespace MonumentMlyn.BLL.Services.Impl
                 Appointment = material.Appointment,
                 Category = material.Category,
                 CreateMaterial = DateTime.Now,
-                UpdateUser = DateTime.Now
+                UpdateMaterial = DateTime.Now
             };
 
             _repository.Material.CreateMaterial(materialEntity);
@@ -71,7 +71,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             materialEntity.Status = material.Status;
             materialEntity.Appointment = material.Appointment;
             materialEntity.Category = material.Category;
-            materialEntity.UpdateUser = DateTime.Now;
+            materialEntity.UpdateMaterial = DateTime.Now;
 
 
             _repository.Material.UpdateMaterial(materialEntity);

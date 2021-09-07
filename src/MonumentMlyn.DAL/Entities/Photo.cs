@@ -14,13 +14,12 @@ namespace MonumentMlyn.DAL.Entities
         {
         }
 
-        public Photo(Guid idPhoto, string name, string pathFull, string pathMini, string uuid, DateTime? createPhoto, DateTime? updatePhoto, CategoryPhoto categoryPhoto)
+        public Photo(Guid idPhoto, string name, byte[] fullPhoto, byte[] minyPhoto, DateTime? createPhoto, DateTime? updatePhoto, CategoryPhoto categoryPhoto)
         {
             IdPhoto = idPhoto;
             Name = name;
-            PathFull = pathFull;
-            PathMini = pathMini;
-            Uuid = uuid;
+            FullPhoto = fullPhoto;
+            MinyPhoto = minyPhoto;
             CreatePhoto = createPhoto;
             UpdatePhoto = updatePhoto;
             CategoryPhoto = categoryPhoto;
@@ -29,9 +28,8 @@ namespace MonumentMlyn.DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IdPhoto { get; set; }
         public string Name { get; set; }
-        public string PathFull { get; set; }
-        public string PathMini { get; set; }
-        public string Uuid { get; set; }
+        public byte[] FullPhoto { get; set; }
+        public byte[] MinyPhoto { get; set; }
         public DateTime? CreatePhoto { get; set; }
         public DateTime? UpdatePhoto { get; set; }
         public CategoryPhoto CategoryPhoto { get; set; }

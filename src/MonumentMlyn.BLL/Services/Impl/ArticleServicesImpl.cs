@@ -65,8 +65,8 @@ namespace MonumentMlyn.BLL.Services.Impl
 
         public async Task DeleteArticle(Guid idArticle)
         {
-            var articlEntity = await _repository.Article.GetArticleById(idArticle);
-            _repository.Article.DeleteArticle(articlEntity);
+            var articleEntity = await _repository.Article.GetArticleById(idArticle);
+            _repository.Article.DeleteArticle(articleEntity);
             await _repository.SaveAsync();
         }
     }

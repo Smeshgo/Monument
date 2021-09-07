@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace MonumentMlyn.BLL.Services.Impl
 {
@@ -34,18 +35,48 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<PhotoDto>(photo);
         }
 
-        public async Task CreatePhoto(PhotoDto photo)
+        public async Task<byte[]> ImageToBase64(string path)
         {
-            var photoEntity = _mapper.Map<Photo>(photo);
+           using (System.Drawing.Image image = System.Drawing.Image.FromFile(path))
+            {
+                await using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, image.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+                    return imageBytes;
+                }
+            }
+        }
+        public async Task CreatePhoto(PhotoRequest photo)
+        {
+            var photoEntity = new Photo()
+            {
+                IdPhoto = Guid.NewGuid(),
+                Name = photo.Name,
+                CreatePhoto = DateTime.Now,
+                UpdatePhoto = DateTime.Now,
+                CategoryPhoto = photo.CategoryPhoto,
+                FullPhoto = ImageToBase64(photo.PathFull).Result,
+                MinyPhoto = ImageToBase64(photo.PathMini).Result
+
+            };
+
             _repository.Photo.CreatePhoto(photoEntity);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdatePhoto(Guid idPhoto, PhotoDto photo)
+        public async Task UpdatePhoto(Guid idPhoto, PhotoRequest photo)
         {
-            var photoEntity = await _repository.Photo.GetPhotoById(idPhoto);
+            var photoEntity = new Photo()
+            {
+                Name = photo.Name,
+                UpdatePhoto = DateTime.Now,
+                CategoryPhoto = photo.CategoryPhoto,
+                FullPhoto = ImageToBase64(photo.PathFull).Result,
+                MinyPhoto = ImageToBase64(photo.PathMini).Result
+            };
 
-            _mapper.Map(photo, photoEntity);
+            
             _repository.Photo.UpdatePhoto(photoEntity);
             await _repository.SaveAsync();
         }

@@ -120,7 +120,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _articleServices.DeleteArticle(id);
-                return NoContent();
+                return Ok(articleEntity);
             }
             catch (Exception e)
             {

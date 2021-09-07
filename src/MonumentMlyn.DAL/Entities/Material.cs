@@ -14,7 +14,7 @@ namespace MonumentMlyn.DAL.Entities
         {
         }
 
-        public Material(Guid idMaterial, string name, decimal height, decimal length, string color, decimal width, decimal price, decimal number, string status, Appointment appointment, CategoryMaterial category, DateTime? createMaterial, DateTime? updateUser)
+        public Material(Guid idMaterial, string name, decimal height, decimal length, Color color, decimal width, decimal price, decimal number, StatusMaterial status, Appointment appointment, CategoryMaterial category, DateTime? createMaterial, DateTime? updateMaterial)
         {
             IdMaterial = idMaterial;
             Name = name;
@@ -28,23 +28,24 @@ namespace MonumentMlyn.DAL.Entities
             Appointment = appointment;
             Category = category;
             CreateMaterial = createMaterial;
-            UpdateUser = updateUser;
+            UpdateMaterial = updateMaterial;
         }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IdMaterial { get; set; }
         public string Name { get; set; }
         public decimal Height { get; set; }
         public decimal Length { get; set; }
-        public string Color { get; set; }
+        public Color Color { get; set; }
         public decimal Width { get; set; }
         public decimal Price { get; set; }
         public decimal Number { get; set; }
-        public string Status { get; set; }
+        public StatusMaterial Status { get; set; }
         public Appointment Appointment { get; set; }
         public CategoryMaterial Category { get; set; }
         public DateTime? CreateMaterial { get; set; }
-        public DateTime? UpdateUser { get; set; }
+        public DateTime? UpdateMaterial { get; set; }
 
         public List<Monument> Monuments { get; set; } = new List<Monument>();
     }
