@@ -43,10 +43,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             {
                 IdWorker = Guid.NewGuid(),
                 FirstName = worker.FirstName,
-                NumberOfHours = worker.NumberOfHours,
-                Rete = worker.Rete,
                 Phone = worker.Phone,
-                Salary = worker.Salary,
                 LastName = worker.LastName,
                 CreateWorcer = DateTime.Now,
                 UpdateWorker = DateTime.Now
@@ -60,12 +57,8 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var workerEntity = await _repository.Worker.GetWorkerById(idWorker);
 
-
             workerEntity.FirstName = worker.FirstName;
-            workerEntity.NumberOfHours = worker.NumberOfHours;
-            workerEntity.Rete = worker.Rete;
             workerEntity.Phone = worker.Phone;
-            workerEntity.Salary = worker.Salary;
             workerEntity.LastName = worker.LastName;
             workerEntity.UpdateWorker = DateTime.Now;
 
