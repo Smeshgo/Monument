@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using MonumentMlyn.DAL.Enum;
 
 namespace MonumentMlyn.BLL.DTO
@@ -10,19 +11,17 @@ namespace MonumentMlyn.BLL.DTO
             
         }
 
-        public PhotoRequest(string name, string pathFull, string pathMini, string uuid, CategoryPhoto categoryPhoto)
+        public PhotoRequest(string name, string pathFull, string pathMini, CategoryPhoto categoryPhoto)
         {
             Name = name;
             PathFull = pathFull;
             PathMini = pathMini;
-            Uuid = uuid;
             CategoryPhoto = categoryPhoto;
         }
 
-        public string Name { get; set; }
-        public string PathFull { get; set; }
-        public string PathMini { get; set; }
-        public string Uuid { get; set; }
+        [Required] public string Name { get; set; }
+        [Required] public string PathFull { get; set; }
+        [Required] public string PathMini { get; set; }
         public CategoryPhoto CategoryPhoto { get; set; }
 
     }

@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,9 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MonumentMlyn.BLL.Mapper;
+using MonumentMlyn.BLL.Services;
 using MonumentMlyn.DAL.EF;
 using MonumentMlyn.WebUI.Extensions;
-
+using NLog;
 
 
 namespace MonumentMlyn.WebUI
@@ -18,6 +21,7 @@ namespace MonumentMlyn.WebUI
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -26,7 +30,7 @@ namespace MonumentMlyn.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.ConfigureLoggerService();
             services.ConfigureCors();
             services.ConfigureRepositoryManager();
             services.AddControllersWithViews();
@@ -61,7 +65,7 @@ namespace MonumentMlyn.WebUI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager logger)
         {
             if (env.IsDevelopment())
             {
@@ -74,6 +78,7 @@ namespace MonumentMlyn.WebUI
                 app.UseHsts();
             }
 
+            app.ConfigureExceptionHandler(logger);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();

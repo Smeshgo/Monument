@@ -11,10 +11,11 @@ namespace MonumentMlyn.WebUI.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerServices _customerServices;
-
-        public CustomerController(ICustomerServices customerServices)
+        private readonly ILoggerManager _logger;
+        public CustomerController(ICustomerServices customerServices, ILoggerManager logger)
         {
             _customerServices = customerServices;
+            _logger = logger;
         }
 
         // GET /Customer

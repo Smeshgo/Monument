@@ -12,17 +12,17 @@ namespace MonumentMlyn.BLL.DTO
 
         }
 
-        public MaterialDto(Guid idMaterial, string name, decimal height, decimal length, string color, decimal width, decimal price, decimal number, string status, Appointment appointment, CategoryMaterial category, DateTime? createMaterial, DateTime? updateMaterial)
+        public MaterialDto(Guid idMaterial, string name, decimal height, decimal length, Color color, decimal width, decimal price, decimal number, StatusMaterial status, Appointment appointment, CategoryMaterial category, DateTime? createMaterial, DateTime? updateMaterial)
         {
             IdMaterial = idMaterial;
             Name = name;
             Height = height;
             Length = length;
-            Color = color;
+            Color = color.ToString();
             Width = width;
             Price = price;
             Number = number;
-            Status = status;
+            Status = status.ToString();
             Appointment = appointment.ToString();
             Category = category.ToString();
             CreateMaterial = createMaterial;

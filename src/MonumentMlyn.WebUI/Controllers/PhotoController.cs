@@ -2,7 +2,10 @@
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.Services;
 using System;
+using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -48,7 +51,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePhoto([FromBody] PhotoDto photo)
+        public async Task<IActionResult> CreatePhoto([FromBody] PhotoRequest photo, string path)
         {
             try
             {
@@ -56,12 +59,15 @@ namespace MonumentMlyn.WebUI.Controllers
                 {
                     return BadRequest("Photo object is null");
                 }
+
+              
                 if (!ModelState.IsValid)
                 {
                     return BadRequest("Invalid model object");
                 }
 
                 await _photoServices.CreatePhoto(photo);
+                
                 return Ok();
 
             }
@@ -72,7 +78,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePhoto(Guid id, [FromBody] PhotoDto photo)
+        public async Task<IActionResult> UpdatePhoto(Guid id, [FromBody] PhotoRequest photo)
         {
             try
             {
