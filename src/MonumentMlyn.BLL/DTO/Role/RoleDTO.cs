@@ -13,13 +13,13 @@ namespace MonumentMlyn.BLL.DTO
 
         public RoleDto(Guid idRole, string name, string status, DateTime? createRole, DateTime? updateRole)
         {
-            IdRole = idRole;
+            RoleId = idRole;
             Name = name;
             Status = status;
             CreateRole = createRole;
             UpdateRole = updateRole;
         }
-        public Guid IdRole { get; set; }
+        public Guid RoleId { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
         public DateTime? CreateRole { get; set; }

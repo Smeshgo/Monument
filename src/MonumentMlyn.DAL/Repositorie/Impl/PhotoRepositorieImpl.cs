@@ -18,15 +18,15 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             await FindAll(trackChanges)
                 .OrderBy(c => c.Name)
                 .ToListAsync();
-        public async Task<Photo> GetPhotoById(Guid idPhoto)
+        public async Task<Photo> GetPhotoById(Guid photoId)
         {
-            return await FindByCondition(x => x.IdPhoto.Equals(idPhoto))
+            return await FindByCondition(x => x.PhotoId.Equals(photoId))
                 .FirstOrDefaultAsync();
         }
 
-        public Photo GetPhotoWithDetails(Guid idPhoto)
+        public Photo GetPhotoWithDetails(Guid photoId)
         {
-            return FindByCondition(owner => owner.IdPhoto.Equals(idPhoto)).FirstOrDefault();
+            return FindByCondition(owner => owner.PhotoId.Equals(photoId)).FirstOrDefault();
         }
 
         public void CreatePhoto(Photo photo)

@@ -14,22 +14,26 @@ namespace MonumentMlyn.DAL.Entities
             
         }
 
-        public Role(Guid idRole, string name, string status, DateTime? createRole, DateTime? updateRole)
+        public Role(Guid roleId, string name, string status, DateTime? createRole, DateTime? updateRole, ICollection<User> roleUsers)
         {
-            IdRole = idRole;
+            RoleId = roleId;
             Name = name;
             Status = status;
             CreateRole = createRole;
             UpdateRole = updateRole;
+            RoleUsers = roleUsers;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid IdRole { get; set; }
+        public Guid RoleId { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
         public DateTime? CreateRole { get; set; }
         public DateTime? UpdateRole { get; set; }
 
-        public List<User> Users { get; set; } = new List<User>();
+        public virtual ICollection<User> RoleUsers { get; set; } = new List<User>();
+
+
+        //public List<User> Users { get; set; } = new List<User>();
     }
 }

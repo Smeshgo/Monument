@@ -13,9 +13,7 @@ namespace MonumentMlyn.DAL.EF
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
-            builder.Entity<Calculations>()
-                .HasKey(c => new { c.IdWorker, c.Date });
+            builder.Entity<Calculations>().HasKey(u => new{u.Date,u.WorkerId});
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

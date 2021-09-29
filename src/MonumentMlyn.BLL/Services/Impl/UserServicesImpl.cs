@@ -38,7 +38,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var userEntity = new User()
             {
-                IdUser = Guid.NewGuid(),
+                UserId = Guid.NewGuid(),
                 UserName = user.UserName,
                 Password = user.Password,
                 FirstName = user.Password,

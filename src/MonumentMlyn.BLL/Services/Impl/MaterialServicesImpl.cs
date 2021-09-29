@@ -38,7 +38,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var materialEntity = new Material()
             {
-                IdMaterial = new Guid(),
+                MaterialId = new Guid(),
                 Name = material.Name,
                 Height = material.Height,
                 Length = material.Length,

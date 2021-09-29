@@ -13,14 +13,14 @@ namespace MonumentMlyn.BLL.DTO.Monument
             
         }
 
-        public MonumentRequest(decimal prise, Guid idPhoto, Guid idCustomer)
+        public MonumentRequest(decimal prise, Guid photoId, Guid idCustomer)
         {
             Prise = prise;
-            IdPhoto = idPhoto;
+            PhotoId = photoId;
             IdCustomer = idCustomer;
         }
         public decimal Prise { get; set; }
-        public Guid IdPhoto { get; set; }
+        public Guid PhotoId { get; set; }
         public Guid IdCustomer { get; set; }
     }
 }

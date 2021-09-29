@@ -19,15 +19,15 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 .OrderBy(c => c.LastName)
                 .ToListAsync();
 
-        public async Task<User> GetUserById(Guid idUser)
+        public async Task<User> GetUserById(Guid userId)
         {
-            return await FindByCondition(x => x.IdUser.Equals(idUser))
+            return await FindByCondition(x => x.UserId.Equals(userId))
                 .FirstOrDefaultAsync();
         }
 
-        public User GetUserWithDetails(Guid idUser)
+        public User GetUserWithDetails(Guid userId)
         {
-            return FindByCondition(owner => owner.IdUser.Equals(idUser)).FirstOrDefault();
+            return FindByCondition(owner => owner.UserId.Equals(userId)).FirstOrDefault();
         }
 
         public void CreateUser(User user)

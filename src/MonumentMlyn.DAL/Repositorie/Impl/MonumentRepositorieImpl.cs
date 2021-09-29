@@ -18,15 +18,15 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 .OrderBy(c => c.Price)
                 .ToListAsync();
 
-        public async Task<Monument> GetMonumentById(Guid idMonument)
+        public async Task<Monument> GetMonumentById(Guid monumentId)
         {
-            return await FindByCondition(x => x.IdMonument.Equals(idMonument))
+            return await FindByCondition(x => x.MonumentId.Equals(monumentId))
                 .FirstOrDefaultAsync();
         }
 
-        public Monument GetMonumentWithDetails(Guid idMonument)
+        public Monument GetMonumentWithDetails(Guid monumentId)
         {
-            return FindByCondition(owner => owner.IdMonument.Equals(idMonument)).FirstOrDefault();
+            return FindByCondition(owner => owner.MonumentId.Equals(monumentId)).FirstOrDefault();
         }
         public void CreateMonument(Monument monument)
         {

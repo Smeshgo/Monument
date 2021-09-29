@@ -16,17 +16,17 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
 
         public async Task<IEnumerable<Customer>> GetAllСustomers(bool trackChanges) =>
         await FindAll(trackChanges)
-            .OrderBy(c => c.Last_name)
+            .OrderBy(c => c.LastName)
             .ToListAsync();
-        public async Task<Customer> GetСustomerById(Guid idСustomer)
+        public async Task<Customer> GetСustomerById(Guid customerId)
         {
-            return await FindByCondition(x => x.id_customer.Equals(idСustomer))
+            return await FindByCondition(x => x.CustomerId.Equals(customerId))
                 .FirstOrDefaultAsync();
         }
 
-        public Customer GetСustomerWithDetails(Guid idСustomer)
+        public Customer GetСustomerWithDetails(Guid customerId)
         {
-            return FindByCondition(owner => owner.id_customer.Equals(idСustomer)).FirstOrDefault();
+            return FindByCondition(owner => owner.CustomerId.Equals(customerId)).FirstOrDefault();
         }
 
         public void CreateСustomer(Customer customer)

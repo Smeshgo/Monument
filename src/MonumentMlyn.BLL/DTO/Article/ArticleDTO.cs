@@ -11,15 +11,15 @@ namespace MonumentMlyn.BLL.DTO
 
 
         }
-        public ArticleDto(Guid idArticle, string title, string contents, DateTime createArticle, DateTime updateArticle)
+        public ArticleDto(Guid articleId, string title, string contents, DateTime createArticle, DateTime updateArticle)
         {
-            this.IdArticle = idArticle;
+            this.ArticleId = articleId;
             this.Title = title;
             this.Contents = contents;
             this.CreateArticle = createArticle;
             this.UpdateArticle = updateArticle;
         }
-        public Guid IdArticle { get; set; }
+        public Guid ArticleId { get; set; }
         public string Title { get; set; }
         public string Contents { get; set; }
         public DateTime? CreateArticle { get; set; }

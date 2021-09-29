@@ -14,19 +14,21 @@ namespace MonumentMlyn.DAL.Entities
         {
         }
 
-        public Photo(Guid idPhoto, string name, byte[] fullPhoto, byte[] minyPhoto, DateTime? createPhoto, DateTime? updatePhoto, CategoryPhoto categoryPhoto)
+        public Photo(Guid photoId, string name, byte[] fullPhoto, byte[] minyPhoto, DateTime? createPhoto, DateTime? updatePhoto, CategoryPhoto categoryPhoto, ICollection<Monument> monument, ICollection<Article> articles)
         {
-            IdPhoto = idPhoto;
+            PhotoId = photoId;
             Name = name;
             FullPhoto = fullPhoto;
             MinyPhoto = minyPhoto;
             CreatePhoto = createPhoto;
             UpdatePhoto = updatePhoto;
             CategoryPhoto = categoryPhoto;
+            Monument = monument;
+            Articles = articles;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid IdPhoto { get; set; }
+        public Guid PhotoId { get; set; }
         public string Name { get; set; }
         public byte[] FullPhoto { get; set; }
         public byte[] MinyPhoto { get; set; }
@@ -34,7 +36,8 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? UpdatePhoto { get; set; }
         public CategoryPhoto CategoryPhoto { get; set; }
 
-        public List<Monument> Monuments { get; set; } = new List<Monument>();
-        public List<Article> Articles { get; set; } = new List<Article>();
+        public virtual ICollection<Monument> Monument { get; set; } = new List<Monument>();
+        public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
+
     }
 }

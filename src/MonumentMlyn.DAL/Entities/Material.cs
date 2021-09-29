@@ -14,9 +14,9 @@ namespace MonumentMlyn.DAL.Entities
         {
         }
 
-        public Material(Guid idMaterial, string name, decimal height, decimal length, Color color, decimal width, decimal price, decimal number, StatusMaterial status, Appointment appointment, CategoryMaterial category, DateTime? createMaterial, DateTime? updateMaterial)
+        public Material(Guid materialId, string name, decimal height, decimal length, Color color, decimal width, decimal price, decimal number, StatusMaterial status, Appointment appointment, CategoryMaterial category, DateTime? createMaterial, DateTime? updateMaterial, ICollection<Monument> monuments)
         {
-            IdMaterial = idMaterial;
+            MaterialId = materialId;
             Name = name;
             Height = height;
             Length = length;
@@ -29,11 +29,12 @@ namespace MonumentMlyn.DAL.Entities
             Category = category;
             CreateMaterial = createMaterial;
             UpdateMaterial = updateMaterial;
+            Monuments = monuments;
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid IdMaterial { get; set; }
+        public Guid MaterialId { get; set; }
         public string Name { get; set; }
         public decimal Height { get; set; }
         public decimal Length { get; set; }
@@ -47,6 +48,6 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? CreateMaterial { get; set; }
         public DateTime? UpdateMaterial { get; set; }
 
-        public List<Monument> Monuments { get; set; } = new List<Monument>();
+        public virtual ICollection<Monument> Monuments { get; set; } = new List<Monument>();
     }
 }

@@ -20,15 +20,15 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 .ToListAsync();
 
 
-        public async Task<Role> GetRoleById(Guid idRole)
+        public async Task<Role> GetRoleById(Guid roleId)
         {
-            return await FindByCondition(x => x.IdRole.Equals(idRole))
+            return await FindByCondition(x => x.RoleId.Equals(roleId))
                 .FirstOrDefaultAsync();
         }
 
-        public Role GetRoleWithDetails(Guid idRole)
+        public Role GetRoleWithDetails(Guid roleId)
         {
-            return FindByCondition(owner => owner.IdRole.Equals(idRole)).FirstOrDefault();
+            return FindByCondition(owner => owner.RoleId.Equals(roleId)).FirstOrDefault();
         }
 
         public void CreateRole(Role role)

@@ -13,7 +13,7 @@ namespace MonumentMlyn.BLL.DTO
         public WorkerDto(Guid idWorker, string firstName, decimal numberOfHours, 
             decimal rete, string phone, decimal salary, string lastName,DateTime? createWorcer, DateTime? updateWorker)
         {
-            IdWorker = idWorker;
+            WorkerId = idWorker;
             FirstName = firstName;
             NumberOfHours = numberOfHours;
             Rete = rete;
@@ -23,7 +23,7 @@ namespace MonumentMlyn.BLL.DTO
             CreateWorcer = createWorcer;
             UpdateWorker = updateWorker;
         }
-        public Guid IdWorker { get; set; }
+        public Guid WorkerId { get; set; }
         public string FirstName { get; set; }
         public decimal NumberOfHours { get; set; }
         public decimal Rete { get; set; }

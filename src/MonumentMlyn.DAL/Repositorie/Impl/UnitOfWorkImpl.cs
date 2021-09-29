@@ -102,8 +102,6 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 return _workerRepositorie;
             }
         }
-
-
         public async Task SaveAsync()
         {
             await _repositoryContext.SaveChangesAsync();

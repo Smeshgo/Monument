@@ -24,23 +24,23 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 .ToListAsync();
 
         /// <summary>
-        /// Method for get idarticle by id from db.
+        /// Method for get articleId by id from db.
         /// </summary>
-        /// <param name="idarticle">id of Article.</param>
+        /// <param name="articleId">id of Article.</param>
         /// <returns>get Article.</returns>
-        public async Task<Article> GetArticleById(Guid idArticle)
+        public async Task<Article> GetArticleById(Guid articleId)
         {
-            return await FindByCondition(x => x.IdArticle.Equals(idArticle))
+            return await FindByCondition(x => x.ArticleId.Equals(articleId))
                 .FirstOrDefaultAsync();
         }
         /// <summary>
         /// Method for get article with details from db.
         /// </summary>
-        /// <param name="idarticle">id of article.</param>
+        /// <param name="articleId">id of article.</param>
         /// <returns>get article with details.</returns>
-        public Article GetArticleWithDetails(Guid idArticle)
+        public Article GetArticleWithDetails(Guid articleId)
         {
-            return FindByCondition(owner => owner.IdArticle.Equals(idArticle)).FirstOrDefault();
+            return FindByCondition(owner => owner.ArticleId.Equals(articleId)).FirstOrDefault();
         }
         /// <summary>
         /// Method for create article in db.

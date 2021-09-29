@@ -39,7 +39,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var roleEntity = new Role()
             {
-                IdRole = Guid.NewGuid(),
+                RoleId = Guid.NewGuid(),
                 Name = role.Name,
                 Status = role.Status,
                 CreateRole = DateTime.Now,

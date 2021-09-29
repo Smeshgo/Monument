@@ -13,7 +13,7 @@ namespace MonumentMlyn.BLL.DTO
         public UserDto(Guid idUser, string userNama, string password, string firstName, 
             string lastName, string email, string status, DateTime? createUser, DateTime? updateUser)
         {
-            IdUser = idUser;
+            UserId = idUser;
             UserName = userNama;
             Password = password;
             FirstName = firstName;
@@ -23,7 +23,7 @@ namespace MonumentMlyn.BLL.DTO
             CreateUser = createUser;
             UpdateUser = updateUser;
         }
-        public Guid IdUser { get; set; }
+        public Guid UserId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }

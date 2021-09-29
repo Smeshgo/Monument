@@ -40,10 +40,10 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var monumentEntity = new Monument()
             {
-                IdMonument = Guid.NewGuid(),
+                MonumentId = Guid.NewGuid(),
                 Price = monument.Prise,
-                IdPhoto = monument.IdPhoto,
-                Id_customer = monument.IdCustomer
+                PhotoId = monument.PhotoId,
+                CustomerId = monument.IdCustomer
             };
 
             _repository.Monument.CreateMonument(monumentEntity);
@@ -55,8 +55,8 @@ namespace MonumentMlyn.BLL.Services.Impl
             var monumentEntity = await _repository.Monument.GetMonumentById(idMonument);
 
             monumentEntity.Price = monument.Prise;
-            monumentEntity.IdPhoto = monument.IdPhoto;
-            monumentEntity.Id_customer = monument.IdCustomer;
+            monumentEntity.PhotoId = monument.PhotoId;
+            monumentEntity.CustomerId = monument.IdCustomer;
 
 
             _repository.Monument.UpdateMonument(monumentEntity);

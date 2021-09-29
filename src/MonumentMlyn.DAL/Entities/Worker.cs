@@ -14,19 +14,21 @@ namespace MonumentMlyn.DAL.Entities
             
         }
 
-        public Worker(Guid idWorker, string firstName, string phone, string lastName, DateTime? createWorcer, DateTime? updateWorker)
+        public Worker(Guid workerId, string firstName, string phone, string lastName, DateTime? createWorcer, DateTime? updateWorker, ICollection<Calculations> calculations, ICollection<Monument> monumentWorkers)
         {
-            IdWorker = idWorker;
+            WorkerId = workerId;
             FirstName = firstName;
             Phone = phone;
             LastName = lastName;
             CreateWorcer = createWorcer;
             UpdateWorker = updateWorker;
+            Calculations = calculations;
+            MonumentWorkers = monumentWorkers;
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid IdWorker { get; set; }
+        public Guid WorkerId { get; set; }
         public string FirstName { get; set; }
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"((\+38)?\(?\d{3}\)?[\s\.-]?(\d{7}|\d{3}[\s\.-]\d{2}[\s\.-]\d{2}|\d{3}-\d{4}))",
@@ -36,7 +38,11 @@ namespace MonumentMlyn.DAL.Entities
         public string LastName { get; set; }
         public DateTime? CreateWorcer { get; set; }
         public DateTime? UpdateWorker { get; set; }
-        public List<Calculations> Calculations { get; set; } = new List<Calculations>();
-        public List<Monument> Monuments { get; set; } = new List<Monument>();
+
+        public virtual ICollection<Calculations> Calculations { get; set; } = new List<Calculations>();
+        public virtual ICollection<Monument> MonumentWorkers { get; set; } = new List<Monument>();
+
+        //public List<Calculations> Calculations { get; set; } = new List<Calculations>();
+        //public List<Monument> Monuments { get; set; } = new List<Monument>();
     }
 }

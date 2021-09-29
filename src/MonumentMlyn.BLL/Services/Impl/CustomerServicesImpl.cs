@@ -38,11 +38,11 @@ namespace MonumentMlyn.BLL.Services.Impl
 
             var customerEntity = new Customer()
             {
-                id_customer = Guid.NewGuid(),
-                Last_name = customer.Last_name,
+                CustomerId = Guid.NewGuid(),
+                LastName = customer.Last_name,
                 Surname = customer.Surname,
-                create_user = DateTime.Now,
-                update_user = DateTime.Now,
+                CreateUser = DateTime.Now,
+                UpdateUser = DateTime.Now,
                 Phone = customer.Phone,
                 Email = customer.Email
             };
@@ -55,9 +55,9 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var customerEntity = await _repository.Customer.GetСustomerById(idCustomer);
 
-            customerEntity.Last_name = customer.Last_name;
+            customerEntity.LastName = customer.Last_name;
             customerEntity.Surname = customer.Surname;
-            customerEntity.update_user = DateTime.Now;
+            customerEntity.UpdateUser = DateTime.Now;
             customerEntity.Phone = customer.Phone;
             customerEntity.Email = customer.Email;
 

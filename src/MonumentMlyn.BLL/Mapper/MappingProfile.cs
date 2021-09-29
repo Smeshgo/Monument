@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MonumentMlyn.BLL.DTO;
+using MonumentMlyn.BLL.DTO.ArticlePhoto;
 using MonumentMlyn.DAL.Entities;
 
 namespace MonumentMlyn.BLL.Mapper

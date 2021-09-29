@@ -13,21 +13,23 @@ namespace MonumentMlyn.DAL.Entities
         {
         }
 
-        public User(Guid idUser, string userNama, string password, string firstName, string lastName, string email, string status, DateTime? createUser, DateTime? updateUser)
+        public User(Guid userId, string userName, string password, string firstName, string lastName, string email, string status, DateTime? createUser, DateTime? updateUser, ICollection<Article> article, ICollection<Role> roles)
         {
-            IdUser = idUser;
-            UserName = userNama;
+            UserId = userId;
+            UserName = userName;
             Password = password;
             FirstName = firstName;
             LastName = lastName;
             Email = email;
             Status = status;
             CreateUser = createUser;
-            UpdateUser = updateUser;    
+            UpdateUser = updateUser;
+            Article = article;
+            Roles = roles;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid IdUser { get; set; }
+        public Guid UserId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
@@ -37,7 +39,10 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? CreateUser { get; set; }
         public DateTime? UpdateUser { get; set; }
 
-        public List<Article> Articles { get; set; } = new List<Article>();
-        public List<Role> Roles { get; set; } = new List<Role>();
+        public virtual ICollection<Article> Article { get; set; } = new List<Article>();
+        public virtual ICollection<Role> Roles { get; set; } = new List<Role>();
+
+        //public List<Article> Articles { get; set; } = new List<Article>();
+        //public List<Role> Roles { get; set; } = new List<Role>();
     }
 }

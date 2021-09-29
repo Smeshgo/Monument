@@ -18,15 +18,15 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             await FindAll(trackChanges)
                 .OrderBy(c => c.LastName)
                 .ToListAsync();
-        public async Task<Worker> GetWorkerById(Guid idWorker)
+        public async Task<Worker> GetWorkerById(Guid workerId)
         {
-            return await FindByCondition(x => x.IdWorker.Equals(idWorker))
+            return await FindByCondition(x => x.WorkerId.Equals(workerId))
                 .FirstOrDefaultAsync();
         }
 
-        public Worker GetWorkerWithDetails(Guid idWorker)
+        public Worker GetWorkerWithDetails(Guid workerId)
         {
-            return FindByCondition(owner => owner.IdWorker.Equals(idWorker)).FirstOrDefault();
+            return FindByCondition(owner => owner.WorkerId.Equals(workerId)).FirstOrDefault();
         }
 
         public void CreateWorker(Worker worker)

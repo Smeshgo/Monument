@@ -19,15 +19,15 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             .OrderBy(c => c.Name)
             .ToListAsync();
 
-        public async Task<Material> GetMaterialtById(Guid idMaterial)
+        public async Task<Material> GetMaterialtById(Guid materialId)
         {
-            return await FindByCondition(x => x.IdMaterial.Equals(idMaterial))
+            return await FindByCondition(x => x.MaterialId.Equals(materialId))
                 .FirstOrDefaultAsync();
         }
 
-        public Material GetMaterialWithDetails(Guid idMaterial)
+        public Material GetMaterialWithDetails(Guid materialId)
         {
-            return FindByCondition(owner => owner.IdMaterial.Equals(idMaterial)).FirstOrDefault();
+            return FindByCondition(owner => owner.MaterialId.Equals(materialId)).FirstOrDefault();
         }
         public void CreateMaterial(Material material)
         {

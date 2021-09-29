@@ -9,8 +9,8 @@ namespace MonumentMlyn.DAL.Repositorie
     {
         
         Task<IEnumerable<Article>> GetAllArticles(bool trackChanges);
-        Task<Article> GetArticleById(Guid idarticle);
-        Article GetArticleWithDetails(Guid idarticle);
+        Task<Article> GetArticleById(Guid articleId);
+        Article GetArticleWithDetails(Guid articleId);
         void CreateArticle(Article article);
         void UpdateArticle(Article article);
         void DeleteArticle(Article article);

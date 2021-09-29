@@ -12,7 +12,7 @@ namespace MonumentMlyn.BLL.DTO
 
         public CustomerDto(Guid idCustomer, string lastName, string surname, DateTime createUser, DateTime updateUser, string phone, string email)
         {
-            id_customer = idCustomer;
+            CustomerId = idCustomer;
             Last_name = lastName;
             Surname = surname;
             create_user = createUser;
@@ -22,7 +22,7 @@ namespace MonumentMlyn.BLL.DTO
         }
 
         [Key]
-        public Guid id_customer { get; set; }
+        public Guid CustomerId { get; set; }
 
         public string Last_name { get; set; }
 

@@ -10,9 +10,12 @@ namespace MonumentMlyn.BLL.Services
     public interface IArticleServices
     {
         Task<IEnumerable<ArticleDto>> GetAllArticles();
-        Task<ArticleDto> GetArticleById(Guid idArticle);
+        Task<ArticleDto> GetArticleById(Guid articleId);
         Task CreateArticle(ArticleRequest article);
-        Task UpdateArticle(Guid idArticle, ArticleRequest article);
-        Task DeleteArticle(Guid idArticle);
+        Task UpdateArticle(Guid articleId, ArticleRequest article);
+        Task DeleteArticle(Guid articleId);
+        Task CreateManyToMany(Guid articleId, Guid PhotoId);
+
+
     }
 }

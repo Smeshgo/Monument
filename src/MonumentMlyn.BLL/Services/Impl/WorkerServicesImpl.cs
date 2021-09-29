@@ -41,7 +41,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var workerEntity = new Worker()
             {
-                IdWorker = Guid.NewGuid(),
+                WorkerId = Guid.NewGuid(),
                 FirstName = worker.FirstName,
                 Phone = worker.Phone,
                 LastName = worker.LastName,
