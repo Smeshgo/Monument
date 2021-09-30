@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MonumentMlyn.DAL.Repositorie.Impl
 {
@@ -62,6 +62,33 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         public void DeleteArticle(Article article)
         {
             Delete(article);
+        }
+
+        public IEnumerable<Article> AppPhoto(Guid articleId)
+        {
+            var result =
+                RepositoryContext.Articles
+                    .Include(a => a.Photos).Where(b => b.ArticleId == articleId);
+            return result;
+        }
+
+        public IEnumerable<Article> GetAllPhotoByArticle()
+        {
+            var result = RepositoryContext.Articles
+                .Include(a => a.Photos);
+            return result;
+        }
+
+        public async Task UpdatePhotoByArticle(Guid artcleId, Guid photoId, Guid photoIdNew)
+        {
+            var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == artcleId);
+            var photoOld = RepositoryContext.Photos.FirstOrDefault(p => p.PhotoId == photoId);
+            var photoNew = RepositoryContext.Photos.FirstOrDefault(p => p.PhotoId == photoIdNew);
+            if (articleEntity != null)
+            {
+                articleEntity.Photos.Remove(photoOld);
+                articleEntity.Photos.Add(photoNew);
+            }
         }
     }
 }

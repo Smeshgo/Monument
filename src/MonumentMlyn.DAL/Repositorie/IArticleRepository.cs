@@ -14,5 +14,8 @@ namespace MonumentMlyn.DAL.Repositorie
         void CreateArticle(Article article);
         void UpdateArticle(Article article);
         void DeleteArticle(Article article);
+        IEnumerable<Article> AppPhoto(Guid articleId);
+        IEnumerable<Article> GetAllPhotoByArticle();
+        Task UpdatePhotoByArticle(Guid artcleId, Guid photoIdO, Guid photoIdNew);
     }
 }

@@ -12,10 +12,12 @@ namespace MonumentMlyn.WebUI.Controllers
     public class ArticleController : Controller
     {
         private readonly IArticleServices _articleServices;
+        private readonly IPhotoServices _photoServices;
 
-        public ArticleController(IArticleServices articleServices)
+        public ArticleController(IArticleServices articleServices, IPhotoServices photoServices)
         {
             _articleServices = articleServices;
+            _photoServices = photoServices;
         }
 
         // GET /Article
@@ -127,5 +129,111 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
+
+        [HttpPost("many")]
+        public async Task<IActionResult> addPhoto(ArticleRequest article)
+        {
+            try
+            {
+                if (article == null)
+                {
+                    return BadRequest("article object is null");
+                }
+
+
+                if (!ModelState.IsValid)
+                {
+
+                    return BadRequest("Invalid model object");
+                }
+
+
+                var articleEntity = await _articleServices.GetArticleById(article.ArticleId);
+                var photoEntity = await _photoServices.GetPhotoById(article.PhotoId);
+
+                if (articleEntity == null && photoEntity == null)
+                {
+                    return NotFound();
+                }
+
+                await _articleServices.AddPhoto(article.ArticleId, article.PhotoId);
+                return NoContent();
+
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Internal server error" + e);
+            }
+        }
+
+        [HttpGet("many/{id}")]
+        public async Task<IActionResult> GetArticleByPhoto(Guid id)
+        {
+            try
+            {
+                var articleEntity = await _articleServices.GetArticleById(id);
+
+                if (articleEntity == null)
+                {
+                    return NotFound();
+                }
+                var articleByPhoto = await _articleServices.GetPhotoByArticle(id);
+                return Ok(articleByPhoto);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Internal server error" + e);
+            }
+            
+        }
+
+        [HttpGet("many")]
+        public async Task<IActionResult> GetAllArticleByPhoto()
+        {
+            try
+            {
+                var articleByPhoto = await _articleServices.GetAllPhotoByArticle();
+                return Ok(articleByPhoto);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Internal server error" + e);
+            }
+        }
+        [HttpPut("many/{id}")]
+        public async Task<IActionResult> UpdatePhotoByArticle(Guid id, [FromBody] ArticleRequest article)
+        {
+            try
+            {
+                if (article == null)
+                {
+                    return BadRequest("article object is null");
+                }
+
+
+                if (!ModelState.IsValid)
+                {
+
+                    return BadRequest("Invalid model object");
+                }
+
+
+                var articleEntity = await _articleServices.GetArticleById(id);
+
+                if (articleEntity == null)
+                {
+                    return NotFound();
+                }
+
+                await _articleServices.UpdatePhotoByArticle(id, article);
+                return Ok();
+
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Internal server error" + e);
+            }
+        }
+
     }
 }

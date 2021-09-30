@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using MonumentMlyn.DAL.Enum;
 
 #nullable disable
@@ -35,8 +36,8 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? CreatePhoto { get; set; }
         public DateTime? UpdatePhoto { get; set; }
         public CategoryPhoto CategoryPhoto { get; set; }
-
         public virtual ICollection<Monument> Monument { get; set; } = new List<Monument>();
+        [JsonIgnore]
         public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
 
     }

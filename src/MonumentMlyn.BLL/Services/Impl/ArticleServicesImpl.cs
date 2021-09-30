@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.DTO.Article;
+using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
 
@@ -71,17 +73,36 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task CreateManyToMany(Guid articleid, Guid PhotoId)
+        public async Task AddPhoto(Guid articleId, Guid photoId)
         {
-            var articleEntity = await _repository.Article.GetArticleById(articleid);
+            var articleEntity = await _repository.Article.GetArticleById(articleId);
 
-            var photoEntity = await _repository.Photo.GetPhotoById(PhotoId);
+            var photoEntity = await _repository.Photo.GetPhotoById(photoId);
 
             articleEntity.Photos.Add(photoEntity);
-            
+            _repository.Article.UpdateArticle(articleEntity);
 
             await _repository.SaveAsync();
         }
-        
+
+        public async Task<IEnumerable<ArticleDto>> GetPhotoByArticle(Guid articleId)
+        {
+            var result = _repository.Article.AppPhoto(articleId);
+
+            return _mapper.Map<IEnumerable<ArticleDto>>(result);
+        }
+
+        public async Task<IEnumerable<ArticleDto>> GetAllPhotoByArticle()
+        {
+            var result = _repository.Article.GetAllPhotoByArticle();
+
+            return _mapper.Map<IEnumerable<ArticleDto>>(result);
+        }
+
+        public async Task UpdatePhotoByArticle(Guid artcleId, ArticleRequest article)
+        {
+            await _repository.Article.UpdatePhotoByArticle(artcleId, article.PhotoIdOld, article.PhotoId);
+            await _repository.SaveAsync();
+        }
     }
 }

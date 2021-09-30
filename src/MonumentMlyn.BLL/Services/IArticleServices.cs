@@ -14,7 +14,11 @@ namespace MonumentMlyn.BLL.Services
         Task CreateArticle(ArticleRequest article);
         Task UpdateArticle(Guid articleId, ArticleRequest article);
         Task DeleteArticle(Guid articleId);
-        Task CreateManyToMany(Guid articleId, Guid PhotoId);
+        Task AddPhoto(Guid articleId, Guid photoId);
+        Task<IEnumerable<ArticleDto>> GetPhotoByArticle(Guid articleId);
+        Task<IEnumerable<ArticleDto>> GetAllPhotoByArticle();
+        Task UpdatePhotoByArticle(Guid artcleId, ArticleRequest article);
+
 
 
     }
