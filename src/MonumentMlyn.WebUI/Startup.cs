@@ -31,7 +31,7 @@ namespace MonumentMlyn.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureLoggerService();
-            services.ConfigureCors();
+            //services.ConfigureCors();
             services.ConfigureRepositoryManager();
             services.AddControllersWithViews();
             services.ConfigureArticleService();

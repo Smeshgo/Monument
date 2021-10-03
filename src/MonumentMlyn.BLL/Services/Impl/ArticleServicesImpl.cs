@@ -104,5 +104,10 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.Article.UpdatePhotoByArticle(artcleId, article.PhotoIdOld, article.PhotoId);
             await _repository.SaveAsync();
         }
+        public async Task DeletePhotoByArticle(Guid artcleId, ArticleRequest article)
+        {
+            await _repository.Article.DeletePhotoByArticle(artcleId, article.PhotoId);
+            await _repository.SaveAsync();
+        }
     }
 }

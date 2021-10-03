@@ -82,13 +82,20 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         public async Task UpdatePhotoByArticle(Guid artcleId, Guid photoId, Guid photoIdNew)
         {
             var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == artcleId);
-            var photoOld = RepositoryContext.Photos.FirstOrDefault(p => p.PhotoId == photoId);
-            var photoNew = RepositoryContext.Photos.FirstOrDefault(p => p.PhotoId == photoIdNew);
+            var photoOld =await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoId);
+            var photoNew = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoIdNew);
             if (articleEntity != null)
             {
                 articleEntity.Photos.Remove(photoOld);
                 articleEntity.Photos.Add(photoNew);
             }
+        }
+        public async Task DeletePhotoByArticle(Guid artcleId, Guid photoId)
+        {
+            var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == artcleId);
+            var photold = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoId);
+
+            articleEntity?.Photos.Remove(photold);
         }
     }
 }

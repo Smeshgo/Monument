@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using MonumentMlyn.DAL.Enum;
 
 #nullable disable
@@ -48,6 +49,7 @@ namespace MonumentMlyn.DAL.Entities
         public DateTime? CreateMaterial { get; set; }
         public DateTime? UpdateMaterial { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Monument> Monuments { get; set; } = new List<Monument>();
     }
 }

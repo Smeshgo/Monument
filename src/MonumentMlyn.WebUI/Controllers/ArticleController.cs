@@ -234,6 +234,26 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
+        [HttpDelete("many/{id}")]
+        public async Task<IActionResult> DeletePhotoByArticle(Guid id, [FromBody] ArticleRequest article)
+        {
+            try
+            {
 
+                var articleEntity = await _articleServices.GetArticleById(id);
+
+                if (articleEntity == null)
+                {
+                    return NotFound();
+                }
+
+                await _articleServices.DeletePhotoByArticle(id, article);
+                return Ok(articleEntity);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Internal server error" + e);
+            }
+        }
     }
 }

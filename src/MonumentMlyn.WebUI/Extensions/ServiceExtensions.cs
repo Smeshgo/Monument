@@ -41,14 +41,14 @@ namespace MonumentMlyn.WebUI.Extensions
 
 
         #endregion
-        public static void ConfigureCors(this IServiceCollection services) =>
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy", builder =>
-                    builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-            });
+        //public static void ConfigureCors(this IServiceCollection services) =>
+        //    services.AddCors(options =>
+        //    {
+        //        options.AddPolicy("CorsPolicy", builder =>
+        //            builder.AllowAnyOrigin()
+        //                .AllowAnyMethod()
+        //                .AllowAnyHeader());
+        //    });
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
             services.AddScoped<IUnitOfWork, UnitOfWorkImpl>();
         public static void ConfigureLoggerService(this IServiceCollection services)
@@ -62,7 +62,7 @@ namespace MonumentMlyn.WebUI.Extensions
         public static void ConfigureMaterialService(this IServiceCollection service) =>
             service.AddScoped<IMaterialServices, MaterialServicesImpl>();
         public static void ConfigureMonumentService(this IServiceCollection service) =>
-            service.AddScoped<IMaterialServices, MaterialServicesImpl>();
+            service.AddScoped<IMonumentServices, MonumentServicesImpl>();
         public static void ConfigurePhotoService(this IServiceCollection service) =>
             service.AddScoped<IPhotoServices, PhotoServicesImpl>();
         public static void ConfigureRoleService(this IServiceCollection service) =>

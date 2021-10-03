@@ -41,9 +41,9 @@ namespace MonumentMlyn.BLL.Services.Impl
             var monumentEntity = new Monument()
             {
                 MonumentId = Guid.NewGuid(),
-                Price = monument.Prise,
+                Price = monument.Price,
                 PhotoId = monument.PhotoId,
-                CustomerId = monument.IdCustomer
+                CustomerId = monument.CustomerId
             };
 
             _repository.Monument.CreateMonument(monumentEntity);
@@ -54,9 +54,9 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var monumentEntity = await _repository.Monument.GetMonumentById(idMonument);
 
-            monumentEntity.Price = monument.Prise;
+            monumentEntity.Price = monument.Price;
             monumentEntity.PhotoId = monument.PhotoId;
-            monumentEntity.CustomerId = monument.IdCustomer;
+            monumentEntity.CustomerId = monument.CustomerId;
 
 
             _repository.Monument.UpdateMonument(monumentEntity);
@@ -68,6 +68,43 @@ namespace MonumentMlyn.BLL.Services.Impl
             var monumentEntity = await _repository.Monument.GetMonumentById(idMonument);
 
             _repository.Monument.DeleteMonument(monumentEntity);
+            await _repository.SaveAsync();
+        }
+
+        public async Task AddMaterial(Guid monumentId, Guid materialId)
+        {
+            var monumentEntity = await _repository.Monument.GetMonumentById(monumentId);
+
+            var materialEntity = await _repository.Material.GetMaterialtById(materialId);
+
+            monumentEntity.Materials.Add(materialEntity);
+            _repository.Monument.UpdateMonument(monumentEntity);
+
+            await _repository.SaveAsync();
+        }
+
+        public async Task<IEnumerable<MonumentDto>> GetAllMaterialByMonument()
+        {
+            var result = _repository.Monument.GetAllMaterialByMonument();
+
+            return _mapper.Map<IEnumerable<MonumentDto>>(result);
+        }
+
+        public async Task<IEnumerable<MonumentDto>> GetMaterialByMonument(Guid monumentId)
+        {
+            var result = _repository.Monument.GetMaterialByMonument(monumentId);
+            return _mapper.Map<IEnumerable<MonumentDto>>(result);
+        }
+
+        public async Task UpdateMaterialByMonument(Guid monumentId, MonumentRequest monument)
+        {
+            await _repository.Monument.UpdateMaterialByMonument(monumentId, monument.MaterialIdOld, monument.MaterialId);
+            await _repository.SaveAsync();
+        }
+
+        public async Task DeleteMaterialByMonument(Guid monumentId, MonumentRequest monument)
+        {
+            await _repository.Monument.DeleteMaterialByMonument(monumentId, monument.MonumentId);
             await _repository.SaveAsync();
         }
     }

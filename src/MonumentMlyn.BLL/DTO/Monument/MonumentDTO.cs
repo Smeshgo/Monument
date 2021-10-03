@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using MonumentMlyn.DAL.Entities;
 
 #nullable disable
 
@@ -11,20 +13,20 @@ namespace MonumentMlyn.BLL.DTO
 
         }
 
-        public MonumentDto(Guid monumentId, decimal prise, Guid photoId, Guid idCustomer)
+        public MonumentDto(Guid monumentId, decimal price, Guid photoId, Guid customerId)
         {
             MonumentId = monumentId;
-            Prise = prise;
+            Price = price;
             PhotoId = photoId;
-            IdCustomer = idCustomer;
+            CustomerId = customerId;
         }
-
         public Guid MonumentId { get; set; }
-        public decimal Prise { get; set; }
+        public decimal Price { get; set; }
         public Guid PhotoId { get; set; }
-        public Guid IdCustomer { get; set; }
+        public Guid CustomerId { get; set; }
+        public virtual ICollection<Material> Materials { get; set; } = new List<Material>();
+        public virtual ICollection<Worker> Workers { get; set; } = new List<Worker>();
 
-        
 
     }
 }

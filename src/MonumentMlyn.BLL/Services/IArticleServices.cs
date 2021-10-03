@@ -18,6 +18,7 @@ namespace MonumentMlyn.BLL.Services
         Task<IEnumerable<ArticleDto>> GetPhotoByArticle(Guid articleId);
         Task<IEnumerable<ArticleDto>> GetAllPhotoByArticle();
         Task UpdatePhotoByArticle(Guid artcleId, ArticleRequest article);
+        Task DeletePhotoByArticle(Guid artcleId, ArticleRequest article);
 
 
 
