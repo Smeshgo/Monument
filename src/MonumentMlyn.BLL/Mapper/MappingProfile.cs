@@ -24,9 +24,6 @@ namespace MonumentMlyn.BLL.Mapper
             CreateMap<Photo, PhotoDto>();
             CreateMap<PhotoDto, Photo>();
 
-            CreateMap<Role, RoleDto>();
-            CreateMap<RoleDto, Role>();
-
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
 

@@ -2,6 +2,7 @@
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using MonumentMlyn.BLL.DTO.Monument;
 
 namespace MonumentMlyn.WebUI.Controllers
@@ -51,6 +52,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateMonument([FromBody] MonumentRequest monument)
         {
             try
@@ -75,6 +77,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateMonument(Guid id, [FromBody] MonumentRequest monument)
         {
             try
@@ -110,6 +113,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteMonument(Guid id)
         {
             try
@@ -133,6 +137,7 @@ namespace MonumentMlyn.WebUI.Controllers
 
         //Monument
         [HttpPost("many/meterial")]
+        [Authorize]
         public async Task<IActionResult> AddMaterial(MonumentRequest monument)
         {
             try
@@ -169,6 +174,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpGet("many/meterial")]
+
         public async Task<IActionResult> GetAllMonumentByMaterial()
         {
             try
@@ -204,6 +210,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("many/meterial/{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateMaterialByMonument(Guid id, [FromBody] MonumentRequest monument)
         {
             try
@@ -239,6 +246,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpDelete("many/meterial/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteMeterialByMonument(Guid id, [FromBody] MonumentRequest monument)
         {
             try
@@ -262,6 +270,7 @@ namespace MonumentMlyn.WebUI.Controllers
 
         //Worker
         [HttpPost("many/worker")]
+        [Authorize]
         public async Task<IActionResult> AddWorker(MonumentRequest monument)
           {
             try
@@ -333,6 +342,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("many/worker/{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateWorkerByMonument(Guid id, [FromBody] MonumentRequest monument)
         {
             try
@@ -368,6 +378,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpDelete("many/worker/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteWorkerByMonument(Guid id, [FromBody] MonumentRequest monument)
         {
             try

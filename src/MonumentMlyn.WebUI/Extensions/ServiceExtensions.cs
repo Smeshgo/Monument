@@ -65,10 +65,7 @@ namespace MonumentMlyn.WebUI.Extensions
             service.AddScoped<IMonumentServices, MonumentServicesImpl>();
         public static void ConfigurePhotoService(this IServiceCollection service) =>
             service.AddScoped<IPhotoServices, PhotoServicesImpl>();
-        public static void ConfigureRoleService(this IServiceCollection service) =>
-            service.AddScoped<IRoleServices, RoleServicesImpl>();
-        public static void ConfigureUserService(this IServiceCollection service) =>
-            service.AddScoped<IUserServices, UserServicesImpl>();
+
         public static void ConfigureWorkerService(this IServiceCollection service) =>
             service.AddScoped<IWorkerServices, WorkerServicesImpl>();
 

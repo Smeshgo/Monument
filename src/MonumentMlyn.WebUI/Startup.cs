@@ -3,6 +3,7 @@ using System.IO;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using MonumentMlyn.BLL.Mapper;
 using MonumentMlyn.BLL.Services;
 using MonumentMlyn.DAL.EF;
+using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.WebUI.Extensions;
 using NLog;
 
@@ -39,11 +41,11 @@ namespace MonumentMlyn.WebUI
             services.ConfigureMaterialService();
             services.ConfigureMonumentService();
             services.ConfigurePhotoService();
-            services.ConfigureRoleService();
-            services.ConfigureUserService();
             services.ConfigureWorkerService();
             services.ConfigureCalculationsService();
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -84,7 +86,11 @@ namespace MonumentMlyn.WebUI
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+
             app.UseRouting();
+
+            app.UseAuthentication();    // подключение аутентификации
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

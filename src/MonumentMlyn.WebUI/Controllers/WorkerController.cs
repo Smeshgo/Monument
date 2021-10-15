@@ -3,6 +3,7 @@ using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -47,6 +48,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateWorker([FromBody] WorkerRequest worker)
         {
             try
@@ -71,6 +73,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateWorker(Guid id, [FromBody] WorkerRequest worker)
         {
             try
@@ -106,6 +109,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteWorker(Guid id)
         {
             try
@@ -128,6 +132,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpGet("salary")]
+        [Authorize]
         public async Task<IActionResult> GetAllSalaryByWorker()
         {
             try
@@ -142,6 +147,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost("salary/{id}")]
+        [Authorize]
         public async Task<IActionResult> AddSalary(Guid id, [FromBody] SalaryRequest calculations)
         {
             try
@@ -179,6 +185,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpDelete("salary/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteSalaryByWorkerById(Guid id, [FromBody] SalaryRequest salaryRequest)
         {
             try
@@ -192,6 +199,7 @@ namespace MonumentMlyn.WebUI.Controllers
             }
         }
         [HttpPut("salary/{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateSalaryByWorkerById(Guid id, [FromBody] SalaryRequest salaryRequest)
         {
             try

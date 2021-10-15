@@ -16,8 +16,6 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         private IMaterialRepositorie _materialRepositorie;
         private IMonumentRepositorie _monumentRepositorie;
         private IPhotoRepositorie _photoRepositorie;
-        private IRoleRepositorie _roleRepositorie;
-        private IUserRepositorie _userRepositorie;
         private IWorkerRepositorie _workerRepositorie;
         private ISalaryRepositorie _calculationsRepositorie;
 
@@ -75,24 +73,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 return _photoRepositorie;
             }
         }
-        public IRoleRepositorie Role
-        {
-            get
-            {
-                if (_roleRepositorie == null)
-                    _roleRepositorie = new RoleRepositorieImpl(_repositoryContext);
-                return _roleRepositorie;
-            }
-        }
-        public IUserRepositorie User
-        {
-            get
-            {
-                if (_userRepositorie == null)
-                    _userRepositorie = new UserRepositorieImpl(_repositoryContext);
-                return _userRepositorie;
-            }
-        }
+
 
         public IWorkerRepositorie Worker
         {

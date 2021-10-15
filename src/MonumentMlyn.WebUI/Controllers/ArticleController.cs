@@ -3,6 +3,7 @@ using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using MonumentMlyn.BLL.DTO.Article;
 
 namespace MonumentMlyn.WebUI.Controllers
@@ -50,6 +51,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateArticle([FromBody] ArticleRequest article)
         {
             try
@@ -72,7 +74,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateArticle(Guid id, [FromBody] ArticleRequest article)
         {
@@ -107,7 +109,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteArticle(Guid id)
         {
@@ -129,7 +131,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
-
+        [Authorize]
         [HttpPost("many")]
         public async Task<IActionResult> AddPhoto(ArticleRequest article)
         {
@@ -186,7 +188,6 @@ namespace MonumentMlyn.WebUI.Controllers
             }
             
         }
-
         [HttpGet("many")]
         public async Task<IActionResult> GetAllArticleByPhoto()
         {
@@ -201,6 +202,7 @@ namespace MonumentMlyn.WebUI.Controllers
             }
         }
         [HttpPut("many/{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdatePhotoByArticle(Guid id, [FromBody] ArticleRequest article)
         {
             try
@@ -235,6 +237,7 @@ namespace MonumentMlyn.WebUI.Controllers
             }
         }
         [HttpDelete("many/{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletePhotoByArticle(Guid id, [FromBody] ArticleRequest article)
         {
             try
