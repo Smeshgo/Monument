@@ -8,10 +8,14 @@ namespace MonumentMlyn.DAL.Repositorie
     public interface IWorkerRepositorie : IRepositoryBase<Worker>
     {
         Task<IEnumerable<Worker>> GetAllWorkers(bool trackChanges);
-        Task<Worker> GetWorkerById(Guid Worker);
-        Worker GetWorkerWithDetails(Guid Worker);
-        void CreateWorker(Worker Worker);
-        void UpdateWorker(Worker Worker);
-        void DeleteWorker(Worker Worker);
+        Task<Worker> GetWorkerById(Guid worker);
+        Worker GetWorkerWithDetails(Guid worker);
+        void CreateWorker(Worker worker);
+        void UpdateWorker(Worker worker);
+        void DeleteWorker(Worker worker);
+        IEnumerable<Worker> GetAllSalaryByWorkers();
+        IEnumerable<Worker> GetAllSalaryByWorkersById(Guid workerId);
+        void DeleteSalaryByDate(Guid workerId, DateTime dateSalary);
+
     }
 }

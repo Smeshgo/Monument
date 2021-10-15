@@ -87,7 +87,7 @@ namespace MonumentMlyn.BLL.Services.Impl
 
         public async Task<IEnumerable<ArticleDto>> GetPhotoByArticle(Guid articleId)
         {
-            var result = _repository.Article.AppPhoto(articleId);
+            var result = _repository.Article.GetPhotoByArticle(articleId);
 
             return _mapper.Map<IEnumerable<ArticleDto>>(result);
         }
@@ -99,14 +99,14 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<ArticleDto>>(result);
         }
 
-        public async Task UpdatePhotoByArticle(Guid artcleId, ArticleRequest article)
+        public async Task UpdatePhotoByArticle(Guid articleId, ArticleRequest article)
         {
-            await _repository.Article.UpdatePhotoByArticle(artcleId, article.PhotoIdOld, article.PhotoId);
+            await _repository.Article.UpdatePhotoByArticle(articleId, article.PhotoIdOld, article.PhotoId);
             await _repository.SaveAsync();
         }
-        public async Task DeletePhotoByArticle(Guid artcleId, ArticleRequest article)
+        public async Task DeletePhotoByArticle(Guid articleId, ArticleRequest article)
         {
-            await _repository.Article.DeletePhotoByArticle(artcleId, article.PhotoId);
+            await _repository.Article.DeletePhotoByArticle(articleId, article.PhotoId);
             await _repository.SaveAsync();
         }
     }

@@ -17,7 +17,8 @@ namespace MonumentMlyn.DAL.EF
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Calculations>().HasKey(u => new{u.Date,u.WorkerId});
+            builder.Entity<Salary>().HasKey(u => new{u.Date, u.WorkerId}); 
+            builder.Entity<Salary>().HasOne(s => s.Worker).WithMany(c => c.Salary).IsRequired(); 
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,7 +28,7 @@ namespace MonumentMlyn.DAL.EF
 
         #region model
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Calculations> Calculations { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<Monument> Monuments { get; set; }

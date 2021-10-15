@@ -17,5 +17,9 @@ namespace MonumentMlyn.DAL.Repositorie
         IEnumerable<Monument> GetMaterialByMonument(Guid monumentId);
         Task UpdateMaterialByMonument(Guid monumentId, Guid materialId, Guid materialIdNew);
         Task DeleteMaterialByMonument(Guid monumentId, Guid materialId);
+        IEnumerable<Monument> GetAllWorkersByMonument();
+        IEnumerable<Monument> GetWorkersByMonument(Guid monumentId);
+        Task UpdateWorkerByMonument(Guid monumentId, Guid workerId, Guid workerIdNew);
+        Task DeleteWorkerByMonument(Guid monumentId, Guid workerId);
     }
 }

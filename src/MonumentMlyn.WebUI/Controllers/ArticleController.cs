@@ -131,7 +131,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost("many")]
-        public async Task<IActionResult> addPhoto(ArticleRequest article)
+        public async Task<IActionResult> AddPhoto(ArticleRequest article)
         {
             try
             {

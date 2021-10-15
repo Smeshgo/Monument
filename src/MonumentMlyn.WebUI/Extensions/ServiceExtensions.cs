@@ -72,6 +72,9 @@ namespace MonumentMlyn.WebUI.Extensions
         public static void ConfigureWorkerService(this IServiceCollection service) =>
             service.AddScoped<IWorkerServices, WorkerServicesImpl>();
 
+        public static void ConfigureCalculationsService(this IServiceCollection service) =>
+            service.AddScoped<ISalaryServices, SalaryServicesImpl>();
+
 
     }
 }

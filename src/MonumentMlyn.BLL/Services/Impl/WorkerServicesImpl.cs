@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.VisualBasic;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
@@ -45,7 +44,7 @@ namespace MonumentMlyn.BLL.Services.Impl
                 FirstName = worker.FirstName,
                 Phone = worker.Phone,
                 LastName = worker.LastName,
-                CreateWorcer = DateTime.Now,
+                CreateWorker = DateTime.Now,
                 UpdateWorker = DateTime.Now
             };
 
@@ -73,5 +72,47 @@ namespace MonumentMlyn.BLL.Services.Impl
             _repository.Worker.DeleteWorker(workerEntity);
             await _repository.SaveAsync();
         }
+
+
+
+        public async Task<IEnumerable<WorkerDto>> GetAllSalaryByWorkers()
+        {
+
+            var workers = _repository.Worker.GetAllSalaryByWorkers();
+            return _mapper.Map<IEnumerable<WorkerDto>>(workers);
+        }
+        public async Task<IEnumerable<WorkerDto>> GetSalaryByWorkerById(Guid workerid)
+        {
+            var workers = _repository.Worker.GetAllSalaryByWorkers().Where(a => a.WorkerId == workerid);
+
+            return _mapper.Map<IEnumerable<WorkerDto>>(workers);
+        }
+        public async Task AddSalary(Guid idWorker, SalaryRequest calculations)
+        {
+            var workerEntity = await _repository.Worker.GetWorkerById(idWorker);
+
+            var calculationEntity = new Salary()
+            {   
+                //WorkerId = workerEntity.WorkerId,
+                Date = calculations.Date.Date,
+                Advance = calculations.Advance,
+                NumberOfHours = calculations.NumberOfHours,
+                Rate = calculations.Rate
+            };
+
+            workerEntity.Salary.Add(calculationEntity);
+            
+            _repository.Worker.UpdateWorker(workerEntity);
+            
+            await _repository.SaveAsync();
+        }
+
+        public async Task DeleteSalaryByDate(Guid workerId, DateTime dateSalary)
+        {
+            _repository.Worker.DeleteSalaryByDate(workerId, dateSalary.Date);
+            await _repository.SaveAsync();
+        }
+
+
     }
 }

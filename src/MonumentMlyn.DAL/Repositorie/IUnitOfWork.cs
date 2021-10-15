@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using MonumentMlyn.DAL.Repositorie.Impl;
 
 namespace MonumentMlyn.DAL.Repositorie
 {
@@ -13,7 +12,8 @@ namespace MonumentMlyn.DAL.Repositorie
         IUserRepositorie User { get; }
         IWorkerRepositorie Worker { get; }
         ICustomerRepositorie Customer { get; }
+        ISalaryRepositorie Salary { get; }
         Task SaveAsync();
-        
+
     }
 }

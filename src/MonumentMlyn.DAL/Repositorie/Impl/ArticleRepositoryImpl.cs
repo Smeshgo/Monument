@@ -64,14 +64,6 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             Delete(article);
         }
 
-        public IEnumerable<Article> AppPhoto(Guid articleId)
-        {
-            var result =
-                RepositoryContext.Articles
-                    .Include(a => a.Photos).Where(b => b.ArticleId == articleId);
-            return result;
-        }
-
         public IEnumerable<Article> GetAllPhotoByArticle()
         {
             var result = RepositoryContext.Articles
@@ -79,9 +71,19 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             return result;
         }
 
-        public async Task UpdatePhotoByArticle(Guid artcleId, Guid photoId, Guid photoIdNew)
+        public IEnumerable<Article> GetPhotoByArticle(Guid articleId)
         {
-            var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == artcleId);
+            var result =
+                RepositoryContext.Articles
+                    .Include(a => a.Photos).Where(b => b.ArticleId == articleId);
+            return result;
+        }
+
+        
+
+        public async Task UpdatePhotoByArticle(Guid articleId, Guid photoId, Guid photoIdNew)
+        {
+            var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == articleId);
             var photoOld =await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoId);
             var photoNew = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoIdNew);
             if (articleEntity != null)
@@ -93,9 +95,9 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         public async Task DeletePhotoByArticle(Guid artcleId, Guid photoId)
         {
             var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == artcleId);
-            var photold = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoId);
+            var photoIdEntity = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoId);
 
-            articleEntity?.Photos.Remove(photold);
+            articleEntity?.Photos.Remove(photoIdEntity);
         }
     }
 }

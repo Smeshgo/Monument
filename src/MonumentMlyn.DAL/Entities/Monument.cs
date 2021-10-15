@@ -14,7 +14,7 @@ namespace MonumentMlyn.DAL.Entities
 
         }
 
-        public Monument(Guid monumentId, decimal price, Guid photoId, Guid customerId, Customer customer, Photo? photo)
+        public Monument(Guid monumentId, decimal price, Guid photoId, Guid customerId, Customer customer, Photo photo)
         {
             MonumentId = monumentId;
             Price = price;
@@ -28,7 +28,7 @@ namespace MonumentMlyn.DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid MonumentId { get; set; }
         public decimal Price { get; set; }
-        public Guid? PhotoId { get; set; }
+        public Guid PhotoId { get; set; }
         public Guid CustomerId { get; set; }
 
         public virtual Customer Customer { get; set; }

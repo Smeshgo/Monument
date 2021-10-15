@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using MonumentMlyn.DAL.EF;
+﻿using MonumentMlyn.DAL.EF;
+using System.Threading.Tasks;
 
 namespace MonumentMlyn.DAL.Repositorie.Impl
 {
@@ -9,7 +9,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
     /// </summary>
     public class UnitOfWorkImpl : IUnitOfWork
     {
-        
+
         private readonly ApplicationDbContext _repositoryContext;
         private IArticleRepository _articleRepository;
         private ICustomerRepositorie _customerRepositorie;
@@ -19,13 +19,14 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         private IRoleRepositorie _roleRepositorie;
         private IUserRepositorie _userRepositorie;
         private IWorkerRepositorie _workerRepositorie;
+        private ISalaryRepositorie _calculationsRepositorie;
 
         public UnitOfWorkImpl(ApplicationDbContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
         }
 
-        
+
 
         public IArticleRepository Article
         {
@@ -36,8 +37,8 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 return _articleRepository;
             }
         }
-      
-        
+
+
         public ICustomerRepositorie Customer
         {
             get
@@ -100,6 +101,16 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 if (_workerRepositorie == null)
                     _workerRepositorie = new WorkerRepositorieImpl(_repositoryContext);
                 return _workerRepositorie;
+            }
+        }
+
+        public ISalaryRepositorie Salary
+        {
+            get
+            {
+                if (_calculationsRepositorie == null)
+                    _calculationsRepositorie = new SalaryRepositorieImpl(_repositoryContext);
+                return _calculationsRepositorie;
             }
         }
         public async Task SaveAsync()

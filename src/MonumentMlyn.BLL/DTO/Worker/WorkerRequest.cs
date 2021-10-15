@@ -10,13 +10,11 @@ namespace MonumentMlyn.BLL.DTO
             
         }
 
-        public WorkerRequest(string firstName, string phone, string lastName, DateTime? createWorcer, DateTime? updateWorker)
+        public WorkerRequest(string firstName, string phone, string lastName)
         {
             FirstName = firstName;
             Phone = phone;
             LastName = lastName;
-            CreateWorcer = createWorcer;
-            UpdateWorker = updateWorker;
         }
         public string FirstName { get; set; }
         [DataType(DataType.PhoneNumber)]
@@ -25,7 +23,5 @@ namespace MonumentMlyn.BLL.DTO
         [Required]
         public string Phone { get; set; }
         public string LastName { get; set; }
-        public DateTime? CreateWorcer { get; set; }
-        public DateTime? UpdateWorker { get; set; }
     }
 }

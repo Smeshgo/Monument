@@ -2,7 +2,7 @@
 
 namespace MonumentMlyn.DAL.Migrations
 {
-    public partial class a1 : Migration
+    public partial class a3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

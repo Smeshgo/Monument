@@ -10,8 +10,8 @@ using MonumentMlyn.DAL.EF;
 namespace MonumentMlyn.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210929101917_CreateDb")]
-    partial class CreateDb
+    [Migration("20211012201719_a3")]
+    partial class a3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,33 +87,6 @@ namespace MonumentMlyn.DAL.Migrations
                     b.HasKey("ArticleId");
 
                     b.ToTable("Articles");
-                });
-
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Calculations", b =>
-                {
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("WorkerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Advance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("NumberOfHours")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Rete")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Salary")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Date", "WorkerId");
-
-                    b.HasIndex("WorkerId");
-
-                    b.ToTable("Calculations");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Customer", b =>
@@ -269,6 +242,30 @@ namespace MonumentMlyn.DAL.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Salary", b =>
+                {
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("Date");
+
+                    b.Property<Guid>("WorkerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Advance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("NumberOfHours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Date", "WorkerId");
+
+                    b.HasIndex("WorkerId");
+
+                    b.ToTable("Salaries");
+                });
+
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.User", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -310,7 +307,7 @@ namespace MonumentMlyn.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("CreateWorcer")
+                    b.Property<DateTime?>("CreateWorker")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
@@ -320,7 +317,6 @@ namespace MonumentMlyn.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateWorker")
@@ -406,17 +402,6 @@ namespace MonumentMlyn.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Calculations", b =>
-                {
-                    b.HasOne("MonumentMlyn.DAL.Entities.Worker", "Worker")
-                        .WithMany("Calculations")
-                        .HasForeignKey("WorkerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Worker");
-                });
-
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Monument", b =>
                 {
                     b.HasOne("MonumentMlyn.DAL.Entities.Customer", "Customer")
@@ -434,6 +419,17 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Photo");
+                });
+
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Salary", b =>
+                {
+                    b.HasOne("MonumentMlyn.DAL.Entities.Worker", "Worker")
+                        .WithMany("Salary")
+                        .HasForeignKey("WorkerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Worker");
                 });
 
             modelBuilder.Entity("MonumentWorker", b =>
@@ -478,7 +474,7 @@ namespace MonumentMlyn.DAL.Migrations
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Worker", b =>
                 {
-                    b.Navigation("Calculations");
+                    b.Navigation("Salary");
                 });
 #pragma warning restore 612, 618
         }

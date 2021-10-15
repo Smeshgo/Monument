@@ -1,32 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MonumentMlyn.DAL.Entities
 {
-    public class Calculations
+    public class Salary
     {
-        public Calculations()
+        public Salary()
         {
             
         }
 
-        public Calculations(Guid workerId, DateTime date, decimal advance, decimal numberOfHours, decimal rete, decimal salary)
+        public Salary(Guid workerId, DateTime date, decimal advance, decimal numberOfHours, decimal rate)
         {
             WorkerId = workerId;
             Date = date;
             Advance = advance;
             NumberOfHours = numberOfHours;
-            Rete = rete;
-            Salary = salary;
+            Rate = rate;
         }
         public Guid WorkerId { get; set; }
-
+        [Column(TypeName = "Date")]
         public DateTime Date { get; set; }
-        public Decimal Advance { get; set; }
+        public decimal Advance { get; set; }
         public decimal NumberOfHours { get; set; }
-        public decimal Rete { get; set; }
-        public decimal Salary { get; set; }
+        public decimal Rate { get; set; }
+        [JsonIgnore]
         public virtual Worker Worker { get; set; } = new Worker();
     }
 }

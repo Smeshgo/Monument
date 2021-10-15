@@ -42,7 +42,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             Delete(monument);
         }
 
-
+        //Material
         public IEnumerable<Monument> GetAllMaterialByMonument()
         {
             var monumentGetAllMaterial = RepositoryContext.Monuments
@@ -67,16 +67,56 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             if (monumentEntity != null)
             {
                 monumentEntity.Materials.Remove(materialOld);
-                monumentEntity.Materials.Add(materialNew);
+               monumentEntity.Materials.Add(materialNew);
             }
         }
 
         public async Task DeleteMaterialByMonument(Guid monumentId, Guid materialId)
         {
-            var monumentEntity = RepositoryContext.Monuments.FirstOrDefault(m => m.MonumentId == monumentId);
+            var monumentEntity = RepositoryContext.Monuments.Include(m => m.Materials)
+                .FirstOrDefault(a => a.MonumentId == monumentId);
             var materialEntity = await RepositoryContext.Materials.FirstOrDefaultAsync(m => m.MaterialId == materialId);
 
             monumentEntity?.Materials.Remove(materialEntity);
+        }
+
+
+        // Workers
+        public IEnumerable<Monument> GetAllWorkersByMonument()
+        {
+            var workersGetAllMaterial = RepositoryContext.Monuments
+                .Include(w => w.Workers);
+            return workersGetAllMaterial;
+        }
+
+        public IEnumerable<Monument> GetWorkersByMonument(Guid monumentId)
+        {
+            var result =
+                RepositoryContext.Monuments
+                    .Include(a => a.Workers).Where(b => b.MonumentId == monumentId);
+            return result;
+        }
+
+        public async Task UpdateWorkerByMonument(Guid monumentId, Guid workerId, Guid workerIdNew)
+        {
+            var monumentEntity = RepositoryContext.Monuments.Include(m => m.Workers)
+                .FirstOrDefault(a => a.MonumentId == monumentId);
+            var workerOld = await RepositoryContext.Workers.FirstOrDefaultAsync(m => m.WorkerId == workerId);
+            var workerNew = await RepositoryContext.Workers.FirstOrDefaultAsync(m => m.WorkerId == workerIdNew);
+
+            if (monumentEntity != null)
+            {
+                monumentEntity.Workers.Remove(workerOld);
+                monumentEntity.Workers.Add(workerNew);
+            }
+        }
+        public async Task DeleteWorkerByMonument(Guid monumentId, Guid workerId)
+        {
+            var monumentEntity = RepositoryContext.Monuments.Include(m => m.Workers)
+                .FirstOrDefault(a => a.MonumentId == monumentId);
+            var workerEntity = await RepositoryContext.Workers.FirstOrDefaultAsync(m => m.WorkerId == workerId);
+
+            monumentEntity?.Workers.Remove(workerEntity);
         }
     }
 }

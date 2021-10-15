@@ -42,6 +42,7 @@ namespace MonumentMlyn.WebUI
             services.ConfigureRoleService();
             services.ConfigureUserService();
             services.ConfigureWorkerService();
+            services.ConfigureCalculationsService();
             services.AddAutoMapper(typeof(Startup));
 
             // In production, the React files will be served from this directory

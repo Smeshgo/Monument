@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MonumentMlyn.DAL.Migrations
 {
-    public partial class CreateDb : Migration
+    public partial class a1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -119,9 +119,9 @@ namespace MonumentMlyn.DAL.Migrations
                 {
                     WorkerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreateWorcer = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreateWorker = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateWorker = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -159,7 +159,7 @@ namespace MonumentMlyn.DAL.Migrations
                 {
                     MonumentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PhotoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PhotoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -176,7 +176,7 @@ namespace MonumentMlyn.DAL.Migrations
                         column: x => x.PhotoId,
                         principalTable: "Photos",
                         principalColumn: "PhotoId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -228,21 +228,20 @@ namespace MonumentMlyn.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Calculations",
+                name: "Salaries",
                 columns: table => new
                 {
                     WorkerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "Date", nullable: false),
                     Advance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     NumberOfHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Rete = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Rate = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Calculations", x => new { x.Date, x.WorkerId });
+                    table.PrimaryKey("PK_Salaries", x => new { x.Date, x.WorkerId });
                     table.ForeignKey(
-                        name: "FK_Calculations_Workers_WorkerId",
+                        name: "FK_Salaries_Workers_WorkerId",
                         column: x => x.WorkerId,
                         principalTable: "Workers",
                         principalColumn: "WorkerId",
@@ -308,11 +307,6 @@ namespace MonumentMlyn.DAL.Migrations
                 column: "UsersUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Calculations_WorkerId",
-                table: "Calculations",
-                column: "WorkerId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MaterialMonument_MonumentsMonumentId",
                 table: "MaterialMonument",
                 column: "MonumentsMonumentId");
@@ -336,6 +330,11 @@ namespace MonumentMlyn.DAL.Migrations
                 name: "IX_RoleUser_RolesRoleId",
                 table: "RoleUser",
                 column: "RolesRoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Salaries_WorkerId",
+                table: "Salaries",
+                column: "WorkerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -347,9 +346,6 @@ namespace MonumentMlyn.DAL.Migrations
                 name: "ArticleUser");
 
             migrationBuilder.DropTable(
-                name: "Calculations");
-
-            migrationBuilder.DropTable(
                 name: "MaterialMonument");
 
             migrationBuilder.DropTable(
@@ -357,6 +353,9 @@ namespace MonumentMlyn.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "RoleUser");
+
+            migrationBuilder.DropTable(
+                name: "Salaries");
 
             migrationBuilder.DropTable(
                 name: "Articles");
@@ -368,13 +367,13 @@ namespace MonumentMlyn.DAL.Migrations
                 name: "Monuments");
 
             migrationBuilder.DropTable(
-                name: "Workers");
-
-            migrationBuilder.DropTable(
                 name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Workers");
 
             migrationBuilder.DropTable(
                 name: "Customers");

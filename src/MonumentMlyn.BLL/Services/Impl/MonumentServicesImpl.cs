@@ -70,7 +70,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             _repository.Monument.DeleteMonument(monumentEntity);
             await _repository.SaveAsync();
         }
-
+        // Material
         public async Task AddMaterial(Guid monumentId, Guid materialId)
         {
             var monumentEntity = await _repository.Monument.GetMonumentById(monumentId);
@@ -104,7 +104,41 @@ namespace MonumentMlyn.BLL.Services.Impl
 
         public async Task DeleteMaterialByMonument(Guid monumentId, MonumentRequest monument)
         {
-            await _repository.Monument.DeleteMaterialByMonument(monumentId, monument.MonumentId);
+            await _repository.Monument.DeleteMaterialByMonument(monumentId, monument.MaterialId);
+            await _repository.SaveAsync();
+        }
+
+        //Worker
+        public async Task AddWorker(Guid monumentId, Guid workerId)
+        {
+            var monumentEntity = await _repository.Monument.GetMonumentById(monumentId);
+
+            var workerEntity = await _repository.Worker.GetWorkerById(workerId);
+
+            monumentEntity.Workers.Add(workerEntity);
+            _repository.Monument.UpdateMonument(monumentEntity);
+
+            await _repository.SaveAsync();
+        }
+        public async Task<IEnumerable<MonumentDto>> GetAllWorkerByMonument()
+        {
+            var result = _repository.Monument.GetAllWorkersByMonument();
+
+            return _mapper.Map<IEnumerable<MonumentDto>>(result);
+        }
+        public async Task<IEnumerable<MonumentDto>> GetWorkerByMonument(Guid monumentId)
+        {
+            var result = _repository.Monument.GetWorkersByMonument(monumentId);
+            return _mapper.Map<IEnumerable<MonumentDto>>(result);
+        }
+        public async Task UpdateWorkerByMonument(Guid monumentId, MonumentRequest monument)
+        {
+            await _repository.Monument.UpdateWorkerByMonument(monumentId, monument.WorkerIdOld, monument.WorkerId);
+            await _repository.SaveAsync();
+        }
+        public async Task DeleteWorkerByMonument(Guid monumentId, MonumentRequest monument)
+        {
+            await _repository.Monument.DeleteWorkerByMonument(monumentId, monument.WorkerId);
             await _repository.SaveAsync();
         }
     }
