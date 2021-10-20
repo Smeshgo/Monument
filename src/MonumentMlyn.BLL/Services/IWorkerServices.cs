@@ -17,5 +17,6 @@ namespace MonumentMlyn.BLL.Services
         Task<IEnumerable<WorkerDto>> GetAllSalaryByWorkers();
         Task<IEnumerable<WorkerDto>> GetSalaryByWorkerById(Guid workerId);
         Task DeleteSalaryByDate(Guid workerId, DateTime dateSalary);
+        Task<IEnumerable<WorkerDto>> SearchSalaryFromStartAndEndDate(Guid workerId, SalaryRequest salary);
     }
 }

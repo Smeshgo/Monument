@@ -99,12 +99,18 @@ namespace MonumentMlyn.BLL.Services.Impl
                 NumberOfHours = calculations.NumberOfHours,
                 Rate = calculations.Rate
             };
-
             workerEntity.Salary.Add(calculationEntity);
+           
             
             _repository.Worker.UpdateWorker(workerEntity);
             
             await _repository.SaveAsync();
+        }
+
+        public async Task<IEnumerable<WorkerDto>> SearchSalaryFromStartAndEndDate(Guid workerId, SalaryRequest salary)
+        {
+            var worker =  _repository.Worker.SearchSalaryFromStartAndEndDate(workerId, salary.Date, salary.DateOld);
+            return _mapper.Map<IEnumerable<WorkerDto>>(worker);
         }
 
         public async Task DeleteSalaryByDate(Guid workerId, DateTime dateSalary)

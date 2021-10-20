@@ -48,27 +48,6 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
 
         public IEnumerable<Worker> GetAllSalaryByWorkers()
         {
-
-            //var result = from worker in RepositoryContext.Workers
-            //             join salary in RepositoryContext.Salaries
-            //                 on worker.WorkerId equals salary.WorkerId
-            //             select worker;
-
-
-            //var result = from worker in RepositoryContext.Workers
-            //             join salary in RepositoryContext.Salaries
-            //                 on worker.WorkerId equals salary.WorkerId
-            //             select new Worker()
-            //             {
-            //                 WorkerId = worker.WorkerId,
-            //                 FirstName = worker.FirstName,
-            //                 LastName = worker.LastName,
-            //                 Phone = worker.Phone,
-            //                 CreateWorker = worker.CreateWorker,
-            //                 UpdateWorker = worker.UpdateWorker,
-            //                 Salary = worker.Salary
-            //             };
-
             var result = from worker in RepositoryContext.Workers
                          select new Worker
                          {
@@ -80,10 +59,6 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                              UpdateWorker = worker.UpdateWorker,
                              Salary = worker.Salary
                          };
-
-            //var result = RepositoryContext.Workers.Include(a => a.Salary).Select(a => new {a});
-
-            //var result = RepositoryContext.Workers.Include(a => a.Salary);
             return result;
         }
         public IEnumerable<Worker> GetAllSalaryByWorkersById(Guid workerId)
@@ -107,9 +82,6 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         {
 
             var salaryEntity = GetAllSalaryByWorkersById(workerId);
-            // var salaryEntity = RepositoryContext.Salaries.Find(workerId, dateSalary);
-
-            // var salaries = salaryEntity.GetEnumerator();
             foreach (var salary in salaryEntity)
             {
                 foreach (var salaryDate in salary.Salary)
@@ -122,7 +94,27 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                     }
                 }
             }
-            
+
+        }
+        public IEnumerable<Worker> SearchSalaryFromStartAndEndDate(Guid workerId, DateTime startDate, DateTime endDate)
+        {
+            var salaryEntity = GetAllSalaryByWorkersById(workerId);
+
+            var result = from worker in RepositoryContext.Workers.Where(a => a.WorkerId == workerId)
+                select new Worker
+                         {
+                             WorkerId = worker.WorkerId,
+                             FirstName = worker.FirstName,
+                             LastName = worker.LastName,
+                             Phone = worker.Phone,
+                             CreateWorker = worker.CreateWorker,
+                             UpdateWorker = worker.UpdateWorker,
+                             Salary = (ICollection<Salary>)(from s in worker.Salary
+                                                            where s.Date >= startDate && s.Date <= endDate
+                                                            select s)
+                         };
+            return result;
+
         }
     }
 }

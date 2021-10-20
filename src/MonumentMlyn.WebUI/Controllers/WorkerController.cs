@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -170,6 +170,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
+        [Authorize]
         [HttpGet("salary/{id}")]
         public async Task<IActionResult> GetSalaryByWorkerById(Guid id)
         {
@@ -213,6 +214,21 @@ namespace MonumentMlyn.WebUI.Controllers
             {
                 return StatusCode(500, "Internal server error" + e);
             }
+        }
+
+        [HttpGet("Salary/{id}")]
+        public async Task<IActionResult> SearchSalaryFromStartAndEndDate(Guid id, [FromBody] SalaryRequest salary)
+        {
+            try
+            {
+                var worker = await _workerServices.SearchSalaryFromStartAndEndDate(id, salary);
+                return Ok(worker);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Internal server error" + e);
+            }
+
         }
     }
 }

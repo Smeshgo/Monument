@@ -16,6 +16,7 @@ namespace MonumentMlyn.DAL.Repositorie
         IEnumerable<Worker> GetAllSalaryByWorkers();
         IEnumerable<Worker> GetAllSalaryByWorkersById(Guid workerId);
         void DeleteSalaryByDate(Guid workerId, DateTime dateSalary);
+        IEnumerable<Worker> SearchSalaryFromStartAndEndDate(Guid workerId, DateTime startDate, DateTime endDate);
 
     }
 }

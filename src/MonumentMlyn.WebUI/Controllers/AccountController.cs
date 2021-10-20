@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.DAL.Entities;
@@ -26,6 +27,7 @@ namespace MonumentMlyn.WebUI.Controllers
             return Ok();
         }
         [HttpPost]
+        //[Authorize]
         public async Task<IActionResult> Register([FromBody]RegisterModel model)
         {
             if (ModelState.IsValid)
