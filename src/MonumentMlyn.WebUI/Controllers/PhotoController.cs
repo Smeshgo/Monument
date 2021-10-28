@@ -53,7 +53,7 @@ namespace MonumentMlyn.WebUI.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> CreatePhoto([FromBody] PhotoRequest photo, string path)
+        public async Task<IActionResult> CreatePhoto([FromBody] PhotoRequest photo)
         {
             try
             {
