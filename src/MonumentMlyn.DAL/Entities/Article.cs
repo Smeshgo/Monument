@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MonumentMlyn.DAL.Entities
 {
-    public partial class Article
+    public class Article
     {
         public Article()
         {
@@ -15,9 +15,9 @@ namespace MonumentMlyn.DAL.Entities
            
         }
 
-        public Article(Guid idArticle, string title, string contents, DateTime? createArticle, DateTime? updateArticle)
+        public Article(Guid articleId, string title, string contents, DateTime? createArticle, DateTime? updateArticle)
         {
-            IdArticle = idArticle;
+            ArticleId = articleId;
             Title = title;
             Contents = contents;
             CreateArticle = createArticle;
@@ -25,13 +25,15 @@ namespace MonumentMlyn.DAL.Entities
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid IdArticle { get; set; }
+        public Guid ArticleId { get; set; }
         public string Title { get; set; }
         public string Contents { get; set; }
         public DateTime? CreateArticle { get; set; }
         public DateTime? UpdateArticle { get; set; }
 
-        public List<User> User { get; set; } = new List<User>();
-        public List<Photo> Photo { get; set; } = new List<Photo>();
+        public virtual ICollection<User> Users { get; set; } = new List<User>();
+
+        public virtual ICollection<Photo> Photos { get; set; } = new List<Photo>();
+
     }
 }

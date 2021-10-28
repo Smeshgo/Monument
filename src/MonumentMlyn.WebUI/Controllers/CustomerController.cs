@@ -3,6 +3,7 @@ using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -48,6 +49,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateCustomer([FromBody] CustomerRequest customer)
         {
             try
@@ -72,6 +74,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateCustomer(Guid id, [FromBody] CustomerRequest customer)
         {
             try
@@ -107,6 +110,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteCustomer(Guid id)
         {
             try

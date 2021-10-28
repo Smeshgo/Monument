@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B1541763-7649-4C16-98C7-B079514AA70E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonumentMlyn.DAL", "src\MonumentMlyn.DAL\MonumentMlyn.DAL.csproj", "{00ED4145-4AAE-4C56-91D8-E71310F81EB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonumentMlyn.DAL", "src\MonumentMlyn.DAL\MonumentMlyn.DAL.csproj", "{00ED4145-4AAE-4C56-91D8-E71310F81EB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonumentMlyn.BLL", "src\MonumentMlyn.BLL\MonumentMlyn.BLL.csproj", "{E45E0D4F-D5B2-44E3-A829-1E495849D048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonumentMlyn.BLL", "src\MonumentMlyn.BLL\MonumentMlyn.BLL.csproj", "{E45E0D4F-D5B2-44E3-A829-1E495849D048}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonumentMlyn.WebUI", "src\MonumentMlyn.WebUI\MonumentMlyn.WebUI.csproj", "{0DCFC84B-7387-430C-85B1-0524E512DFF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonumentMlyn.WebUI", "src\MonumentMlyn.WebUI\MonumentMlyn.WebUI.csproj", "{0DCFC84B-7387-430C-85B1-0524E512DFF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

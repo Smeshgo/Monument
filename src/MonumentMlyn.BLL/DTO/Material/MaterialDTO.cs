@@ -14,7 +14,7 @@ namespace MonumentMlyn.BLL.DTO
 
         public MaterialDto(Guid idMaterial, string name, decimal height, decimal length, Color color, decimal width, decimal price, decimal number, StatusMaterial status, Appointment appointment, CategoryMaterial category, DateTime? createMaterial, DateTime? updateMaterial)
         {
-            IdMaterial = idMaterial;
+            MaterialId = idMaterial;
             Name = name;
             Height = height;
             Length = length;
@@ -30,7 +30,7 @@ namespace MonumentMlyn.BLL.DTO
         }
 
 
-        public Guid IdMaterial { get; set; }
+        public Guid MaterialId { get; set; }
         public string Name { get; set; }
         public decimal Height { get; set; }
         public decimal Length { get; set; }

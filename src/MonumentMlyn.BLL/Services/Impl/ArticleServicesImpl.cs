@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.DTO.Article;
+using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
 
@@ -29,9 +32,9 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<ArticleDto>>(article);
         }
 
-        public async Task<ArticleDto> GetArticleById(Guid idArticle)
+        public async Task<ArticleDto> GetArticleById(Guid articleId)
         {
-            var article = await _repository.Article.GetArticleById(idArticle);
+            var article = await _repository.Article.GetArticleById(articleId);
 
             return _mapper.Map<ArticleDto>(article);
         }
@@ -40,7 +43,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var articleEntity = new Article()
             {
-                IdArticle = Guid.NewGuid(),
+                ArticleId = Guid.NewGuid(),
                 Title = article.Title,
                 Contents = article.Contents,
                 CreateArticle = DateTime.Now,
@@ -51,9 +54,9 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateArticle(Guid idArticle, ArticleRequest article)
+        public async Task UpdateArticle(Guid articleId, ArticleRequest article)
         {
-            var articleEntity = await _repository.Article.GetArticleById(idArticle);
+            var articleEntity = await _repository.Article.GetArticleById(articleId);
 
             articleEntity.Title = article.Title;
             articleEntity.Contents = article.Contents;
@@ -63,10 +66,47 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeleteArticle(Guid idArticle)
+        public async Task DeleteArticle(Guid articleId)
         {
-            var articleEntity = await _repository.Article.GetArticleById(idArticle);
+            var articleEntity = await _repository.Article.GetArticleById(articleId);
             _repository.Article.DeleteArticle(articleEntity);
+            await _repository.SaveAsync();
+        }
+
+        public async Task AddPhoto(Guid articleId, Guid photoId)
+        {
+            var articleEntity = await _repository.Article.GetArticleById(articleId);
+
+            var photoEntity = await _repository.Photo.GetPhotoById(photoId);
+
+            articleEntity.Photos.Add(photoEntity);
+            _repository.Article.UpdateArticle(articleEntity);
+
+            await _repository.SaveAsync();
+        }
+
+        public async Task<IEnumerable<ArticleDto>> GetPhotoByArticle(Guid articleId)
+        {
+            var result = _repository.Article.GetPhotoByArticle(articleId);
+
+            return _mapper.Map<IEnumerable<ArticleDto>>(result);
+        }
+
+        public async Task<IEnumerable<ArticleDto>> GetAllPhotoByArticle()
+        {
+            var result = _repository.Article.GetAllPhotoByArticle();
+
+            return _mapper.Map<IEnumerable<ArticleDto>>(result);
+        }
+
+        public async Task UpdatePhotoByArticle(Guid articleId, ArticleRequest article)
+        {
+            await _repository.Article.UpdatePhotoByArticle(articleId, article.PhotoIdOld, article.PhotoId);
+            await _repository.SaveAsync();
+        }
+        public async Task DeletePhotoByArticle(Guid articleId, ArticleRequest article)
+        {
+            await _repository.Article.DeletePhotoByArticle(articleId, article.PhotoId);
             await _repository.SaveAsync();
         }
     }

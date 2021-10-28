@@ -28,9 +28,9 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<PhotoDto>>(photos);
         }
 
-        public async Task<PhotoDto> GetPhotoById(Guid idPhoto)
+        public async Task<PhotoDto> GetPhotoById(Guid photoId)
         {
-            var photo = await _repository.Photo.GetPhotoById(idPhoto);
+            var photo = await _repository.Photo.GetPhotoById(photoId);
 
             return _mapper.Map<PhotoDto>(photo);
         }
@@ -51,7 +51,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var photoEntity = new Photo()
             {
-                IdPhoto = Guid.NewGuid(),
+                PhotoId = Guid.NewGuid(),
                 Name = photo.Name,
                 CreatePhoto = DateTime.Now,
                 UpdatePhoto = DateTime.Now,
@@ -65,7 +65,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdatePhoto(Guid idPhoto, PhotoRequest photo)
+        public async Task UpdatePhoto(Guid photoId, PhotoRequest photo)
         {
             var photoEntity = new Photo()
             {
@@ -81,9 +81,9 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task DeletePhoto(Guid idPhoto)
+        public async Task DeletePhoto(Guid photoId)
         {
-            var photoEntity = await _repository.Photo.GetPhotoById(idPhoto);
+            var photoEntity = await _repository.Photo.GetPhotoById(photoId);
 
             _repository.Photo.DeletePhoto(photoEntity);
             await _repository.SaveAsync();

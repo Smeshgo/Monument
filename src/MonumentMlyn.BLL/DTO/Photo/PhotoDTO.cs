@@ -11,9 +11,9 @@ namespace MonumentMlyn.BLL.DTO
         {
         }
 
-        public PhotoDto(Guid idPhoto, string name, byte[] fullPhoto, byte[] minyPhoto, string categoryPhoto, DateTime? createPhoto, DateTime? updatePhoto)
+        public PhotoDto(Guid photoId, string name, byte[] fullPhoto, byte[] minyPhoto, string categoryPhoto, DateTime? createPhoto, DateTime? updatePhoto)
         {
-            IdPhoto = idPhoto;
+            PhotoId = photoId;
             Name = name;
             FullPhoto = fullPhoto;
             MinyPhoto = minyPhoto;
@@ -21,7 +21,7 @@ namespace MonumentMlyn.BLL.DTO
             CreatePhoto = createPhoto;
             UpdatePhoto = updatePhoto;
         }
-        public Guid IdPhoto { get; set; }
+        public Guid PhotoId { get; set; }
         public string Name { get; set; }
         public byte[] FullPhoto { get; set; }
         public byte[] MinyPhoto { get; set; }

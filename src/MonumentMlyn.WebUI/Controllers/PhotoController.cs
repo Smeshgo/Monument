@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 namespace MonumentMlyn.WebUI.Controllers
@@ -51,7 +52,8 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePhoto([FromBody] PhotoRequest photo, string path)
+        [Authorize]
+        public async Task<IActionResult> CreatePhoto([FromBody] PhotoRequest photo)
         {
             try
             {
@@ -78,6 +80,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdatePhoto(Guid id, [FromBody] PhotoRequest photo)
         {
             try
@@ -113,6 +116,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletePhoto(Guid id)
         {
             try

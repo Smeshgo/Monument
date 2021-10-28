@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using MonumentMlyn.DAL.EF;
+﻿using MonumentMlyn.DAL.EF;
+using System.Threading.Tasks;
 
 namespace MonumentMlyn.DAL.Repositorie.Impl
 {
@@ -9,23 +9,22 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
     /// </summary>
     public class UnitOfWorkImpl : IUnitOfWork
     {
-        
+
         private readonly ApplicationDbContext _repositoryContext;
         private IArticleRepository _articleRepository;
         private ICustomerRepositorie _customerRepositorie;
         private IMaterialRepositorie _materialRepositorie;
         private IMonumentRepositorie _monumentRepositorie;
         private IPhotoRepositorie _photoRepositorie;
-        private IRoleRepositorie _roleRepositorie;
-        private IUserRepositorie _userRepositorie;
         private IWorkerRepositorie _workerRepositorie;
+        private ISalaryRepositorie _calculationsRepositorie;
 
         public UnitOfWorkImpl(ApplicationDbContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
         }
 
-        
+
 
         public IArticleRepository Article
         {
@@ -36,8 +35,8 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 return _articleRepository;
             }
         }
-      
-        
+
+
         public ICustomerRepositorie Customer
         {
             get
@@ -74,24 +73,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
                 return _photoRepositorie;
             }
         }
-        public IRoleRepositorie Role
-        {
-            get
-            {
-                if (_roleRepositorie == null)
-                    _roleRepositorie = new RoleRepositorieImpl(_repositoryContext);
-                return _roleRepositorie;
-            }
-        }
-        public IUserRepositorie User
-        {
-            get
-            {
-                if (_userRepositorie == null)
-                    _userRepositorie = new UserRepositorieImpl(_repositoryContext);
-                return _userRepositorie;
-            }
-        }
+
 
         public IWorkerRepositorie Worker
         {
@@ -103,7 +85,15 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
             }
         }
 
-
+        public ISalaryRepositorie Salary
+        {
+            get
+            {
+                if (_calculationsRepositorie == null)
+                    _calculationsRepositorie = new SalaryRepositorieImpl(_repositoryContext);
+                return _calculationsRepositorie;
+            }
+        }
         public async Task SaveAsync()
         {
             await _repositoryContext.SaveChangesAsync();

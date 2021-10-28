@@ -62,15 +62,15 @@ namespace MonumentMlyn.WebUI.Extensions
         public static void ConfigureMaterialService(this IServiceCollection service) =>
             service.AddScoped<IMaterialServices, MaterialServicesImpl>();
         public static void ConfigureMonumentService(this IServiceCollection service) =>
-            service.AddScoped<IMaterialServices, MaterialServicesImpl>();
+            service.AddScoped<IMonumentServices, MonumentServicesImpl>();
         public static void ConfigurePhotoService(this IServiceCollection service) =>
             service.AddScoped<IPhotoServices, PhotoServicesImpl>();
-        public static void ConfigureRoleService(this IServiceCollection service) =>
-            service.AddScoped<IRoleServices, RoleServicesImpl>();
-        public static void ConfigureUserService(this IServiceCollection service) =>
-            service.AddScoped<IUserServices, UserServicesImpl>();
+
         public static void ConfigureWorkerService(this IServiceCollection service) =>
             service.AddScoped<IWorkerServices, WorkerServicesImpl>();
+
+        public static void ConfigureCalculationsService(this IServiceCollection service) =>
+            service.AddScoped<ISalaryServices, SalaryServicesImpl>();
 
 
     }

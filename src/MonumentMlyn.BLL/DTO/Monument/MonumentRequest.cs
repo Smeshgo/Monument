@@ -13,14 +13,25 @@ namespace MonumentMlyn.BLL.DTO.Monument
             
         }
 
-        public MonumentRequest(decimal prise, Guid idPhoto, Guid idCustomer)
+        public MonumentRequest(Guid monumentId, decimal price, Guid photoId, Guid customerId, Guid materialId, Guid materialIdOld, Guid workerId, Guid workerIdOld)
         {
-            Prise = prise;
-            IdPhoto = idPhoto;
-            IdCustomer = idCustomer;
+            MonumentId = monumentId;
+            Price = price;
+            PhotoId = photoId;
+            CustomerId = customerId;
+            MaterialId = materialId;
+            MaterialIdOld = materialIdOld;
+            WorkerId = workerId;
+            WorkerIdOld = workerIdOld;
         }
-        public decimal Prise { get; set; }
-        public Guid IdPhoto { get; set; }
-        public Guid IdCustomer { get; set; }
+        public Guid MonumentId { get; set; }
+        public decimal Price { get; set; }
+        public Guid PhotoId { get; set; }
+        public Guid CustomerId { get; set; }
+        public Guid MaterialId { get; set; }
+        public Guid MaterialIdOld { get; set; }
+        public Guid WorkerId { get; set; }
+        public Guid WorkerIdOld { get; set; }
+
     }
 }

@@ -11,9 +11,9 @@ namespace MonumentMlyn.BLL.Services
     public interface IPhotoServices
     {
         Task<IEnumerable<PhotoDto>> GetAllPhotos();
-        Task<PhotoDto> GetPhotoById(Guid idPhoto);
+        Task<PhotoDto> GetPhotoById(Guid PhotoId);
         Task CreatePhoto(PhotoRequest photo);
-        Task UpdatePhoto(Guid idPhoto, PhotoRequest photo);
-        Task DeletePhoto(Guid idPhoto);
+        Task UpdatePhoto(Guid PhotoId, PhotoRequest photo);
+        Task DeletePhoto(Guid PhotoId);
     }
 }
