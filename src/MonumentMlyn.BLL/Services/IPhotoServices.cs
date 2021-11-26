@@ -12,6 +12,8 @@ namespace MonumentMlyn.BLL.Services
     {
         Task<IEnumerable<PhotoDto>> GetAllPhotos();
         Task<PhotoDto> GetPhotoById(Guid PhotoId);
+        Task<IEnumerable<PhotoDto>> GetAllMinyPhoto(int category);
+        Task<IEnumerable<PhotoDto>> GetCategoryPhotos(int category);
         Task CreatePhoto(PhotoRequest photo);
         Task UpdatePhoto(Guid PhotoId, PhotoRequest photo);
         Task DeletePhoto(Guid PhotoId);

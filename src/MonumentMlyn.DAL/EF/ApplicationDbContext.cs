@@ -23,10 +23,10 @@ namespace MonumentMlyn.DAL.EF
             builder.Entity<Salary>().HasOne(s => s.Worker).WithMany(c => c.Salary).IsRequired(); 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-S9LJBNU\MONUMENTBD;Initial Catalog=MlynDB;Integrated Security=True");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-S9LJBNU\MONUMENTBD;Initial Catalog=MlynDB;Integrated Security=True");
+        //}
 
         #region model
         public DbSet<Customer> Customers { get; set; }

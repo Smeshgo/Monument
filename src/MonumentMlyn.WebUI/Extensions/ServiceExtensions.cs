@@ -41,7 +41,9 @@ namespace MonumentMlyn.WebUI.Extensions
 
 
         #endregion
-        public static void ConfigureCors(this IServiceCollection services) =>
+
+        public static void ConfigureCors(this IServiceCollection services)
+        {
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder =>
@@ -49,6 +51,9 @@ namespace MonumentMlyn.WebUI.Extensions
                         .AllowAnyMethod()
                         .AllowAnyHeader());
             });
+            services.AddMvc();
+        }
+
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
             services.AddScoped<IUnitOfWork, UnitOfWorkImpl>();
         public static void ConfigureLoggerService(this IServiceCollection services)

@@ -36,7 +36,19 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
-
+        [HttpGet("category/{category}")]
+        public async Task<IActionResult> GetCategoryId(int category)
+        {
+            try
+            {
+                var photoResult = await _photoServices.GetAllMinyPhoto(category);
+                return Ok(photoResult);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Internal server error" + e);
+            }
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPhotoById(Guid id)
         {

@@ -28,6 +28,14 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<IEnumerable<PhotoDto>>(photos);
         }
 
+        public async Task<IEnumerable<PhotoDto>> GetAllMinyPhoto(int category)
+        {
+            var photos =
+                _mapper.Map<IEnumerable<Photo>, IEnumerable<PhotoDto>>(
+                    await _repository.Photo.GetAllMinyPhoto(trackChanges: false,category));
+
+            return _mapper.Map<IEnumerable<PhotoDto>>(photos);
+        }
         public async Task<PhotoDto> GetPhotoById(Guid photoId)
         {
             var photo = await _repository.Photo.GetPhotoById(photoId);
@@ -35,6 +43,11 @@ namespace MonumentMlyn.BLL.Services.Impl
             return _mapper.Map<PhotoDto>(photo);
         }
 
+        public async Task<IEnumerable<PhotoDto>> GetCategoryPhotos(int category)
+        {
+            var photos = await _repository.Photo.GetCategoryPhoto(category);
+            return _mapper.Map<IEnumerable<PhotoDto>>(photos);
+        }
         public async Task<byte[]> ImageToBase64(string path)
         {
            using (System.Drawing.Image image = System.Drawing.Image.FromFile(path))
@@ -47,6 +60,7 @@ namespace MonumentMlyn.BLL.Services.Impl
                 }
             }
         }
+
         public async Task CreatePhoto(PhotoRequest photo)
         {
             var photoEntity = new Photo()

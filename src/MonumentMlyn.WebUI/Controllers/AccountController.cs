@@ -62,7 +62,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
         [Route("Login")]
         [HttpPost]
-      //  [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromBody]LoginModel model)
         {
             if (ModelState.IsValid)
@@ -71,14 +71,10 @@ namespace MonumentMlyn.WebUI.Controllers
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    // проверяем, принадлежит ли URL приложению
+                    //проверяем, принадлежит ли URL приложению
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction();
+                        return Ok(model);
                     }
                 }
                 else
@@ -95,7 +91,7 @@ namespace MonumentMlyn.WebUI.Controllers
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-            return RedirectToAction();
+            return Ok();
         }
 
         #endregion

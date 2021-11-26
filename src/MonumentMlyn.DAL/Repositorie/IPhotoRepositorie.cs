@@ -9,6 +9,9 @@ namespace MonumentMlyn.DAL.Repositorie
     {
         Task<IEnumerable<Photo>> GetAllPhoto(bool trackChanges);
         Task<Photo> GetPhotoById(Guid PhotoId);
+        Task<IEnumerable<Photo>> GetAllMinyPhoto(bool trackChanges, int category);
+
+        Task<IEnumerable<Photo>> GetCategoryPhoto(int category);
         Photo GetPhotoWithDetails(Guid PhotoId);
         void CreatePhoto(Photo photo);
         void UpdatePhoto(Photo photo);

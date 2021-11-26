@@ -16,188 +16,57 @@ namespace MonumentMlyn.DAL.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ArticlePhoto", b =>
                 {
-                    b.Property<Guid>("ArticlesArticleId")
+                    b.Property<Guid>("ArticlesIdArticle")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PhotosPhotoId")
+                    b.Property<Guid>("PhotoIdPhoto")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("ArticlesArticleId", "PhotosPhotoId");
+                    b.HasKey("ArticlesIdArticle", "PhotoIdPhoto");
 
-                    b.HasIndex("PhotosPhotoId");
+                    b.HasIndex("PhotoIdPhoto");
 
                     b.ToTable("ArticlePhoto");
                 });
 
             modelBuilder.Entity("ArticleUser", b =>
                 {
-                    b.Property<Guid>("ArticleId")
+                    b.Property<Guid>("ArticlesIdArticle")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UsersId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("UserIdUser")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("ArticleId", "UsersId");
+                    b.HasKey("ArticlesIdArticle", "UserIdUser");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserIdUser");
 
                     b.ToTable("ArticleUser");
                 });
 
             modelBuilder.Entity("MaterialMonument", b =>
                 {
-                    b.Property<Guid>("MaterialsMaterialId")
+                    b.Property<Guid>("MaterialsIdMaterial")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("MonumentsMonumentId")
+                    b.Property<Guid>("MonumentsIdMonument")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("MaterialsMaterialId", "MonumentsMonumentId");
+                    b.HasKey("MaterialsIdMaterial", "MonumentsIdMonument");
 
-                    b.HasIndex("MonumentsMonumentId");
+                    b.HasIndex("MonumentsIdMonument");
 
                     b.ToTable("MaterialMonument");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens");
-                });
-
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Article", b =>
                 {
-                    b.Property<Guid>("ArticleId")
+                    b.Property<Guid>("IdArticle")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -213,24 +82,51 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<DateTime?>("UpdateArticle")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ArticleId");
+                    b.HasKey("IdArticle");
 
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Customer", b =>
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Calculations", b =>
                 {
-                    b.Property<Guid>("CustomerId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("IdWorker")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreateUser")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Advance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("NumberOfHours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Rete")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("WorkerIdWorker")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdWorker", "Date");
+
+                    b.HasIndex("WorkerIdWorker");
+
+                    b.ToTable("Calculations");
+                });
+
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Customer", b =>
+                {
+                    b.Property<Guid>("id_customer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Last_name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
@@ -240,17 +136,20 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateUser")
+                    b.Property<DateTime>("create_user")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("CustomerId");
+                    b.Property<DateTime>("update_user")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id_customer");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Material", b =>
                 {
-                    b.Property<Guid>("MaterialId")
+                    b.Property<Guid>("IdMaterial")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -290,38 +189,44 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<decimal>("Width")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("MaterialId");
+                    b.HasKey("IdMaterial");
 
                     b.ToTable("Materials");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Monument", b =>
                 {
-                    b.Property<Guid>("MonumentId")
+                    b.Property<Guid>("IdMonument")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CustomerId")
+                    b.Property<Guid?>("Customerid_customer")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PhotoId")
+                    b.Property<Guid>("IdPhoto")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id_customer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("PhotoIdPhoto")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("MonumentId");
+                    b.HasKey("IdMonument");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("Customerid_customer");
 
-                    b.HasIndex("PhotoId");
+                    b.HasIndex("PhotoIdPhoto");
 
                     b.ToTable("Monuments");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Photo", b =>
                 {
-                    b.Property<Guid>("PhotoId")
+                    b.Property<Guid>("IdPhoto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -343,53 +248,45 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<DateTime?>("UpdatePhoto")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("PhotoId");
+                    b.HasKey("IdPhoto");
 
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Salary", b =>
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Role", b =>
                 {
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("Date");
-
-                    b.Property<Guid>("WorkerId")
+                    b.Property<Guid>("IdRole")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Advance")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<DateTime?>("CreateRole")
+                        .HasColumnType("datetime2");
 
-                    b.Property<decimal>("NumberOfHours")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Date", "WorkerId");
+                    b.Property<DateTime?>("UpdateRole")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("WorkerId");
+                    b.HasKey("IdRole");
 
-                    b.ToTable("Salaries");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.User", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("IdUser")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("CreateUser")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -397,59 +294,30 @@ namespace MonumentMlyn.DAL.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+                    b.Property<DateTime?>("UpdateUser")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdUser");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Worker", b =>
                 {
-                    b.Property<Guid>("WorkerId")
+                    b.Property<Guid>("IdWorker")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("CreateWorker")
+                    b.Property<DateTime?>("CreateWorcer")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
@@ -459,42 +327,58 @@ namespace MonumentMlyn.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateWorker")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("WorkerId");
+                    b.HasKey("IdWorker");
 
                     b.ToTable("Workers");
                 });
 
             modelBuilder.Entity("MonumentWorker", b =>
                 {
-                    b.Property<Guid>("MonumentWorkersMonumentId")
+                    b.Property<Guid>("MonumentsIdMonument")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("WorkersWorkerId")
+                    b.Property<Guid>("WorkersIdWorker")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("MonumentWorkersMonumentId", "WorkersWorkerId");
+                    b.HasKey("MonumentsIdMonument", "WorkersIdWorker");
 
-                    b.HasIndex("WorkersWorkerId");
+                    b.HasIndex("WorkersIdWorker");
 
                     b.ToTable("MonumentWorker");
+                });
+
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.Property<Guid>("RolesIdRole")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsersIdUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("RolesIdRole", "UsersIdUser");
+
+                    b.HasIndex("UsersIdUser");
+
+                    b.ToTable("RoleUser");
                 });
 
             modelBuilder.Entity("ArticlePhoto", b =>
                 {
                     b.HasOne("MonumentMlyn.DAL.Entities.Article", null)
                         .WithMany()
-                        .HasForeignKey("ArticlesArticleId")
+                        .HasForeignKey("ArticlesIdArticle")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MonumentMlyn.DAL.Entities.Photo", null)
                         .WithMany()
-                        .HasForeignKey("PhotosPhotoId")
+                        .HasForeignKey("PhotoIdPhoto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -503,13 +387,13 @@ namespace MonumentMlyn.DAL.Migrations
                 {
                     b.HasOne("MonumentMlyn.DAL.Entities.Article", null)
                         .WithMany()
-                        .HasForeignKey("ArticleId")
+                        .HasForeignKey("ArticlesIdArticle")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MonumentMlyn.DAL.Entities.User", null)
                         .WithMany()
-                        .HasForeignKey("UsersId")
+                        .HasForeignKey("UserIdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -518,109 +402,65 @@ namespace MonumentMlyn.DAL.Migrations
                 {
                     b.HasOne("MonumentMlyn.DAL.Entities.Material", null)
                         .WithMany()
-                        .HasForeignKey("MaterialsMaterialId")
+                        .HasForeignKey("MaterialsIdMaterial")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MonumentMlyn.DAL.Entities.Monument", null)
                         .WithMany()
-                        .HasForeignKey("MonumentsMonumentId")
+                        .HasForeignKey("MonumentsIdMonument")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Calculations", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.HasOne("MonumentMlyn.DAL.Entities.Worker", "Worker")
+                        .WithMany("Calculations")
+                        .HasForeignKey("WorkerIdWorker");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("MonumentMlyn.DAL.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.HasOne("MonumentMlyn.DAL.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MonumentMlyn.DAL.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("MonumentMlyn.DAL.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Worker");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Monument", b =>
                 {
-                    b.HasOne("MonumentMlyn.DAL.Entities.Customer", "Customer")
+                    b.HasOne("MonumentMlyn.DAL.Entities.Customer", null)
                         .WithMany("Monuments")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Customerid_customer");
 
                     b.HasOne("MonumentMlyn.DAL.Entities.Photo", "Photo")
-                        .WithMany("Monument")
-                        .HasForeignKey("PhotoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
+                        .WithMany("Monuments")
+                        .HasForeignKey("PhotoIdPhoto");
 
                     b.Navigation("Photo");
-                });
-
-            modelBuilder.Entity("MonumentMlyn.DAL.Entities.Salary", b =>
-                {
-                    b.HasOne("MonumentMlyn.DAL.Entities.Worker", "Worker")
-                        .WithMany("Salary")
-                        .HasForeignKey("WorkerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Worker");
                 });
 
             modelBuilder.Entity("MonumentWorker", b =>
                 {
                     b.HasOne("MonumentMlyn.DAL.Entities.Monument", null)
                         .WithMany()
-                        .HasForeignKey("MonumentWorkersMonumentId")
+                        .HasForeignKey("MonumentsIdMonument")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MonumentMlyn.DAL.Entities.Worker", null)
                         .WithMany()
-                        .HasForeignKey("WorkersWorkerId")
+                        .HasForeignKey("WorkersIdWorker")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.HasOne("MonumentMlyn.DAL.Entities.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesIdRole")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MonumentMlyn.DAL.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersIdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -632,12 +472,12 @@ namespace MonumentMlyn.DAL.Migrations
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Photo", b =>
                 {
-                    b.Navigation("Monument");
+                    b.Navigation("Monuments");
                 });
 
             modelBuilder.Entity("MonumentMlyn.DAL.Entities.Worker", b =>
                 {
-                    b.Navigation("Salary");
+                    b.Navigation("Calculations");
                 });
 #pragma warning restore 612, 618
         }
