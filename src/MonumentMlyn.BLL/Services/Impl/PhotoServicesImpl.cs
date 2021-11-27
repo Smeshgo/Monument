@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace MonumentMlyn.BLL.Services.Impl
 {
@@ -48,30 +49,28 @@ namespace MonumentMlyn.BLL.Services.Impl
             var photos = await _repository.Photo.GetCategoryPhoto(category);
             return _mapper.Map<IEnumerable<PhotoDto>>(photos);
         }
-        public async Task<byte[]> ImageToBase64(string path)
+        public static async Task<byte[]> ImageToBase64(IFormFile imgFile)
         {
-           using (System.Drawing.Image image = System.Drawing.Image.FromFile(path))
-            {
-                await using (MemoryStream m = new MemoryStream())
-                {
-                    image.Save(m, image.RawFormat);
-                    byte[] imageBytes = m.ToArray();
-                    return imageBytes;
-                }
-            }
+            byte[] imgBase64;
+            await using var fs1 = imgFile.OpenReadStream();
+            await using var ms1 = new MemoryStream();
+            fs1.CopyTo(ms1);
+            imgBase64 = ms1.ToArray();
+
+            return imgBase64;
         }
 
-        public async Task CreatePhoto(PhotoRequest photo)
+        public async Task CreatePhoto(IFormFile imgFull, IFormFile imgMyni, string name, int category)
         {
             var photoEntity = new Photo()
             {
                 PhotoId = Guid.NewGuid(),
-                Name = photo.Name,
+                Name = name,
                 CreatePhoto = DateTime.Now,
                 UpdatePhoto = DateTime.Now,
-                CategoryPhoto = photo.CategoryPhoto,
-                FullPhoto = ImageToBase64(photo.PathFull).Result,
-                MinyPhoto = ImageToBase64(photo.PathMini).Result
+                CategoryPhoto = (DAL.Enum.CategoryPhoto)category,
+                FullPhoto = ImageToBase64(imgMyni).Result,
+                MinyPhoto = ImageToBase64(imgFull).Result
 
             };
 

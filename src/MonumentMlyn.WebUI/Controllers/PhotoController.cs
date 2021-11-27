@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.Services;
 using System;
-using System.Collections.Generic;
-using System.Net.Mime;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -65,23 +63,29 @@ namespace MonumentMlyn.WebUI.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> CreatePhoto([FromBody] PhotoRequest photo)
+        public async Task<IActionResult> CreatePhoto(IFormFile imgFull, IFormFile imgMyni, string name, int category)
         {
             try
             {
-                if (photo == null)
+                if (name == null || (category <= 1 || category >= 6))
                 {
-                    return BadRequest("Photo object is null");
+                    return BadRequest("Params not correct");
                 }
 
-              
+                if (imgFull == null && imgMyni == null)
+                {
+                    return StatusCode(404);
+                }
+
                 if (!ModelState.IsValid)
                 {
                     return BadRequest("Invalid model object");
                 }
 
-                await _photoServices.CreatePhoto(photo);
-                
+                await _photoServices.CreatePhoto(imgFull, imgMyni, name, category);
+
+
+
                 return Ok();
 
             }
