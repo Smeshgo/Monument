@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MonumentMlyn.BLL.DTO.Monument;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using MonumentMlyn.BLL.DTO.Monument;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -272,7 +272,7 @@ namespace MonumentMlyn.WebUI.Controllers
         [HttpPost("many/worker")]
         [Authorize]
         public async Task<IActionResult> AddWorker(MonumentRequest monument)
-          {
+        {
             try
             {
                 if (monument == null)
@@ -286,7 +286,6 @@ namespace MonumentMlyn.WebUI.Controllers
 
                     return BadRequest("Invalid model object");
                 }
-
 
                 var articleEntity = await _monumentServices.GetMonumentById(monument.MonumentId);
                 var materialEntity = await _workerServices.GetWorkerById(monument.WorkerId);

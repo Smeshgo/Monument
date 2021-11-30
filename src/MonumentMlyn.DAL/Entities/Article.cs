@@ -11,8 +11,8 @@ namespace MonumentMlyn.DAL.Entities
     {
         public Article()
         {
-            
-           
+
+
         }
 
         public Article(Guid articleId, string title, string contents, DateTime? createArticle, DateTime? updateArticle)

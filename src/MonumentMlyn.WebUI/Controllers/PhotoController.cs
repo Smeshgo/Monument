@@ -41,12 +41,14 @@ namespace MonumentMlyn.WebUI.Controllers
             {
                 var photoResult = await _photoServices.GetAllMinyPhoto(category);
                 return Ok(photoResult);
+
             }
             catch (Exception e)
             {
                 return StatusCode(500, "Internal server error" + e);
             }
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPhotoById(Guid id)
         {
@@ -67,7 +69,7 @@ namespace MonumentMlyn.WebUI.Controllers
         {
             try
             {
-                if (name == null || (category <= 1 || category >= 6))
+                if (name == null || category is <= 1 or >= 6)
                 {
                     return BadRequest("Params not correct");
                 }

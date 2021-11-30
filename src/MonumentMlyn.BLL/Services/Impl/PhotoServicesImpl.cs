@@ -49,7 +49,7 @@ namespace MonumentMlyn.BLL.Services.Impl
             var photos = await _repository.Photo.GetCategoryPhoto(category);
             return _mapper.Map<IEnumerable<PhotoDto>>(photos);
         }
-        public static async Task<byte[]> ImageToBase64(IFormFile imgFile)
+        private static async Task<byte[]> ImageToBase64(IFormFile imgFile)
         {
             byte[] imgBase64;
             await using var fs1 = imgFile.OpenReadStream();

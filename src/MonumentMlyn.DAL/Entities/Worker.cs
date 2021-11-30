@@ -8,11 +8,10 @@ using System.Text.Json.Serialization;
 
 namespace MonumentMlyn.DAL.Entities
 {
-    public partial class Worker
+    public class Worker
     {
         public Worker()
         {
-            
         }
 
         public Worker(Guid workerId, string firstName, string phone, string lastName, DateTime? createWorker, DateTime? updateWorker)
