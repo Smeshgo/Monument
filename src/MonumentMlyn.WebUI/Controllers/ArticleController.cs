@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MonumentMlyn.BLL.DTO;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MonumentMlyn.BLL.DTO.Article;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using MonumentMlyn.BLL.DTO.Article;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -28,11 +27,16 @@ namespace MonumentMlyn.WebUI.Controllers
             try
             {
                 var articleDto = await _articleServices.GetAllArticles();
+
+                if (articleDto == null)
+                {
+                    throw new Exception("No articles");
+                }
                 return Ok(articleDto);
             }
             catch (Exception e)
             {
-                return StatusCode(500, "Internal server error" + e);
+                return StatusCode(404, "output articles error:  " + e.Message);
             }
         }
 
@@ -186,7 +190,7 @@ namespace MonumentMlyn.WebUI.Controllers
             {
                 return StatusCode(500, "Internal server error" + e);
             }
-            
+
         }
         [HttpGet("many")]
         public async Task<IActionResult> GetAllArticleByPhoto()

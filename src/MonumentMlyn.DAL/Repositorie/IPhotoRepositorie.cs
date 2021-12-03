@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MonumentMlyn.BLL.DTO.Paging;
 using MonumentMlyn.DAL.Entities;
 
 namespace MonumentMlyn.DAL.Repositorie
 {
     public interface IPhotoRepositorie : IRepositoryBase<Photo>
     {
-        Task<IEnumerable<Photo>> GetAllPhoto(bool trackChanges);
+        Task<IEnumerable<Photo>> GetAllPhoto(OwnerParameters ownerParameters);
         Task<Photo> GetPhotoById(Guid PhotoId);
-        Task<IEnumerable<Photo>> GetAllMinyPhoto(bool trackChanges, int category);
+        Task<IEnumerable<Photo>> GetAllMinyPhoto(int category, OwnerParameters ownerParameters);
 
         Task<IEnumerable<Photo>> GetCategoryPhoto(int category);
         Photo GetPhotoWithDetails(Guid PhotoId);

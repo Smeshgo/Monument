@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MonumentMlyn.BLL.DTO.Paging;
 
 namespace MonumentMlyn.DAL.Repositorie.Impl
 {
@@ -15,16 +16,20 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         {
         }
 
-        public async Task<IEnumerable<Photo>> GetAllPhoto(bool trackChanges) =>
-            await FindAll(trackChanges)
+        public async Task<IEnumerable<Photo>> GetAllPhoto(OwnerParameters ownerParameters) =>
+            await FindAll()
                 .OrderBy(c => c.Name)
+                .Skip((ownerParameters.PageNumber-1)*ownerParameters.PageSize)
+                .Take(ownerParameters.PageSize)
                 .ToListAsync();
 
-        public async Task<IEnumerable<Photo>> GetAllMinyPhoto(bool trackChanges, int category)
+        public async Task<IEnumerable<Photo>> GetAllMinyPhoto( int category, OwnerParameters ownerParameters)
         {
 
             return RepositoryContext.Photos
                 .Where(c => (int)c.CategoryPhoto == category)
+                .Skip((ownerParameters.PageNumber - 1) * ownerParameters.PageSize)
+                .Take(ownerParameters.PageSize)
                 .Select(s => new Photo()
                 {
                     PhotoId = s.PhotoId,
@@ -42,11 +47,11 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         }
         public async Task<IEnumerable<Photo>> GetCategoryPhoto(int category)
         {
-            var a = await FindAll(trackChanges: true)
+            var result = await FindAll()
                 .Where(a => (int)a.CategoryPhoto == category)
            .OrderBy(c => c.Name)
            .ToListAsync();
-            return a;
+            return result;
         }
 
         public Photo GetPhotoWithDetails(Guid photoId)

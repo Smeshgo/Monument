@@ -24,7 +24,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var workers =
                 _mapper.Map<IEnumerable<Worker>, IEnumerable<WorkerDto>>(
-                    await _repository.Worker.GetAllWorkers(trackChanges: false));
+                    await _repository.Worker.GetAllWorkers());
 
             return _mapper.Map<IEnumerable<WorkerDto>>(workers);
         }

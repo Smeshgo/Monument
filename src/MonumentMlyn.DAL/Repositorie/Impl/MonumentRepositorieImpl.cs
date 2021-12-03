@@ -13,8 +13,8 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         public MonumentRepositorieImpl(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
         }
-        public async Task<IEnumerable<Monument>> GetAllMonuments(bool trackChanges) =>
-            await FindAll(trackChanges)
+        public async Task<IEnumerable<Monument>> GetAllMonuments() =>
+            await FindAll()
                 .OrderBy(c => c.Price)
                 .ToListAsync();
 

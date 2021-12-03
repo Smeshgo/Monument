@@ -14,8 +14,8 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         {
         }
 
-        public async Task<IEnumerable<Customer>> GetAllСustomers(bool trackChanges) =>
-        await FindAll(trackChanges)
+        public async Task<IEnumerable<Customer>> GetAllСustomers() =>
+        await FindAll()
             .OrderBy(c => c.LastName)
             .ToListAsync();
         public async Task<Customer> GetСustomerById(Guid customerId)

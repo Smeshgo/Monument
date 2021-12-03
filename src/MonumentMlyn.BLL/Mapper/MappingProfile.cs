@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.DTO.ArticlePhoto;
+using MonumentMlyn.BLL.DTO.Paging;
 using MonumentMlyn.DAL.Entities;
 
 namespace MonumentMlyn.BLL.Mapper
@@ -35,6 +36,7 @@ namespace MonumentMlyn.BLL.Mapper
 
             CreateMap<Salary, SalaryDto>();
             CreateMap<SalaryDto, Salary>();
+
 
         }
     }

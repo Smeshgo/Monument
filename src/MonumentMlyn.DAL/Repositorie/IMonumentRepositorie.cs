@@ -7,7 +7,7 @@ namespace MonumentMlyn.DAL.Repositorie
 {
     public interface IMonumentRepositorie : IRepositoryBase<Monument>
     {
-        Task<IEnumerable<Monument>> GetAllMonuments(bool trackChanges);
+        Task<IEnumerable<Monument>> GetAllMonuments();
         Task<Monument> GetMonumentById(Guid aidMonument);
         Monument GetMonumentWithDetails(Guid idMonument);
         void CreateMonument(Monument monument);

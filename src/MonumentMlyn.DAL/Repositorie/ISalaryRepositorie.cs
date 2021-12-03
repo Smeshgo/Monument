@@ -7,7 +7,7 @@ namespace MonumentMlyn.DAL.Repositorie
 {
     public interface ISalaryRepositorie : IRepositoryBase<Salary>
     {
-        Task<IEnumerable<Salary>> GetAllSalary(bool trackChanges);
+        Task<IEnumerable<Salary>> GetAllSalary();
         Task<Salary> GetSalaryById(Guid articleId);
         void CreateSalary(Salary calculations);
         void UpdateSalary(Salary calculations);

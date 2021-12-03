@@ -16,10 +16,9 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// <summary>
         /// Method for get all employees from db.
         /// </summary>
-        /// <param name="trackChanges">parameter that help in tracking changes.</param>
         /// <returns>list of all articles.</returns>
-        public async Task<IEnumerable<Article>> GetAllArticles(bool trackChanges) =>
-            await FindAll(trackChanges)
+        public async Task<IEnumerable<Article>> GetAllArticles() =>
+            await FindAll()
                 .OrderBy(c => c.Title)
                 .ToListAsync();
 

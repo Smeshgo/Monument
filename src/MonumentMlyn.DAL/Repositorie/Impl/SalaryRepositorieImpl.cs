@@ -14,8 +14,8 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         {
         }
 
-        public async Task<IEnumerable<Salary>> GetAllSalary(bool trackChanges) =>
-            await FindAll(trackChanges)
+        public async Task<IEnumerable<Salary>> GetAllSalary() =>
+            await FindAll()
                 .OrderBy(c => c.Date)
                 .ToListAsync();
 

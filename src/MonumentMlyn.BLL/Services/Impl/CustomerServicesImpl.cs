@@ -21,7 +21,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         public async Task<IEnumerable<CustomerDto>> GetAllCustomers()
         {
             var customers = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDto>>(
-                await _repository.Customer.GetAllСustomers(trackChanges: false));
+                await _repository.Customer.GetAllСustomers());
 
             return _mapper.Map<IEnumerable<CustomerDto>>(customers);
         }

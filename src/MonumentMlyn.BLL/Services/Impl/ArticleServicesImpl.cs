@@ -27,7 +27,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var article =
                 _mapper.Map<IEnumerable<Article>, IEnumerable<ArticleDto>>(
-                    await _repository.Article.GetAllArticles(trackChanges: false));
+                    await _repository.Article.GetAllArticles());
 
             return _mapper.Map<IEnumerable<ArticleDto>>(article);
         }

@@ -24,7 +24,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var monuments =
                 _mapper.Map<IEnumerable<Monument>, IEnumerable<MonumentDto>>(
-                    await _repository.Monument.GetAllMonuments(trackChanges: false));
+                    await _repository.Monument.GetAllMonuments());
 
             return _mapper.Map<IEnumerable<MonumentDto>>(monuments);
         }

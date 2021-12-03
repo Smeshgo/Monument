@@ -22,7 +22,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var materials =
                 _mapper.Map<IEnumerable<Material>, IEnumerable<MaterialDto>>(
-                    await _repository.Material.GetAllMaterial(trackChanges: false));
+                    await _repository.Material.GetAllMaterial());
 
             return _mapper.Map<IEnumerable<MaterialDto>>(materials);
         }

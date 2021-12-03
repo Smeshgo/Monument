@@ -216,12 +216,12 @@ namespace MonumentMlyn.WebUI.Controllers
             }
         }
 
-        [HttpGet("Salary/{id}")]
-        public async Task<IActionResult> SearchSalaryFromStartAndEndDate(Guid id, [FromBody] SalaryRequest salary)
+        [HttpGet("Salaryy")]
+        public async Task<IActionResult> SearchSalaryFromStartAndEndDate([FromQuery] Guid idWorker, [FromBody] SalaryRequest salary)
         {
             try
             {
-                var worker = await _workerServices.SearchSalaryFromStartAndEndDate(id, salary);
+                var worker = await _workerServices.SearchSalaryFromStartAndEndDate(idWorker, salary);
                 return Ok(worker);
             }
             catch (Exception e)

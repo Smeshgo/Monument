@@ -14,8 +14,8 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         {
         }
 
-        public async Task<IEnumerable<Material>> GetAllMaterial(bool trackChanges)=>
-        await FindAll(trackChanges)
+        public async Task<IEnumerable<Material>> GetAllMaterial()=>
+        await FindAll()
             .OrderBy(c => c.Name)
             .ToListAsync();
 

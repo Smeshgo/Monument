@@ -7,7 +7,7 @@ namespace MonumentMlyn.DAL.Repositorie
 {
     public interface IWorkerRepositorie : IRepositoryBase<Worker>
     {
-        Task<IEnumerable<Worker>> GetAllWorkers(bool trackChanges);
+        Task<IEnumerable<Worker>> GetAllWorkers();
         Task<Worker> GetWorkerById(Guid worker);
         Worker GetWorkerWithDetails(Guid worker);
         void CreateWorker(Worker worker);

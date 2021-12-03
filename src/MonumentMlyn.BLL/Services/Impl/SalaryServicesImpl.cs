@@ -22,7 +22,7 @@ namespace MonumentMlyn.BLL.Services.Impl
         {
             var calculations =
                 _mapper.Map<IEnumerable<Salary>, IEnumerable<SalaryDto>>(
-                    await _repository.Salary.GetAllSalary(trackChanges: false));
+                    await _repository.Salary.GetAllSalary());
             return _mapper.Map<IEnumerable<SalaryDto>>(calculations);
         }
 

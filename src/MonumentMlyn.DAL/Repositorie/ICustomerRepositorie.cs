@@ -7,7 +7,7 @@ namespace MonumentMlyn.DAL.Repositorie
 {
     public interface ICustomerRepositorie :  IRepositoryBase<Customer>
     {
-        Task<IEnumerable<Customer>> GetAllСustomers(bool trackChanges);
+        Task<IEnumerable<Customer>> GetAllСustomers();
         Task<Customer> GetСustomerById(Guid idСustomer);
         Customer GetСustomerWithDetails(Guid idСustomer);
         void CreateСustomer(Customer customer);

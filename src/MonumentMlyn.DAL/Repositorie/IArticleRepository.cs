@@ -8,7 +8,7 @@ namespace MonumentMlyn.DAL.Repositorie
     public interface IArticleRepository : IRepositoryBase<Article>
     {
         
-        Task<IEnumerable<Article>> GetAllArticles(bool trackChanges);
+        Task<IEnumerable<Article>> GetAllArticles();
         Task<Article> GetArticleById(Guid articleId);
         Article GetArticleWithDetails(Guid articleId);
         void CreateArticle(Article article);

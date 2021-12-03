@@ -5,6 +5,7 @@ using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
+using MonumentMlyn.BLL.DTO.Paging;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -22,11 +23,11 @@ namespace MonumentMlyn.WebUI.Controllers
 
         // GET /Photo
         [HttpGet]
-        public async Task<IActionResult> GetAllPhoto()
+        public async Task<IActionResult> GetAllPhoto([FromQuery] OwnerParameters ownerParameters)
         {
             try
             {
-                var photoDto = await _photoServices.GetAllPhotos();
+                var photoDto = await _photoServices.GetAllPhotos(ownerParameters);
                 return Ok(photoDto);
             }
             catch (Exception e)
@@ -34,12 +35,12 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
-        [HttpGet("category/{category}")]
-        public async Task<IActionResult> GetCategoryId(int category)
+        [HttpGet("category")]
+        public async Task<IActionResult> GetCategoryId([FromQuery] int category, [FromQuery]OwnerParameters ownerParameters)
         {
             try
             {
-                var photoResult = await _photoServices.GetAllMinyPhoto(category);
+                var photoResult = await _photoServices.GetAllMinyPhoto(category, ownerParameters);
                 return Ok(photoResult);
 
             }
@@ -65,18 +66,18 @@ namespace MonumentMlyn.WebUI.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> CreatePhoto(IFormFile imgFull, IFormFile imgMyni, string name, int category)
+        public async Task<IActionResult> CreatePhoto(IFormFile imgFull, IFormFile imgMini, string name, int category)
         {
             try
             {
                 if (name == null || category is <= 1 or >= 6)
                 {
-                    return BadRequest("Params not correct");
+                    return BadRequest("Category not correct");
                 }
 
-                if (imgFull == null && imgMyni == null)
+                if (imgFull == null && imgMini == null)
                 {
-                    return StatusCode(404);
+                    return StatusCode(404,"Not Img file");
                 }
 
                 if (!ModelState.IsValid)
@@ -84,7 +85,7 @@ namespace MonumentMlyn.WebUI.Controllers
                     return BadRequest("Invalid model object");
                 }
 
-                await _photoServices.CreatePhoto(imgFull, imgMyni, name, category);
+                await _photoServices.CreatePhoto(imgFull, imgMini, name, category);
 
 
 

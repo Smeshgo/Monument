@@ -7,7 +7,7 @@ namespace MonumentMlyn.DAL.Repositorie
 {
     public interface IMaterialRepositorie : IRepositoryBase<Material>
     {
-        Task<IEnumerable<Material>> GetAllMaterial(bool trackChanges);
+        Task<IEnumerable<Material>> GetAllMaterial();
         Task<Material> GetMaterialtById(Guid Material);
         Material GetMaterialWithDetails(Guid Material);
         void CreateMaterial(Material Material);
