@@ -19,7 +19,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         /// <returns>list of all articles.</returns>
         public async Task<IEnumerable<Article>> GetAllArticles() =>
             await FindAll()
-                .OrderBy(c => c.Title)
+                .OrderByDescending(c => c.UpdateArticle)
                 .ToListAsync();
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
 
         public IEnumerable<Article> GetAllPhotoByArticle()
         {
-            var result = RepositoryContext.Articles
+            var result = RepositoryContext.Articles.OrderByDescending(grup => grup.UpdateArticle)
                 .Include(a => a.Photos);
             return result;
         }

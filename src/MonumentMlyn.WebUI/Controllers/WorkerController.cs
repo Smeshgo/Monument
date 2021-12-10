@@ -99,7 +99,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _workerServices.UpdateWorker(id, worker);
-                return NoContent();
+                return Ok();
 
             }
             catch (Exception e)

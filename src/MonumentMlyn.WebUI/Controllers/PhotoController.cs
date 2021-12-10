@@ -5,6 +5,7 @@ using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.BLL.Services;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using MonumentMlyn.BLL.DTO.Paging;
 
 namespace MonumentMlyn.WebUI.Controllers
@@ -100,15 +101,24 @@ namespace MonumentMlyn.WebUI.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<IActionResult> UpdatePhoto(Guid id, [FromBody] PhotoRequest photo)
+        public async Task<IActionResult> UpdatePhoto(Guid id,IFormFile imgFull, IFormFile imgMini, string name, int category)
         {
             try
             {
-                if (photo == null)
+                if (name == null || category is <= 1 or >= 6)
                 {
-                    return BadRequest("Photo object is null");
+                    return BadRequest("Category not correct");
                 }
 
+                if (imgFull == null && imgMini == null)
+                {
+                    return StatusCode(404, "Not Img file");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Invalid model object");
+                }
 
                 if (!ModelState.IsValid)
                 {
@@ -124,8 +134,8 @@ namespace MonumentMlyn.WebUI.Controllers
                     return NotFound();
                 }
 
-                await _photoServices.UpdatePhoto(id, photo);
-                return NoContent();
+                await _photoServices.UpdatePhoto( id,  imgFull,  imgMini,  name,  category);
+                return Ok();
 
             }
             catch (Exception e)
@@ -149,7 +159,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _photoServices.DeletePhoto(id);
-                return NoContent();
+                return Ok();
             }
             catch (Exception e)
             {

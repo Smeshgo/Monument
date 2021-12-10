@@ -100,7 +100,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _materialServices.UpdateMaterial(id, material);
-                return NoContent();
+                return Ok();
 
             }
             catch (Exception e)
@@ -124,7 +124,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _materialServices.DeleteMaterial(id);
-                return NoContent();
+                return Ok();
             }
             catch (Exception e)
             {

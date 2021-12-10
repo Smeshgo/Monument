@@ -79,18 +79,18 @@ namespace MonumentMlyn.BLL.Services.Impl
             await _repository.SaveAsync();
         }
 
-        public async Task UpdatePhoto(Guid photoId, PhotoRequest photo)
+        public async Task UpdatePhoto(Guid id, IFormFile imgFull, IFormFile imgMini, string name, int category)
         {
-            var photoEntity = new Photo()
-            {
-                Name = photo.Name,
-                UpdatePhoto = DateTime.Now,
-                CategoryPhoto = photo.CategoryPhoto,
-                FullPhoto = ImageToBase64(photo.PathFull).Result,
-                MinyPhoto = ImageToBase64(photo.PathMini).Result
-            };
+            var photoEntity = await _repository.Photo.GetPhotoById(id);
 
-            
+            photoEntity.FullPhoto = ImageToBase64(imgFull).Result;
+            photoEntity.MinyPhoto = ImageToBase64(imgMini).Result;
+            photoEntity.Name = name;
+            photoEntity.CategoryPhoto = (DAL.Enum.CategoryPhoto)category;
+            photoEntity.UpdatePhoto = DateTime.Now;
+
+
+
             _repository.Photo.UpdatePhoto(photoEntity);
             await _repository.SaveAsync();
         }

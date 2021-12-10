@@ -103,7 +103,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _monumentServices.UpdateMonument(id, monument);
-                return NoContent();
+                return Ok();
 
             }
             catch (Exception e)
@@ -127,7 +127,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _monumentServices.DeleteMonument(id);
-                return NoContent();
+                return Ok();
             }
             catch (Exception e)
             {
@@ -164,7 +164,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _monumentServices.AddMaterial(monument.MonumentId, monument.MaterialId);
-                return NoContent();
+                return Ok();
 
             }
             catch (Exception e)

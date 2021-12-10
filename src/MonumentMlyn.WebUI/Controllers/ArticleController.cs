@@ -105,7 +105,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _articleServices.UpdateArticle(id, article);
-                return NoContent();
+                return Ok();
 
             }
             catch (Exception e)
@@ -163,7 +163,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _articleServices.AddPhoto(article.ArticleId, article.PhotoId);
-                return NoContent();
+                return Ok();
 
             }
             catch (Exception e)
@@ -205,6 +205,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
+
         [HttpPut("many/{id}")]
         [Authorize]
         public async Task<IActionResult> UpdatePhotoByArticle(Guid id, [FromBody] ArticleRequest article)

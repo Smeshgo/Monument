@@ -71,7 +71,7 @@ namespace MonumentMlyn.WebUI.Controllers
                     //проверяем, принадлежит ли URL приложению
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
-                        return Ok(model);
+                        return Ok();
                     }
                 }
                 else
@@ -79,7 +79,7 @@ namespace MonumentMlyn.WebUI.Controllers
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                 }
             }
-            return Ok(model);
+            return Ok();
         }
         [Route("Logout")]
         [HttpPost]

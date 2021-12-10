@@ -33,7 +33,7 @@ namespace MonumentMlyn.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureLoggerService();
-            services.ConfigureCors();
+            
             services.ConfigureRepositoryManager();
             services.AddControllersWithViews();
             services.ConfigureArticleService();
@@ -60,6 +60,12 @@ namespace MonumentMlyn.WebUI
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
+
             services.AddControllers();
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -87,11 +93,15 @@ namespace MonumentMlyn.WebUI
             app.UseSpaStaticFiles();
 
 
-            app.UseRouting();
 
+            app.UseRouting();
+            
             app.UseAuthentication();    // подключение аутентификации
             app.UseAuthorization();
 
+
+            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

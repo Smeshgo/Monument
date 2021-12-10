@@ -100,7 +100,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _customerServices.UpdateCustomer(id, customer);
-                return NoContent();
+                return Ok();
 
             }
             catch (Exception e)
@@ -124,7 +124,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _customerServices.DeleteCustomer(id);
-                return NoContent();
+                return Ok();
             }
             catch (Exception e)
             {

@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +7,7 @@ using MonumentMlyn.BLL.Services.Impl;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Repositorie;
 using MonumentMlyn.DAL.Repositorie.Impl;
+using System.Net;
 
 namespace MonumentMlyn.WebUI.Extensions
 {
@@ -42,17 +42,7 @@ namespace MonumentMlyn.WebUI.Extensions
 
         #endregion
 
-        public static void ConfigureCors(this IServiceCollection services)
-        {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy", builder =>
-                    builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-            });
-            services.AddMvc();
-        }
+
 
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
             services.AddScoped<IUnitOfWork, UnitOfWorkImpl>();

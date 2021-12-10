@@ -52,6 +52,7 @@ namespace MonumentMlyn.BLL.Services.Impl
 
             _repository.Article.CreateArticle(articleEntity);
             await _repository.SaveAsync();
+
         }
 
         public async Task UpdateArticle(Guid articleId, ArticleRequest article)

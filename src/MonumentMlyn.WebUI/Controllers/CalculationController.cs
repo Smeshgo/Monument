@@ -95,7 +95,7 @@ namespace MonumentMlyn.WebUI.Controllers
                 }
 
                 await _calculationsServices.UpdateSalary(id, calculations);
-                return NoContent();
+                return Ok();
 
             }
             catch (Exception e)
