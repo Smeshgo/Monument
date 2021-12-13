@@ -100,7 +100,7 @@ namespace MonumentMlyn.WebUI
             app.UseAuthorization();
 
 
-            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {

@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using MonumentMlyn.BLL.DTO.Paging;
+using Newtonsoft.Json;
 
 namespace MonumentMlyn.WebUI.Controllers
 {
@@ -29,6 +30,16 @@ namespace MonumentMlyn.WebUI.Controllers
             try
             {
                 var photoDto = await _photoServices.GetAllPhotos(ownerParameters);
+
+                var metadata = new
+                {
+                    photoDto.TotalCount,
+                    photoDto.PageSize,
+                    photoDto.CurrentPage,
+                    photoDto.HasNext,
+                    photoDto.HasPrevious
+                };
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
                 return Ok(photoDto);
             }
             catch (Exception e)

@@ -8,6 +8,7 @@ using MonumentMlyn.DAL.Entities;
 namespace MonumentMlyn.WebUI.Controllers
 {
     [Route("api/Authorization")]
+    [ApiController]
     public class AccountController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -57,10 +58,11 @@ namespace MonumentMlyn.WebUI.Controllers
         {
             return Ok(new LoginModel { ReturnUrl = returnUrl });
         }
+
         [Route("Login")]
         [HttpPost]
        // [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login([FromBody]LoginModel model)
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             if (ModelState.IsValid)
             {

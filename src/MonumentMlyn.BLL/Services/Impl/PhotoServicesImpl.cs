@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using MonumentMlyn.BLL.DTO.Paging;
+using MonumentMlyn.DAL.Paging;
 
 namespace MonumentMlyn.BLL.Services.Impl
 {
@@ -21,13 +22,12 @@ namespace MonumentMlyn.BLL.Services.Impl
             _repository = repository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<PhotoDto>> GetAllPhotos(OwnerParameters ownerParameters)
+        public async Task<PagedList<Photo>> GetAllPhotos(OwnerParameters ownerParameters)
         {
             var photos =
-                _mapper.Map<IEnumerable<Photo>, IEnumerable<PhotoDto>>(
-                    await _repository.Photo.GetAllPhoto(ownerParameters));
+                _repository.Photo.GetAllPhoto(ownerParameters);
 
-            return _mapper.Map<IEnumerable<PhotoDto>>(photos);
+            return photos;
         }
 
         public async Task<IEnumerable<PhotoDto>> GetAllMinyPhoto(int category, OwnerParameters ownerParameters)

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MonumentMlyn.BLL.DTO.Paging;
+using MonumentMlyn.DAL.Paging;
 
 namespace MonumentMlyn.DAL.Repositorie.Impl
 {
@@ -16,12 +17,12 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         {
         }
 
-        public async Task<IEnumerable<Photo>> GetAllPhoto(OwnerParameters ownerParameters) =>
-            await FindAll()
-                .OrderBy(c => c.Name)
-                .Skip((ownerParameters.PageNumber-1)*ownerParameters.PageSize)
-                .Take(ownerParameters.PageSize)
-                .ToListAsync();
+        public PagedList<Photo> GetAllPhoto(OwnerParameters ownerParameters)
+        {
+            return PagedList<Photo>.ToPagedList(FindAll().OrderByDescending(on => on.UpdatePhoto),
+                ownerParameters.PageNumber,
+                ownerParameters.PageSize);
+        }
 
         public async Task<IEnumerable<Photo>> GetAllMinyPhoto( int category, OwnerParameters ownerParameters)
         {
