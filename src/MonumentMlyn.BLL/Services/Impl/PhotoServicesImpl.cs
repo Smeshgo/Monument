@@ -24,19 +24,17 @@ namespace MonumentMlyn.BLL.Services.Impl
         }
         public async Task<PagedList<Photo>> GetAllPhotos(OwnerParameters ownerParameters)
         {
-            var photos =
+            var photos = await 
                 _repository.Photo.GetAllPhoto(ownerParameters);
 
             return photos;
         }
 
-        public async Task<IEnumerable<PhotoDto>> GetAllMinyPhoto(int category, OwnerParameters ownerParameters)
+        public async Task<PagedList<Photo>> GetAllMinyPhoto(int category, OwnerParameters ownerParameters)
         {
-            var photos =
-                _mapper.Map<IEnumerable<Photo>, IEnumerable<PhotoDto>>(
-                    await _repository.Photo.GetAllMinyPhoto(category, ownerParameters));
+            var photos = await _repository.Photo.GetAllMinyPhoto(category, ownerParameters);
 
-            return _mapper.Map<IEnumerable<PhotoDto>>(photos);
+            return photos;
         }
         public async Task<PhotoDto> GetPhotoById(Guid photoId)
         {

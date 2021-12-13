@@ -9,9 +9,9 @@ namespace MonumentMlyn.DAL.Repositorie
 {
     public interface IPhotoRepositorie : IRepositoryBase<Photo>
     {
-        PagedList<Photo> GetAllPhoto(OwnerParameters ownerParameters);
+        Task<PagedList<Photo>> GetAllPhoto(OwnerParameters ownerParameters);
         Task<Photo> GetPhotoById(Guid PhotoId);
-        Task<IEnumerable<Photo>> GetAllMinyPhoto(int category, OwnerParameters ownerParameters);
+        Task<PagedList<Photo>> GetAllMinyPhoto(int category, OwnerParameters ownerParameters);
 
         Task<IEnumerable<Photo>> GetCategoryPhoto(int category);
         Photo GetPhotoWithDetails(Guid PhotoId);

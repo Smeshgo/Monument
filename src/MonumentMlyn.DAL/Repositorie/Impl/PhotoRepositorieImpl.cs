@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MonumentMlyn.BLL.DTO.Paging;
 using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.DAL.Enum;
+using MonumentMlyn.DAL.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MonumentMlyn.BLL.DTO.Paging;
-using MonumentMlyn.DAL.Paging;
 
 namespace MonumentMlyn.DAL.Repositorie.Impl
 {
@@ -17,28 +17,44 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         {
         }
 
-        public PagedList<Photo> GetAllPhoto(OwnerParameters ownerParameters)
+        public async Task<PagedList<Photo>> GetAllPhoto(OwnerParameters ownerParameters)
         {
-            return PagedList<Photo>.ToPagedList(FindAll().OrderByDescending(on => on.UpdatePhoto),
+            return await PagedList<Photo>.ToPagedList(FindAll().OrderByDescending(on => on.UpdatePhoto),
                 ownerParameters.PageNumber,
                 ownerParameters.PageSize);
         }
 
-        public async Task<IEnumerable<Photo>> GetAllMinyPhoto( int category, OwnerParameters ownerParameters)
+        public async Task<PagedList<Photo>> GetAllMinyPhoto(int category, OwnerParameters ownerParameters)
         {
 
-            return RepositoryContext.Photos
-                .Where(c => (int)c.CategoryPhoto == category)
-                .Skip((ownerParameters.PageNumber - 1) * ownerParameters.PageSize)
-                .Take(ownerParameters.PageSize)
-                .Select(s => new Photo()
-                {
-                    PhotoId = s.PhotoId,
-                    Name = s.Name,
-                    MinyPhoto = s.MinyPhoto,
-                    CategoryPhoto = s.CategoryPhoto
-                    
-                });
+            return await PagedList<Photo>.ToPagedList(
+                FindAll().Where(c => c.CategoryPhoto == (CategoryPhoto)category)
+                    .OrderByDescending(on => on.UpdatePhoto)
+                    .Select(s => new Photo()
+                    {
+                        PhotoId = s.PhotoId,
+                        Name = s.Name,
+                        MinyPhoto = s.MinyPhoto,
+                        CategoryPhoto = s.CategoryPhoto,
+                        UpdatePhoto = s.UpdatePhoto
+
+
+                    }),
+                ownerParameters.PageNumber,
+                ownerParameters.PageSize);
+
+            //return RepositoryContext.Photos
+            //    .Where(c => (int)c.CategoryPhoto == category)
+            //    .Skip((ownerParameters.PageNumber - 1) * ownerParameters.PageSize)
+            //    .Take(ownerParameters.PageSize)
+            //    .Select(s => new Photo()
+            //    {
+            //        PhotoId = s.PhotoId,
+            //        Name = s.Name,
+            //        MinyPhoto = s.MinyPhoto,
+            //        CategoryPhoto = s.CategoryPhoto
+
+            //    });
 
         }
         public async Task<Photo> GetPhotoById(Guid photoId)

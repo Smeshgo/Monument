@@ -53,6 +53,15 @@ namespace MonumentMlyn.WebUI.Controllers
             try
             {
                 var photoResult = await _photoServices.GetAllMinyPhoto(category, ownerParameters);
+                var metadata = new
+                {
+                    photoResult.TotalCount,
+                    photoResult.PageSize,
+                    photoResult.CurrentPage,
+                    photoResult.HasNext,
+                    photoResult.HasPrevious
+                };
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
                 return Ok(photoResult);
 
             }
