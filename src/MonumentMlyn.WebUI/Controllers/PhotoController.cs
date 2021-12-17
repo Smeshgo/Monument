@@ -91,7 +91,7 @@ namespace MonumentMlyn.WebUI.Controllers
         {
             try
             {
-                if (name == null || category is <= 1 or >= 6)
+                if (name == null || category is <= 0 or >= 7)
                 {
                     return BadRequest("Category not correct");
                 }

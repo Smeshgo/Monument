@@ -68,8 +68,8 @@ namespace MonumentMlyn.BLL.Services.Impl
                 CreatePhoto = DateTime.Now,
                 UpdatePhoto = DateTime.Now,
                 CategoryPhoto = (DAL.Enum.CategoryPhoto)category,
-                FullPhoto = ImageToBase64(imgMyni).Result,
-                MinyPhoto = ImageToBase64(imgFull).Result
+                FullPhoto = ImageToBase64(imgFull).Result,
+                MinyPhoto = ImageToBase64(imgMyni).Result
 
             };
 

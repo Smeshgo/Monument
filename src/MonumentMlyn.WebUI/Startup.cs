@@ -100,7 +100,10 @@ namespace MonumentMlyn.WebUI
             app.UseAuthorization();
 
 
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            //app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().WithExposedHeaders("X-Pagination")); // params string[]);
+
+
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {
