@@ -1,0 +1,17 @@
+.form{
+    text-align: center;
+    padding-top: 20px;
+}
+.form div{
+    padding-bottom: 10px;
+}
+.inp{
+    width: 235px;
+}
+.btn{
+    width: 245px;
+    border: none;
+    background-color: blueviolet;
+    font-weight: bold;
+    height: 30px;
+}

@@ -1,0 +1,16 @@
+.paginator{
+    text-align: center;
+    padding-top: 10px;
+}
+
+.pageNumber{
+    padding: 3px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.445);
+}
+.pageNumber:hover{
+    cursor: pointer;
+}
+.pageNumber.selectedPage {
+    font-weight: bold;
+    color: orange;
+}

@@ -1,0 +1,89 @@
+.topBlock {
+    padding: 20px;
+    text-align: center;
+    color: black;
+}
+
+.bckgroung{
+    background-color: white;
+    width: 100%;
+}
+.posit{
+    display: grid;
+    grid-template-columns: repeat(3,25%);
+    justify-content: center;
+    grid-gap: 70px;
+    padding: 15px 0;
+}
+
+@media (max-width:1200px) {
+    .posit{
+        grid-template-columns: repeat(2, 30%);
+    }
+}
+@media (max-width:1100px) {
+    .posit{
+        grid-template-columns: repeat(2, 36%);
+    }
+}
+@media (max-width:919px) {
+    .posit{
+        grid-template-columns: repeat(2, 39%);
+    }
+}
+@media (max-width:807px) {
+    .posit{
+        grid-template-columns: repeat(1, 42%);
+    }
+}
+@media (max-width:745px) {
+    .posit{
+        grid-template-columns: repeat(1, 52%);
+    }
+}
+@media (max-width:590px) {
+    .posit{
+        grid-template-columns: repeat(1, 60%);
+    }
+}
+@media (max-width:486px) {
+    .posit{
+        grid-template-columns: repeat(1, 70%);
+    }
+}
+@media (max-width:450px) {
+    .posit{
+        grid-template-columns: repeat(1, 80%);
+    }
+}
+@media (max-width:409px) {
+    .posit{
+        grid-template-columns: repeat(1, 90%);
+    }
+}
+@media (max-width:383px) {
+    .posit{
+        grid-template-columns: repeat(1, 80%);
+    }
+}
+@media (max-width:357px) {
+    .posit{
+        grid-template-columns: repeat(1, 87%);
+    }
+}
+@media (max-width:338px) {
+    .posit{
+        grid-template-columns: repeat(1, 90%);
+    }
+}
+@media (max-width:327px) {
+    .posit{
+        grid-template-columns: repeat(1, 95%);
+    }
+}
+@media (max-width:320px) {
+    .posit{
+        grid-template-columns: repeat(1, 98%);
+    }
+    
+}

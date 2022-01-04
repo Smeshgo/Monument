@@ -1,0 +1,78 @@
+.photo{
+    border-radius:10px;
+    border: 2px solid black;
+    filter: brightness(70%);
+    max-width: 350px;
+    max-height: 250px;
+}
+.photo:hover {
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    filter: none;
+    transition: filter 0.5s;
+    animation: animate_grow 2s;
+    animation-fill-mode: forwards;
+    border: 2px solid rgba(0, 0, 0, 0.185);
+    transition: border 2s;
+}
+
+.photo:hover ~ .h4{
+    visibility: hidden;
+    transition: visibility 0.1s;
+}
+.photo:hover ~ .icon{
+    display: block;
+    position: absolute;
+    bottom: 45%;
+    left: 45%;
+    animation: grow 2s;
+    animation-fill-mode: forwards;
+}
+
+.blockPost{
+    position: relative;
+    max-width: 350px;
+    max-height: 250px;
+}
+
+.h4 {
+    position: absolute;
+    bottom: 60%;
+}
+.h4 span {
+    color: rgba(255, 255, 255, 0.849);
+    font-size: 20px;
+    background: #342d2bbd;
+    border-radius: 0 7px 7px 0;
+    padding: 10px;
+}
+.icon{
+    display: none;
+}
+
+
+
+@keyframes animate_grow {
+	0% {
+		transform: scale3d(1, 1, 1);
+	}
+	100% {
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+}
+@keyframes grow {
+	0% {
+		transform: scale3d(1, 1, 1);
+        opacity: 0;
+	}
+	100% {
+		transform: scale3d(1.1, 1.1, 1.1);
+        opacity: 0.7;
+	}
+}
+
+@media (max-width:383px) {
+    .photo, .blockPost{
+        max-width: 300px;
+        max-height: 200px;
+    }
+}

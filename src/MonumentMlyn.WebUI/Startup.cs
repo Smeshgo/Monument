@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +13,11 @@ using MonumentMlyn.DAL.EF;
 using MonumentMlyn.DAL.Entities;
 using MonumentMlyn.WebUI.Extensions;
 using NLog;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 
 namespace MonumentMlyn.WebUI
@@ -33,7 +36,7 @@ namespace MonumentMlyn.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureLoggerService();
-            
+
             services.ConfigureRepositoryManager();
             services.AddControllersWithViews();
             services.ConfigureArticleService();
@@ -45,7 +48,9 @@ namespace MonumentMlyn.WebUI
             services.ConfigureCalculationsService();
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -61,10 +66,12 @@ namespace MonumentMlyn.WebUI
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            });
+            //services.AddCors(c =>
+            //{
+            //    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            //});
+            services.AddCors();
+            
 
             services.AddControllers();
 
@@ -88,27 +95,35 @@ namespace MonumentMlyn.WebUI
             }
 
             app.ConfigureExceptionHandler(logger);
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
 
 
             app.UseRouting();
-            
+
+            app.UseCors(options => options
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithExposedHeaders("X-Pagination", "Set-Cookie", "Access-Token","Uid")); // params string[]);
+
             app.UseAuthentication();    // подключение аутентификации
             app.UseAuthorization();
 
 
-            //app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().WithExposedHeaders("X-Pagination")); // params string[]);
+            
+            //app.UseCors("CorsPolicy");
 
+            app.UseHttpsRedirection();
 
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
+
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 

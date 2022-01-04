@@ -47,6 +47,12 @@ namespace MonumentMlyn.WebUI.Controllers
                 return StatusCode(500, "Internal server error" + e);
             }
         }
+        [HttpGet("autorize")]
+        //[Authorize]
+        public async Task<IActionResult> test()
+        {
+            return StatusCode(228);
+        }
         [HttpGet("category")]
         public async Task<IActionResult> GetCategoryId([FromQuery] int category, [FromQuery]OwnerParameters ownerParameters)
         {
@@ -86,17 +92,19 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> CreatePhoto(IFormFile imgFull, IFormFile imgMini, string name, int category)
+       // [Authorize]
+        public async Task<IActionResult> CreatePhoto
+           (IFormFile imgFull, IFormFile imgMini, string name, int category)
         {
             try
             {
+            
                 if (name == null || category is <= 0 or >= 7)
                 {
                     return BadRequest("Category not correct");
                 }
 
-                if (imgFull == null && imgMini == null)
+                if (imgFull == null || imgMini == null)
                 {
                     return StatusCode(404,"Not Img file");
                 }
@@ -108,8 +116,6 @@ namespace MonumentMlyn.WebUI.Controllers
 
                 await _photoServices.CreatePhoto(imgFull, imgMini, name, category);
 
-
-
                 return Ok();
 
             }
@@ -120,7 +126,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+       // [Authorize]
         public async Task<IActionResult> UpdatePhoto(Guid id,IFormFile imgFull, IFormFile imgMini, string name, int category)
         {
             try
@@ -165,7 +171,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> DeletePhoto(Guid id)
         {
             try

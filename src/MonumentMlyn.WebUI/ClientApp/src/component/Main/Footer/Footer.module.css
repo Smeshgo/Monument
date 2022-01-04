@@ -1,0 +1,46 @@
+
+.border{
+    border-top: 1px solid rgba(255, 255, 255, 0.288);
+}
+.block{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items:center;
+    margin: 5px 10px 5px 10px;
+}
+
+.block h3{
+    color: white;
+}
+
+
+.logo {
+    max-width: 100px;
+    max-height: 100px;
+}
+.icon{
+    display: flex;
+    flex-direction: row;
+}
+
+.icon img {
+    padding-left: 10px;
+    max-width: 30px;
+}
+.icon img:hover{
+    cursor: pointer;
+}
+.logIn{
+    display: none;
+}
+@media (max-width: 1100px) {
+    .block h3{
+        display: none;
+    }
+}
+@media (max-width:786px) {
+    .logIn{
+        display: block;
+    }
+}

@@ -1,0 +1,22 @@
+.postText{
+    overflow:hidden;
+    color: black;
+    padding: 40px;
+    max-width: 100%;
+    background-color: white;
+}
+.postText h1{
+    text-decoration: underline;
+}
+.postText img{
+    float: left;
+    padding: 10px 20px 20px 0;
+}
+.postText span {
+    word-wrap:break-word;
+}
+
+.imageSize{
+    max-width: 400px;
+    width: 100%;
+}

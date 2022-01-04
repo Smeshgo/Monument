@@ -2,6 +2,7 @@
 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Net.Http.Headers;
 using MonumentMlyn.BLL.DTO;
 using MonumentMlyn.DAL.Entities;
 
@@ -68,8 +69,14 @@ namespace MonumentMlyn.WebUI.Controllers
             {
                 var result =
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+
+                return Ok(_signInManager.Context.Response.Cookies);
+                
                 if (result.Succeeded)
                 {
+
+
                     //проверяем, принадлежит ли URL приложению
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
@@ -81,6 +88,7 @@ namespace MonumentMlyn.WebUI.Controllers
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                 }
             }
+            
             return Ok();
         }
         [Route("Logout")]

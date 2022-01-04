@@ -1,0 +1,61 @@
+.gallery{
+    background-color:white;
+    padding: 10px 0;
+}
+.position {
+    display: grid;
+    grid-template-columns: repeat(3, 23%);
+    justify-content: space-around;
+    grid-gap: 15px 0;
+}
+
+.text img {
+    width: 300px;
+    height: 400px;
+}
+.text img:hover{
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.text {
+    position: relative;
+    max-width: 300px;
+    max-height: 400px;
+}
+.text1 {
+    position: absolute;
+    bottom: 1%;
+    color: white;
+}
+
+.text1 span {
+    padding: 4px;
+    background: #342d2b;
+    border-radius: 0 7px 0 0;
+}
+.trash{
+    position: absolute;
+    bottom: 93%;
+    right: 0%;
+}
+.trash img{
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+}
+
+.blockAdd{
+    border: 1px solid black;
+    width: 350px;
+    height: 250px;
+    text-align: center;
+}
+.blockAdd img{
+    width: 250px;
+    height: 250px;
+}
+.blockAdd img:hover{
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}

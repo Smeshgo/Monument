@@ -1,0 +1,21 @@
+.header{
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    background-color:rgb(15, 217, 231);
+    align-items: center;
+}
+.logoAdmin{
+    display: flex;
+    align-items: center;
+}
+.logoAdmin img{
+    width: 100px;
+    height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.blockBtn button{
+    margin-left: 20px;
+    margin-right: 20px;
+}

@@ -1,0 +1,58 @@
+.back {
+    background: white;
+    width: 100%;
+    display: block;
+}
+.center{
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+.type{
+    position: relative;
+    font-weight: bold;
+    max-width: 400px;
+}
+.type div{
+    position: absolute;
+    bottom:10px;
+    background: #342d2b;
+    width: 100%;
+    text-align: center;
+    height: 35px;
+   
+}
+.type div span{
+    font-size: 20px;
+    color: white;
+}
+
+.type img {
+    width: 100%;
+    max-width: 400px;
+}
+
+.box{
+    display: grid;
+    grid-template-columns: repeat(3,25%);
+    justify-content: center;
+    grid-gap: 100px;
+}
+.box img {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.281)
+}
+
+.box img:hover{
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+}
+
+@media (max-width:766px) {
+    .box{
+        display: grid;
+        grid-template-columns: repeat(1, 80%);
+        justify-content: center;
+    }
+
+}

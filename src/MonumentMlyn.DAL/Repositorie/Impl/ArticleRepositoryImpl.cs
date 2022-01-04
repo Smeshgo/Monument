@@ -66,37 +66,45 @@ namespace MonumentMlyn.DAL.Repositorie.Impl
         public IEnumerable<Article> GetAllPhotoByArticle()
         {
             var result = RepositoryContext.Articles.OrderByDescending(grup => grup.UpdateArticle)
-                .Include(a => a.Photos);
+                .Include(a => a.Photos).Select(a => new Article()
+                {
+                    ArticleId = a.ArticleId,
+                    Title = a.Title,
+                    Photos = (ICollection<Photo>)a.Photos.Select(p => new Photo()
+                    {
+                        MinyPhoto = p.MinyPhoto
+                    })
+                });
             return result;
         }
 
-        public IEnumerable<Article> GetPhotoByArticle(Guid articleId)
-        {
-            var result =
-                RepositoryContext.Articles
-                    .Include(a => a.Photos).Where(b => b.ArticleId == articleId);
-            return result;
-        }
+    public IEnumerable<Article> GetPhotoByArticle(Guid articleId)
+    {
+        var result =
+            RepositoryContext.Articles
+                .Include(a => a.Photos).Where(b => b.ArticleId == articleId);
+        return result;
+    }
 
-        
 
-        public async Task UpdatePhotoByArticle(Guid articleId, Guid photoId, Guid photoIdNew)
-        {
-            var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == articleId);
-            var photoOld =await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoId);
-            var photoNew = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoIdNew);
-            if (articleEntity != null)
-            {
-                articleEntity.Photos.Remove(photoOld);
-                articleEntity.Photos.Add(photoNew);
-            }
-        }
-        public async Task DeletePhotoByArticle(Guid artcleId, Guid photoId)
-        {
-            var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == artcleId);
-            var photoIdEntity = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoId);
 
-            articleEntity?.Photos.Remove(photoIdEntity);
+    public async Task UpdatePhotoByArticle(Guid articleId, Guid photoId, Guid photoIdNew)
+    {
+        var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == articleId);
+        var photoOld = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoId);
+        var photoNew = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoIdNew);
+        if (articleEntity != null)
+        {
+            articleEntity.Photos.Remove(photoOld);
+            articleEntity.Photos.Add(photoNew);
         }
     }
+    public async Task DeletePhotoByArticle(Guid artcleId, Guid photoId)
+    {
+        var articleEntity = RepositoryContext.Articles.Include(p => p.Photos).FirstOrDefault(a => a.ArticleId == artcleId);
+        var photoIdEntity = await RepositoryContext.Photos.FirstOrDefaultAsync(p => p.PhotoId == photoId);
+
+        articleEntity?.Photos.Remove(photoIdEntity);
+    }
+}
 }
