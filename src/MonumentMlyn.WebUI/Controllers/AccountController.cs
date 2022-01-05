@@ -70,13 +70,8 @@ namespace MonumentMlyn.WebUI.Controllers
                 var result =
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
-
-                return Ok(_signInManager.Context.Response.Cookies);
-                
                 if (result.Succeeded)
                 {
-
-
                     //проверяем, принадлежит ли URL приложению
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {

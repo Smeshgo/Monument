@@ -14,18 +14,19 @@ namespace MonumentMlyn.WebUI.Extensions
     public static class ServiceExtensions
     {
 
-        //public static void ConfigureServices(IServiceCollection services)
-        //{
-        //    services.AddCors(options =>
-        //    {
-        //        options.AddPolicy("CorsPolicy",
-        //            builder => builder.AllowAnyOrigin()
-        //                .AllowAnyMethod()
-        //                .AllowAnyHeader()
-        //                .WithExposedHeaders("X-Pagination"));
-        //    });
-        //    services.AddControllersWithViews();
-        //}
+        public static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .WithExposedHeaders("X-Pagination"));
+            });
+            services.AddControllersWithViews();
+        }
 
         #region Error Hendler
         public static void ConfigureExceptionHandler(this IApplicationBuilder app, ILoggerManager logger)

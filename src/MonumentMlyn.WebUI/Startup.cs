@@ -48,9 +48,7 @@ namespace MonumentMlyn.WebUI
             services.ConfigureCalculationsService();
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -63,15 +61,17 @@ namespace MonumentMlyn.WebUI
             {
                 cfg.AddProfile(new MappingProfile());
             });
+
             IMapper mapper = mapperConfig.CreateMapper();
+
             services.AddSingleton(mapper);
 
             //services.AddCors(c =>
             //{
             //    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
             //});
-            services.AddCors();
-            
+             services.AddCors();
+
 
             services.AddControllers();
 
@@ -99,22 +99,22 @@ namespace MonumentMlyn.WebUI
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-
+            
 
             app.UseRouting();
 
-            app.UseCors(options => options
-                .AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .WithExposedHeaders("X-Pagination", "Set-Cookie", "Access-Token","Uid")); // params string[]);
+            //app.UseCors(options => options
+            //    .AllowAnyOrigin()
+            //    .AllowAnyHeader()
+            //    .AllowAnyMethod()
+            //    .WithExposedHeaders("X-Pagination")); // params string[]);
 
             app.UseAuthentication();    // подключение аутентификации
             app.UseAuthorization();
 
 
-            
-            //app.UseCors("CorsPolicy");
+
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 

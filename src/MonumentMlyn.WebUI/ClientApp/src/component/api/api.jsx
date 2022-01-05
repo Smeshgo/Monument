@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 export const instance = axios.create({
-	baseURL: 'https://pmgranit.com.ua/api/',
+	baseURL: 'https://localhost:44329/api/',
 	headers: { 
 		"Content-Type": "application/json",  
 	  }
