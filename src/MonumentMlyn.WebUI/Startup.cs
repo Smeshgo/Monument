@@ -66,10 +66,7 @@ namespace MonumentMlyn.WebUI
 
             services.AddSingleton(mapper);
 
-            //services.AddCors(c =>
-            //{
-            //    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            //});
+           
              services.AddCors();
 
 
@@ -117,8 +114,8 @@ namespace MonumentMlyn.WebUI
             app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
-
             app.UseHttpsRedirection();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

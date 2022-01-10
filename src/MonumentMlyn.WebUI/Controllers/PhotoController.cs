@@ -48,7 +48,7 @@ namespace MonumentMlyn.WebUI.Controllers
             }
         }
         [HttpGet("autorize")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> test()
         {
             return StatusCode(228);
@@ -92,7 +92,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPost]
-       // [Authorize]
+        [Authorize]
         public async Task<IActionResult> CreatePhoto
            (IFormFile imgFull, IFormFile imgMini, string name, int category)
         {
@@ -126,7 +126,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpPut("{id}")]
-       // [Authorize]
+        [Authorize]
         public async Task<IActionResult> UpdatePhoto(Guid id,IFormFile imgFull, IFormFile imgMini, string name, int category)
         {
             try
@@ -171,7 +171,7 @@ namespace MonumentMlyn.WebUI.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> DeletePhoto(Guid id)
         {
             try
