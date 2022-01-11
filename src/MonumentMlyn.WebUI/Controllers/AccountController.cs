@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Net.Http.Headers;
 using MonumentMlyn.BLL.DTO;
@@ -69,6 +70,7 @@ namespace MonumentMlyn.WebUI.Controllers
             {
                 var result =
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
 
                 if (result.Succeeded)
                 {

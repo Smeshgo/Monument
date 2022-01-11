@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -15,9 +16,6 @@ using MonumentMlyn.WebUI.Extensions;
 using NLog;
 using System;
 using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
 
 
 namespace MonumentMlyn.WebUI
@@ -29,12 +27,12 @@ namespace MonumentMlyn.WebUI
             LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.ConfigureLoggerService();
 
             services.ConfigureRepositoryManager();
@@ -50,6 +48,13 @@ namespace MonumentMlyn.WebUI
 
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = false;
+            });
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -66,9 +71,7 @@ namespace MonumentMlyn.WebUI
 
             services.AddSingleton(mapper);
 
-           
-             services.AddCors();
-
+            services.AddCors();
 
             services.AddControllers();
 
@@ -96,7 +99,7 @@ namespace MonumentMlyn.WebUI
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            
+
 
             app.UseRouting();
 
