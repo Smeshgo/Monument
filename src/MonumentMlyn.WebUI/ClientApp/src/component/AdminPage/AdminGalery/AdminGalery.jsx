@@ -14,6 +14,7 @@ let AdminGalery = ({
 	getPhoto,
 	photo,
 	deleteThisPhoto,
+
 	...props
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -41,7 +42,18 @@ let AdminGalery = ({
 							<span>{item.name}</span>
 						</div>
 						<div className={ag.trash}>
-							<img src={trashbox} alt='delete' onClick={()=> {deleteThisPhoto(item.photoId)}}/>
+							<img
+								src={trashbox}
+								alt='delete'
+								onClick={() => {
+									deleteThisPhoto(
+										item.photoId,
+										props.category,
+										props.currentPage,
+										props.pageSize
+									)
+								}}
+							/>
 						</div>
 					</div>
 				))}

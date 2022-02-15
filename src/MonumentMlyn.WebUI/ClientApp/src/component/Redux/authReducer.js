@@ -1,11 +1,12 @@
 import {authApi} from '../api/api'
+import Cookies from 'js-cookie'
 
 let Auth = 'Auth'
-let NextPage ='NextPage'
+let Next_Page ='Next_Page'
 
 let initialState ={
     isAuth: '',
-    nextPage: ''
+    NextPage: ''
 }
 
 let authReducer = ( state = initialState, action) =>{
@@ -16,13 +17,12 @@ let authReducer = ( state = initialState, action) =>{
                 isAuth: action.auth,
             }
         }
-        case NextPage: {
+        case Next_Page: {
             return{
                 ...state,
-                nextPage: action.next
+                NextPage: action.next
             }
         }
-
         default:
             return state
     }
@@ -31,7 +31,7 @@ export default authReducer
 
 export const authMe = (auth) => ({type: Auth,auth})
 
-export const nextPage = (next) => ({type: NextPage, next })
+export const nextPage = (next) => ({type: Next_Page, next })
 
 export const checkAuth = () => async (dispatch) => {
     let response = await authApi.isAuthMe()
@@ -40,10 +40,11 @@ export const checkAuth = () => async (dispatch) => {
 export const login = (logForm) => async (dispatch) => {
     let response = await authApi.login(logForm)
         dispatch(authMe(true))
-        console.log(response)
+        Cookies.set('user',logForm.email)
 }
 
 export const logOut = () => async (dispatch) => {
     let response = await authApi.logOut()
         dispatch(authMe(false))
+        Cookies.remove('user')
 }

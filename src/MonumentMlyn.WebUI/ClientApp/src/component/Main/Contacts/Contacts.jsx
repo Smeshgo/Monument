@@ -18,17 +18,21 @@ let Contacts = (props) => {
 					</div>
 					<div>
 						<img src={contact} alt='' />
-						<div>{'Контакти \n+380636785442\n+380635689142'}</div>
+						<div className={c.tel}>Контакти 
+							<br />
+							<a href='tel:+380979271652'> +380979271652 </a>
+							<br />
+							<a href='tel:+380668664271'> +380668664271 </a></div>
 					</div>
 					<div>
 						<img src={email} alt='' />
-						<div>{'Пошта \nSmeshGo@gmail.com'}</div>
+						<div>{'Пошта \nstepankurinskij@gmail.com'}</div>
 					</div>
 
 					<div>
 						<img src={repr} alt='' />
 						<div>Соціальні мережі</div>
-						<a className={c.link} href='https://www.facebook.com/'>facebook</a>
+						<a className={c.link} href='https://www.facebook.com/granit.mlynyska/' target="_blank">facebook</a>
 					</div>
 				</div>
 				<iframe

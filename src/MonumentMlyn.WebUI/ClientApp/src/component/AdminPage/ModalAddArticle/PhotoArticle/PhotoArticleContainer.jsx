@@ -25,6 +25,7 @@ class PhotoArticleContainer extends React.Component {
 					thisPage={this.props.thisPage}
                     onPageChanged={this.onPageChanged}
 					onSubmit={this.props.onSubmit}
+					closeModal={this.props.closeModal}
 				/>
 			</>
 		)

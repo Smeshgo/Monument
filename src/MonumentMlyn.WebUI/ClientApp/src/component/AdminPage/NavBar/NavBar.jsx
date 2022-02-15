@@ -1,4 +1,5 @@
 import React from "react";
+import Cookies from 'js-cookie'
 
 import { NavLink } from "react-router-dom";
 import n from './NavBar.module.css'
@@ -29,7 +30,7 @@ let NavBar = (props) => {
 					</div>
 				</div>
                 <div className={n.item}>
-                    <NavLink to='#' onClick={()=> props.nextPage(false)}>Сайт</NavLink>
+                    <NavLink to='#' onClick={()=> {props.nextPage(false); Cookies.remove('nextPage')}}>Сайт</NavLink>
                 </div>
             </nav>
         

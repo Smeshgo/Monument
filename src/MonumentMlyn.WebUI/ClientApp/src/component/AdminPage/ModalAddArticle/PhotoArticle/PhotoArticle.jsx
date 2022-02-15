@@ -2,10 +2,13 @@ import React from 'react'
 
 import pa from './PhotoArticle.module.css'
 import Paginator from '../../../common/Pagination/Pagination'
+import cancel from '../../../img/cancel-24.png'
+
 
 let PhotoArticle = (props) => {
 	return (
 		<div className={pa.gallery}>
+			<img src={cancel} alt="cancel" onClick={props.closeModal}/>
 			<div className={pa.position} >
 				{props.articlesPhoto.map((photo, index) => (
 					<div key={index} className={pa.text}>

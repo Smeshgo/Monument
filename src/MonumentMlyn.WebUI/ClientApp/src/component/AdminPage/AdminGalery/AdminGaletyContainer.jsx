@@ -41,6 +41,7 @@ class AdminGalleryContainer extends React.Component {
 					setPhotoIndex={this.props.setPhotoIndex}
 					photoIndex={this.props.photoIndex}
 					deleteThisPhoto={this.props.deleteThisPhoto}
+					category={this.props.category}
 				/>
 			</>
 		)

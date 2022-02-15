@@ -1,16 +1,10 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal'
 
-import PhotoArticleContainer from './PhotoArticle/PhotoArticleContainer'
+import UpdateTextForm from './UpdateTextForm'
 
 let ModalAddArticle = (props) => {
 	const [modal, setModal] = useState(false)
-	
-	let onSubmit = (formData) => {
-		let ids = {articleId: props.artId, photoId: formData}
-		props.postArticleWithPhoto(ids)
-	}
-
 	let openModal = () => {
 		setModal(true)
 	}
@@ -30,7 +24,7 @@ let ModalAddArticle = (props) => {
 	return (
 		<div>
 			<div>
-                <button onClick={openModal}>Добавити фото</button>
+                <button onClick={openModal}>Обновити текст</button>
             </div>
 			<Modal
 				style={customStyles}
@@ -38,7 +32,7 @@ let ModalAddArticle = (props) => {
 				onRequestClose={closeModal}
 				ariaHideApp={false}
 			>
-				<PhotoArticleContainer onSubmit={onSubmit} closeModal={closeModal}/>
+				<UpdateTextForm closeModal={closeModal} artId={props.artId} updateText={props.updateText}/>
 			</Modal>
 		</div>
 	)

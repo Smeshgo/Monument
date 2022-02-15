@@ -74,9 +74,9 @@ export const getOneArticle = (articleId) => async (dispatch) =>{
 }
 
 export const postArticleWithoutPhoto = (art) => async (dispatch) => {
-    let response = await articleApi.postArticleWithoutPhoto(art)
+    await articleApi.postArticleWithoutPhoto(art)
+    alert('Стаття добавлена')
 }
-
 export const getAllPhotoForArticle = (thisPage,pageNumbers) => async (dispatch) => {
     let response = await articleApi.getPhotoForArticle(thisPage,pageNumbers)
     dispatch(setArticlePhoto(response.data))
@@ -88,14 +88,18 @@ export const pageChanged = (thisPage,pageNumbers) => async (dispatch) => {
 	dispatch(setArticlePhoto(response.data))
 }
 export const postArticleWithPhoto = (twoId) => async (dispatch) => {
-    let response = await articleApi.postArticleWithPhoto(twoId)
-    alert('Текст статті добавлено')
+    await articleApi.postArticleWithPhoto(twoId)
+    dispatch(getOneArticle(twoId.articleId))
 }
 export const deleteArticlePhoto = (articleId,photoId) => async (dispatch) => {
-    let response = await articleApi.deleteArticlePhoto(articleId,photoId)
-    alert('Фото видалено')
+    await articleApi.deleteArticlePhoto(articleId,photoId)
+    dispatch(getOneArticle(articleId))
 }
 export const deleteArticle = (articleId) => async (dispatch) =>{
-    let response = await articleApi.deleteArticle(articleId)
-    alert('Статтю видалено')
+    await articleApi.deleteArticle(articleId)
+    dispatch(getArticles())
+}
+export const updateText = (id,articleContent) => async (dispatch) =>{
+    await articleApi.updateText(id,articleContent)
+    dispatch(getOneArticle(id))
 }

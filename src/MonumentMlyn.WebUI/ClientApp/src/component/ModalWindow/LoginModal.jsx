@@ -11,8 +11,8 @@ let LoginModal = (props) => {
 	const [modal, setModal] = useState(false)
 
 	let onSubmit = (formData) => {
-		let data = {...formData,returnUrl: 'https://localhost:44329/'}
-		props.login(JSON.stringify(data))
+		// let data = {...formData,returnUrl: 'https://localhost:44329/'}
+		props.login({...formData,returnUrl: 'https://localhost:44329/'})
 	}
 
 	let openModal = () => {

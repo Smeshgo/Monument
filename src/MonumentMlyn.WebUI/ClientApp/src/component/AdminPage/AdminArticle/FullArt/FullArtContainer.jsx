@@ -6,6 +6,7 @@ import { getOneArticle } from '../../../Redux/articleReducer'
 import {
 	postArticleWithPhoto,
 	deleteArticlePhoto,
+	updateText
 } from '../../../Redux/articleReducer'
 import { withRouter } from 'react-router'
 import { compose } from 'redux'
@@ -21,6 +22,7 @@ class FullArtContainer extends React.Component {
 					oneArticle={this.props.oneArticle}
 					postArticleWithPhoto={this.props.postArticleWithPhoto}
 					deleteArticlePhoto={this.props.deleteArticlePhoto}
+					updateText={this.props.updateText}
 				/>
 			</>
 		)
@@ -38,5 +40,6 @@ export default compose(
 		getOneArticle,
 		postArticleWithPhoto,
 		deleteArticlePhoto,
+		updateText
 	})
 )(FullArtContainer)

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import h from './Header.module.css'
+import Cookies from 'js-cookie'
 
 import unlock from '../../img/header/unlock-32.png'
 import telegram from '../../img/header/telegram-2-32.png'
@@ -11,20 +12,36 @@ import logo from '../../img/header/пмг55 копія.png'
 import LoginModal from '../../ModalWindow/LoginModal'
 import BurgerMenuContainer from '../BurgerMenu/BurgerMenuContainer'
 
-let Header = ({ isAuth, login, logOut, nextPage, checkAuth, ...props }) => {
+let Header = ({
+	isAuth,
+	login,
+	logOut,
+	nextPage,
+	checkAuth,
+	isCookie,
+	authMe,
+	...props
+}) => {
+	useEffect(() => {
+		if (Cookies.get('user')) {
+			authMe(true)
+		}
+	}, [])
+	console.log(Cookies.get('.AspNetCore.Identity.Application'))
+
 	return (
 		<div className={h.header}>
 			<div className={h.flex}>
 				<a href='/main'>
-					<img className={h.size} src={logo} alt='' />
+					<img className={h.size} src={logo} alt='mainPhoto' />
 				</a>
 
 				<div className={h.headerInfo}>
 					<div>
 						<p className={h.text1}>
-							Тел<a href='tel:+380636785442'> +380636785442 </a>
+							Тел<a href='tel:+380979271652'> +380979271652 </a>
 							<br />
-							Тел<a href='tel:+380636785442'> +380636785442 </a>
+							Тел<a href='tel:+380668664271'> +380668664271 </a>
 							<br />
 							Вул. Івана Франка 8,
 							<br />
@@ -36,13 +53,19 @@ let Header = ({ isAuth, login, logOut, nextPage, checkAuth, ...props }) => {
 					<div className={h.text}>
 						<div className={h.text2}>
 							<div>
-								<img src={telegram} alt='telegram' />
+								<a href='https://t.me/Pmgranit' target="_blank">
+									<img src={telegram} alt='telegram' />
+								</a>
 							</div>
 							<div>
-								<img src={viber} alt='viber' />
+								<a href='viber://chat?number=+380979271652' target="_blank">
+									<img src={viber} alt='viber' />
+								</a>
 							</div>
 							<div>
-								<img src={facebook} alt='facebook' />
+								<a href='https://www.facebook.com/granit.mlynyska/' target="_blank">
+									<img src={facebook} alt='facebook' />
+								</a>
 							</div>
 							{isAuth ? (
 								<div>
@@ -64,7 +87,9 @@ let Header = ({ isAuth, login, logOut, nextPage, checkAuth, ...props }) => {
 			</div>
 			<div className={h.sp}>
 				<div className={h.bl}>
-					<img src={logo} alt='' />
+				<a href='/main'>
+					<img src={logo} alt='mainPhoto' />
+				</a>
 				</div>
 				<NavLink to='/main' className={h.btn}>
 					Головна
@@ -74,15 +99,9 @@ let Header = ({ isAuth, login, logOut, nextPage, checkAuth, ...props }) => {
 						Галерея
 					</NavLink>
 					<div className={h.dropdownContent}>
-						<NavLink to='/gallery/1' >
-							Одинарні
-						</NavLink>
-						<NavLink to='/gallery/2' >
-							Подвійні
-						</NavLink>
-						<NavLink to='/gallery/3' >
-							Елітні
-						</NavLink>
+						<NavLink to='/gallery/1'>Одинарні</NavLink>
+						<NavLink to='/gallery/2'>Подвійні</NavLink>
+						<NavLink to='/gallery/3'>Елітні</NavLink>
 					</div>
 				</div>
 				<NavLink to='/article' className={h.btn}>
@@ -92,7 +111,13 @@ let Header = ({ isAuth, login, logOut, nextPage, checkAuth, ...props }) => {
 					Де нас знайти
 				</Link>
 				{isAuth && (
-					<div className={h.btn} onClick={() => nextPage(true)}>
+					<div
+						className={h.btn}
+						onClick={() => {
+							nextPage(true)
+							Cookies.set('nextPage', 'true')
+						}}
+					>
 						Адмін
 					</div>
 				)}

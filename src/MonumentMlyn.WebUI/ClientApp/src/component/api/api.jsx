@@ -1,6 +1,7 @@
 import * as axios from 'axios'
 export const instance = axios.create({
-	baseURL: 'https://localhost:44329/api/',
+	baseURL: 'https://pmgranit.com.ua/api/',
+	withCredentials:true,
 	headers: { 
 		"Content-Type": "application/json",  
 	  }
@@ -14,7 +15,7 @@ export const articleApi = {
 		return instance.get(`article/many/` + articleId)
 	},
 	postArticleWithoutPhoto(art){
-		return instance.post(`Article`, art)
+		return instance.post(`Article`, art )
 	},
 	getPhotoForArticle(pageNumber = 1, pageSize = 8){
 		return instance.get(`Photo/category?category=4&pageNumber=${pageNumber}&pageSize=${pageSize}`)
@@ -23,11 +24,13 @@ export const articleApi = {
 		return instance.post(`Article/many`,twoId)
 	},
 	deleteArticlePhoto(articleId,photoId){
-		debugger
 		return instance.delete(`Article/many/${articleId}?photoId=${photoId}`)
 	},
 	deleteArticle(articleId){
 		return instance.delete(`Article/`+ articleId)
+	},
+	updateText(id, articleContent){
+		return instance.put('Article/'+ id,articleContent)
 	}
 }
 
@@ -36,7 +39,7 @@ export const authApi = {
 		return instance.get(`Photo/autorize`)
 	},
 	login(logForm){
-		return instance.post(`Authorization/login/`, logForm)
+		return instance.post(`Authorization/login/`, JSON.stringify(logForm))
 	},
 	logOut(){
 		return instance.post(`Authorization/Logout`)
@@ -54,5 +57,6 @@ export const galleryApi = {
 	},
 	deletePhoto(id){
 		return instance.delete(`Photo/`+ id)
-	}
+	},
+	
 }

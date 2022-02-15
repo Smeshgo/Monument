@@ -79,8 +79,8 @@ export const setTotalPhotosCount = (totalPhotoCount) => ({
 	totalPhotoCount,
 })
 
-export const getPhotos = (category,pageNumber,pageSize) => async (dispatch) => {
-	let response = await galleryApi.getAllPhoto(category,pageNumber,pageSize)
+export const getPhotos = (category,currentPage,pageSize) => async (dispatch) => {
+	let response = await galleryApi.getAllPhoto(category,currentPage,pageSize)
 	dispatch(setPhotos(response.data))
     dispatch(setCategory(category))
     dispatch(setTotalPhotosCount(JSON.parse(response.headers['x-pagination']).TotalCount))
@@ -91,18 +91,19 @@ export const getPhoto = (photoId) => async (dispatch)=> {
 	dispatch(setPhoto(response.data.fullPhoto))
 }
 
-export const getPageChanged = (category,pageNumber,pageSize) => async (dispatch) => {
-	dispatch(setCurrentPage(pageNumber))
-	let response = await galleryApi.getAllPhoto(category,pageNumber,pageSize)
+export const getPageChanged = (category,currentPage,pageSize) => async (dispatch) => {
+	dispatch(setCurrentPage(currentPage))
+	let response = await galleryApi.getAllPhoto(category,currentPage,pageSize)
 	dispatch(setPhotos(response.data))
 }
 
 export const sendTwophoto = (name,type,formData) => async(dispatch) =>{
-	let response = await galleryApi.sendPhoto(name,type,formData)	
+	await galleryApi.sendPhoto(name,type,formData)	
 	alert('Успішно')
 }
 
-export const deleteThisPhoto = (id) => async (dispatch) => {
-	let respose = await galleryApi.deletePhoto(id)
-	alert('Успішно')
+export const deleteThisPhoto = (id,category,currentPage,pageSize) => async (dispatch) => {
+	debugger
+	await galleryApi.deletePhoto(id)
+	dispatch(getPhotos(category,currentPage,pageSize))
 }

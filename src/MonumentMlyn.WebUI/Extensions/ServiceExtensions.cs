@@ -23,6 +23,7 @@ namespace MonumentMlyn.WebUI.Extensions
                         .AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()
+                        .AllowCredentials()
                         .WithExposedHeaders("X-Pagination"));
             });
             services.AddControllersWithViews();

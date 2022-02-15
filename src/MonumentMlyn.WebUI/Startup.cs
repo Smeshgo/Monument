@@ -50,11 +50,13 @@ namespace MonumentMlyn.WebUI
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
+
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = false;
             });
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

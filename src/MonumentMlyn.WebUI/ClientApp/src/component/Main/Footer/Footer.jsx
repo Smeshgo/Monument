@@ -12,12 +12,30 @@ let Footer = (props) => {
 		<div className={f.border}>
 			<div className={f.block}>
 				<img className={f.logo} src={logo} alt='' />
-				<h3>Розробник: SmeshGo@gmail.com</h3>
+				<h3>Розробник: stepankurinskij@gmail.com</h3>
 				<div className={f.icon}>
-					<div><img src={telegram} alt='telegram' /></div>
-					<div><img src={viber} alt='viber' /></div>
-					<div><img src={facebook} alt='facebook' /></div>
-					<div className={f.logIn}>{props.isAuth ? <img src={unlock} alt='unlock' /> : <LoginModal login={props.login}/>}</div>
+					<div>
+						<a href='https://t.me/Pmgranit' target="_blank">
+							<img src={telegram} alt='telegram' />
+						</a>
+					</div>
+					<div>
+						<a href='viber://chat?number=+380979271652' target="_blank"> 
+							<img src={viber} alt='viber' />
+						</a>
+					</div>
+					<div>
+						<a href='https://www.facebook.com/granit.mlynyska/' target="_blank">
+							<img src={facebook} alt='facebook' />
+						</a>
+					</div>
+					<div className={f.logIn}>
+						{props.isAuth ? (
+							<img src={unlock} alt='unlock' />
+						) : (
+							<LoginModal login={props.login} />
+						)}
+					</div>
 				</div>
 			</div>
 		</div>
