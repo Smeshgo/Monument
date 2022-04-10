@@ -33,10 +33,15 @@ namespace MonumentMlyn.DAL.Entities
             ErrorMessage = "Not a valid phone number")]
         public string Phone { get; set; }
         public string LastName { get; set; }
+        public string Status { get; set; }
+        public string Specialty { get; set; }
+
         public DateTime? CreateWorker { get; set; }
         public DateTime? UpdateWorker { get; set; }
- 
-        
+        public DateTime? DeleteDate { get; set; }
+
+
+
         //[ForeignKey("SalaryId")]
         public virtual ICollection<Salary> Salary { get; set; } = new List<Salary>();
 

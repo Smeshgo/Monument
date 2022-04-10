@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -10,7 +8,7 @@ namespace MonumentMlyn.DAL.Entities
     {
         public Salary()
         {
-            
+
         }
 
         public Salary(Guid workerId, DateTime date, decimal advance, decimal numberOfHours, decimal rate)
@@ -27,6 +25,11 @@ namespace MonumentMlyn.DAL.Entities
         public decimal Advance { get; set; }
         public decimal NumberOfHours { get; set; }
         public decimal Rate { get; set; }
+        public decimal Premium { get; set; }
+        public decimal Penalty { get; set; }
+        public string Description { get; set; }
+        public decimal DaySalary { get; set; }
+
         [JsonIgnore]
         public virtual Worker Worker { get; set; } = new Worker();
     }

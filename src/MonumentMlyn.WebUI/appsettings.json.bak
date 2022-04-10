@@ -9,6 +9,6 @@
   },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "DefaultConnection": "Server=78.47.130.127;Database=MlynDB;Persist Security Info=False;User ID=sa;Password=ltFFFTBaNIVFTz1;TrustServerCertificate=False;Connection Timeout=30;"
+    "DefaultConnection": "Data Source=DESKTOP-S9LJBNU\\MONUMENTBD;Initial Catalog=MlynDB;Integrated Security=True"
   }
 }
